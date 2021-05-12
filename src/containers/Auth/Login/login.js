@@ -1,6 +1,5 @@
 import React , { Component, Fragment } from 'react';
-import {TextField , Button ,Chip } from '@material-ui/core';
-import ErrorIcon from '@material-ui/icons/Error'
+import {TextField , Button } from '@material-ui/core';
 import classes from './login.module.css';
 import { checkInputValidity } from '../util/auth-util';
 import Alert from '../../../components/UI/Feedback/Alert/alert'

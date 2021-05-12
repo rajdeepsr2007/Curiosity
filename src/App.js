@@ -1,6 +1,5 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component} from 'react';
 import './App.css';
-import Logo from './components/UI/Logo/logo';
 import Auth from './containers/Auth/auth';
 
 class App extends Component {

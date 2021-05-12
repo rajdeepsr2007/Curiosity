@@ -1,8 +1,6 @@
-import React , { Component , Fragment } from 'react';
+import React , { Component } from 'react';
 import {TextField , Button } from '@material-ui/core';
 import Alert from '../../../components/UI/Feedback/Alert/alert'
-import ErrorIcon from '@material-ui/icons/Error'
-import CheckCircleIcon from '@material-ui/icons/CheckCircleOutline'
 import classes from './signup.module.css';
 import {checkInputValidity} from '../util/auth-util';
 
@@ -67,7 +65,7 @@ class Signup extends Component{
     }
 
     submitFormHandler = (event) => {
-        //event.preventDefault();
+        event.preventDefault();
         if( !this.state.isFormValid ){
             this.setState({ showErrors : true })
         }
@@ -93,6 +91,15 @@ class Signup extends Component{
                 }else{
                     updatedControls[inputKey].success = 'Passwords did match';
                     updatedControls[inputKey].error = null;
+                }
+            }
+            if( inputKey === 'password' ){
+                if( updatedControls['confirm_password'].value !== event.target.value ){
+                    updatedControls['confirm_password'].error = "Doesn't match password"
+                    updatedControls['confirm_password'].success = null;
+                }else{
+                    updatedControls['confirm_password'].success = 'Passwords did match';
+                    updatedControls['confirm_password'].error = null;
                 }
             }
 
