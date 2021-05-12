@@ -2,6 +2,8 @@ import React , { Component, Fragment } from 'react';
 import {TextField , Button ,Chip } from '@material-ui/core';
 import ErrorIcon from '@material-ui/icons/Error'
 import classes from './login.module.css';
+import { checkInputValidity } from '../util/auth-util';
+import Alert from '../../../components/UI/Feedback/Alert/alert'
 
 class Login extends Component{
 
@@ -54,11 +56,11 @@ class Login extends Component{
                 }
             }
             updatedControls[inputKey].value = event.target.value;
-            updatedControls[inputKey].error =  updatedControls[inputKey].valid ? null : 'Please Fill this field';
+            updatedControls[inputKey].error = checkInputValidity( event.target.value ,  updatedControls[inputKey].validation.rules )
 
             let isFormValid = true;
-            for( const key in this.state.controls ){
-                if( !updatedControls[key].error ){
+            for( const key in updatedControls ){
+                if( updatedControls[key].error ){
                     isFormValid = false;
                 }
             }
@@ -77,24 +79,18 @@ class Login extends Component{
         for( let key in this.state.controls ){
             const input = this.state.controls[key];
             formInputs.push(
-                <Fragment>
-                    <div className={classes.input} key={key} >
+                <Fragment key={key} >
+                    <div className={classes.input} >
                         <TextField
                         type={input.type}
                         value={input.value}
                         error={false}
                         label={input.label}
+                        required
                         onChange={ (event) => this.inputChangeHandler(event,key) }
                         />
                     </div>
-                    { this.state.showErrors && input.error ? 
-                        <Chip
-                            icon={<ErrorIcon />}
-                            label={input.error}
-                            color="secondary"
-                            variant="outlined"
-                        />:
-                    null }
+                    { this.state.showErrors && input.error ? <Alert alertType="error" text={input.error} /> : null }
                 </Fragment>
             )
         }

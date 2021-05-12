@@ -1,7 +1,10 @@
 import React , { Component , Fragment } from 'react';
-import {TextField , Button ,Chip } from '@material-ui/core';
+import {TextField , Button } from '@material-ui/core';
+import Alert from '../../../components/UI/Feedback/Alert/alert'
 import ErrorIcon from '@material-ui/icons/Error'
+import CheckCircleIcon from '@material-ui/icons/CheckCircleOutline'
 import classes from './signup.module.css';
+import {checkInputValidity} from '../util/auth-util';
 
 class Signup extends Component{
 
@@ -13,6 +16,7 @@ class Signup extends Component{
                 value : '',
                 valid : false,
                 error : 'Please fill out this field' ,
+                success : false,
                 validation : {
                     rules : {
                         isFilled : true ,
@@ -26,6 +30,7 @@ class Signup extends Component{
                 value : '',
                 valid : false,
                 error : 'Please fill out this field' ,
+                success : false,
                 validation : {
                     rules : {
                         isFilled : true 
@@ -39,7 +44,8 @@ class Signup extends Component{
                 error : 'Please fill out this field' ,
                 validation : {
                     rules : {
-                        isFilled : true
+                        isFilled : true,
+                        passwordStrength: true
                     }
                 }
             },
@@ -47,16 +53,64 @@ class Signup extends Component{
                 type : 'password',
                 label : 'Confirm Password',
                 value : '',
-                error : 'Please fill out this field' ,
+                success : false,
+                error : null ,
                 validation : {
                     rules : {
-                        isFilled : true
+                        
                     }
                 }
             },
         },
         isFormValid : false ,
-        showErrors : true
+        showErrors : false
+    }
+
+    submitFormHandler = (event) => {
+        //event.preventDefault();
+        if( !this.state.isFormValid ){
+            this.setState({ showErrors : true })
+        }
+    }
+
+    inputChangeHandler = (event,inputKey) => {
+        let updatedControls = {};
+        this.setState( ( prevState , props) => {
+            for( let key in prevState.controls ){
+                updatedControls = {
+                    ...updatedControls,
+                    [key] : {...prevState.controls[key]}
+                }
+            }
+            updatedControls[inputKey].value = event.target.value ;
+            updatedControls[inputKey].error = checkInputValidity(event.target.value , updatedControls[inputKey].validation.rules) 
+
+            if( inputKey === 'confirm_password' ){
+                
+                if( updatedControls['password'].value !== event.target.value ){
+                    updatedControls[inputKey].error = "Doesn't match password"
+                    updatedControls[inputKey].success = null;
+                }else{
+                    updatedControls[inputKey].success = 'Passwords did match';
+                    updatedControls[inputKey].error = null;
+                }
+            }
+
+            let isFormValid = true;
+            for( let key in updatedControls){
+                if( updatedControls[key].error){
+                    isFormValid = false;
+                }
+            }
+
+            return {
+                ...prevState ,
+                controls : updatedControls ,
+                isFormValid ,
+                showErrors : false
+            }
+
+        } )
     }
 
     render(){
@@ -65,23 +119,24 @@ class Signup extends Component{
         for( let key in this.state.controls ){
             const input = this.state.controls[key];
             formInputs.push(
-                <div className={classes.input_container} >
-                    <div className={classes.input} key={key} >
+                <div className={classes.input_container} key={key}>
+                    <div className={classes.input}>
                         <TextField
                         type={input.type}
                         value={input.value}
                         error={false}
                         label={input.label}
+                        required
+                        onChange={(event) => this.inputChangeHandler(event,key)}
                         />
                     </div><br></br>
-                    { this.state.showErrors && input.error ? 
-                        <Chip
-                            icon={<ErrorIcon />}
-                            label={input.error}
-                            color="secondary"
-                            variant="outlined"
-                        />:
-                    null }
+                    {   input.success ? <Alert alertType="success" text={input.success} /> : null  }
+                    {
+                         this.state.showErrors && input.error ?
+                         <Alert alertType="error" text={input.error} />
+                         :null
+                    }
+                    
                 </div>
             )
         }

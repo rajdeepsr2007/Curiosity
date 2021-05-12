@@ -5,6 +5,7 @@ import classes from './auth.module.css';
 import Logo from '../../components/UI/Logo/logo';
 import {Button} from '@material-ui/core';
 import EmailIcon from '@material-ui/icons/MailOutlineRounded'
+import ArrowBack from '@material-ui/icons/ArrowBack'
 
 class Auth extends Component{
 
@@ -38,8 +39,10 @@ class Auth extends Component{
                             {content}
                             <div className={classes.button} >
                                 <Button variant="outlined" onClick={this.switchAuthModeHandler} >
-                                    {this.state.isLogin ? <EmailIcon /> : null}
-                                    {this.state.isLogin ? <span style={{ marginLeft : '5px' }} > Signup With Email</span> : 'Switch To Login'}
+                                    {this.state.isLogin ? <EmailIcon /> : <ArrowBack />}
+                                    {this.state.isLogin ? 
+                                    <span style={{ marginLeft : '5px' }} > Signup With Email</span> 
+                                    : <span style={{ marginLeft : '5px' }} > Switch To Login</span>}
                                 </Button>
                             </div>
                         </div>
