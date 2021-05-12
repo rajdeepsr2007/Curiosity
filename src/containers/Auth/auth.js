@@ -1,4 +1,4 @@
-import React , { Component, Fragment } from 'react';
+import React , { Component} from 'react';
 import Login from './Login/login';
 import Signup from './Signup/signup';
 import classes from './auth.module.css';
@@ -24,6 +24,7 @@ class Auth extends Component{
 
     render(){
         let content = this.state.isLogin ? <Login /> : <Signup />
+        const formContainerClass = this.state.isLogin ? classes.inputs : classes.inputs_signup ;
 
         return (
             <div className={classes.align} >
@@ -32,8 +33,8 @@ class Auth extends Component{
                         {/*About website*/}
                     </div>
                     <div className={classes.form} >
-                        <div className={classes.inputs} >
-                            <Logo />
+                        <Logo />
+                        <div className={formContainerClass} >
                             {content}
                             <div className={classes.button} >
                                 <Button variant="outlined" onClick={this.switchAuthModeHandler} >

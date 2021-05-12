@@ -1,5 +1,5 @@
 import React , { Component, Fragment } from 'react';
-import {InputBase, TextField , Button ,Chip } from '@material-ui/core';
+import {TextField , Button ,Chip } from '@material-ui/core';
 import ErrorIcon from '@material-ui/icons/Error'
 import classes from './login.module.css';
 
@@ -10,13 +10,11 @@ class Login extends Component{
             email : {
                 type : null,
                 label : 'Email or Username',
-                value : '',
                 valid : false ,
                 error : 'Please fill out this field' ,
                 validation : {
                     rules : {
-                        isEmail : true ,
-                        isUnique : true
+                        isFilled : true ,
                     }
                 }
             },
@@ -28,7 +26,8 @@ class Login extends Component{
                 error : 'Please fill out this field' ,
                 validation : {
                     rules : {
-                        isPassword : true
+                        isPassword : true,
+                        isFilled : true
                     }
                 }
             }
@@ -55,12 +54,11 @@ class Login extends Component{
                 }
             }
             updatedControls[inputKey].value = event.target.value;
-            updatedControls[inputKey].valid = updatedControls[inputKey].value!=='';
             updatedControls[inputKey].error =  updatedControls[inputKey].valid ? null : 'Please Fill this field';
 
             let isFormValid = true;
             for( const key in this.state.controls ){
-                if( !updatedControls[key].valid ){
+                if( !updatedControls[key].error ){
                     isFormValid = false;
                 }
             }

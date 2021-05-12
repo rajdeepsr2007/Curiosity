@@ -3,12 +3,12 @@
 }
 
 .logo img{
-    width : 50%;
+    width : 100%;
     height : 2.2rem;
 }
 
 @media (max-width:800px){
     .logo img{
-        width:50%
+        width:100%
     }
 }

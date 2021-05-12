@@ -1,17 +1,26 @@
 .form{
     height : auto;
     display: flex;
-    flex-flow: column;
+    flex-flow: row;
     justify-content: center;
     align-items: center;
+    padding : 1rem;
 }
 
 .form form{
     text-align: center;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .input{
+    margin-top: 1rem;
     margin-bottom: 1rem;
+    display: inline-block;
+}
+.input_container{
+    width : 50%;
 }
 .button{
     margin-top: 2rem;
