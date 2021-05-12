@@ -1,7 +1,7 @@
-import React , { Component } from 'react';
-import {InputBase, TextField} from '@material-ui/core';
+import React , { Component, Fragment } from 'react';
+import {InputBase, TextField , Button ,Chip } from '@material-ui/core';
+import ErrorIcon from '@material-ui/icons/Error'
 import classes from './login.module.css';
-import {Button} from '@material-ui/core';
 
 class Login extends Component{
 
@@ -11,9 +11,8 @@ class Login extends Component{
                 type : null,
                 label : 'Email or Username',
                 value : '',
-                isValid : false ,
-                touched : false,
-                error : null ,
+                valid : false ,
+                error : 'Please fill out this field' ,
                 validation : {
                     rules : {
                         isEmail : true ,
@@ -25,9 +24,8 @@ class Login extends Component{
                 type : 'password',
                 value : '',
                 label : 'Password',
-                isValid : false ,
-                touched : false,
-                error : null ,
+                valid : false ,
+                error : 'Please fill out this field' ,
                 validation : {
                     rules : {
                         isPassword : true
@@ -35,7 +33,16 @@ class Login extends Component{
                 }
             }
         },
-        isFormValid : false
+        isFormValid : false,
+        showErrors : false
+    }
+
+    submitFormHandler = (event) => {
+        event.preventDefault();
+        console.log('Login');
+        if(!this.state.isFormValid){
+            this.setState({ showErrors : true })
+        }
     }
 
     inputChangeHandler = (event,inputKey) => {
@@ -48,8 +55,8 @@ class Login extends Component{
                 }
             }
             updatedControls[inputKey].value = event.target.value;
-            updatedControls[inputKey].touched = true;
             updatedControls[inputKey].valid = updatedControls[inputKey].value!=='';
+            updatedControls[inputKey].error =  updatedControls[inputKey].valid ? null : 'Please Fill this field';
 
             let isFormValid = true;
             for( const key in this.state.controls ){
@@ -60,7 +67,8 @@ class Login extends Component{
             return {
                 ...prevState ,
                 controls : updatedControls,
-                isFormValid
+                isFormValid,
+                showErrors : false
             }
         } )
     }
@@ -71,15 +79,25 @@ class Login extends Component{
         for( let key in this.state.controls ){
             const input = this.state.controls[key];
             formInputs.push(
-                <div className={classes.input} key={key} >
-                    <TextField
-                    type={input.type}
-                    value={input.value}
-                    error={input.error}
-                    label={input.label}
-                    onChange={ (event) => this.inputChangeHandler(event,key) }
-                    />
-                </div>
+                <Fragment>
+                    <div className={classes.input} key={key} >
+                        <TextField
+                        type={input.type}
+                        value={input.value}
+                        error={false}
+                        label={input.label}
+                        onChange={ (event) => this.inputChangeHandler(event,key) }
+                        />
+                    </div>
+                    { this.state.showErrors && input.error ? 
+                        <Chip
+                            icon={<ErrorIcon />}
+                            label={input.error}
+                            color="secondary"
+                            variant="outlined"
+                        />:
+                    null }
+                </Fragment>
             )
         }
 
@@ -87,12 +105,13 @@ class Login extends Component{
                 <Button 
                 variant="contained" 
                 color="primary"
-                disabled={!this.state.isFormValid}>Login</Button>
+                onClick={this.submitFormHandler}
+                >Login</Button>
             </div>
 
         return(
             <div className={classes.form} >
-                <form onSubmit={this.submitFormHandler} >
+                <form>
                     {formInputs}
                     {submitButton}
                 </form>  
