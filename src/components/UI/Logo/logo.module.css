@@ -1,3 +1,14 @@
 .logo{
-    height:5rem
+    text-align: center;
+}
+
+.logo img{
+    width : 60%;
+    height : 2.2rem;
+}
+
+@media (max-width:800px){
+    .logo img{
+        width:40%
+    }
 }

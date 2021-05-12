@@ -1,6 +1,8 @@
 import React , { Component, Fragment } from 'react';
 import Login from './Login/login';
 import Signup from './Signup/signup';
+import classes from './auth.module.css';
+import Logo from '../../components/UI/Logo/logo';
 
 class Auth extends Component{
 
@@ -11,10 +13,21 @@ class Auth extends Component{
 
     render(){
         let content = this.state.isLogin ? <Login /> : <Signup />
+
         return (
-            <Fragment>
-                {content}
-            </Fragment>  
+            <div className={classes.align} >
+                <div className={classes.auth} >
+                    <div className={classes.info} >
+                        {/*About website*/}
+                    </div>
+                    <div className={classes.form} >
+                        <div className={classes.inputs} >
+                            <Logo />
+                            {content}
+                        </div>
+                    </div>
+               </div>
+            </div>
         )
     }
 }
