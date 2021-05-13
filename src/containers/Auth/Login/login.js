@@ -6,6 +6,8 @@ import Alert from '../../../components/UI/Feedback/Alert/alert'
 
 import {connect} from 'react-redux';
 
+import * as actions from '../../../store/actions/auth/signup';
+
 class Login extends Component{
 
     state={
@@ -37,6 +39,10 @@ class Login extends Component{
         },
         isFormValid : false,
         showErrors : false
+    }
+
+    componentWillUnmount = () => {
+        this.props.onResetSignup();
     }
 
     submitFormHandler = (event) => {
@@ -125,4 +131,10 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(Login);
+const mapDispatchToProps = dispatch => {
+    return {
+        onResetSignup : () => dispatch(actions.resetSignup())
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Login);

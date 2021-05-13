@@ -9,6 +9,8 @@ import {connect} from 'react-redux';
 import Loader from '../../../components/UI/Loader/loader'
 
 import * as signupActions from '../../../store/actions/index'
+import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
+import axiosInstance from '../../../axiosInstance';
 
 class Signup extends Component{
 
@@ -68,10 +70,6 @@ class Signup extends Component{
         },
         isFormValid : false ,
         showErrors : false
-    }
-
-    componentWillMount = () => {
-        this.props.setSignupFalse();
     }
 
     componentDidUpdate = () => {
@@ -198,15 +196,13 @@ const mapStateToProps = state => {
     return {
         loading : state.signup.loading ,
         error : state.signup.error,
-        signup : state.signup.signup
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         onSignup : (email,username,password) => dispatch(signupActions.signUp(email,username,password)),
-        setSignupFalse : () => dispatch(signupActions.resetSignup())
     }
 }
 
-export default connect( mapStateToProps , mapDispatchToProps)(Signup);
+export default connect( mapStateToProps , mapDispatchToProps)(withErrorHandler(Signup,axiosInstance));
