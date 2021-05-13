@@ -9,10 +9,10 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-import authReducer from './store/reducers/auth';
+import signupReducer from './store/reducers/auth/signup';
 
 const rootReducer = combineReducers({
-    auth : authReducer
+    signup : signupReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

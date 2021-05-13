@@ -4,6 +4,12 @@ import Alert from '../../../components/UI/Feedback/Alert/alert'
 import classes from './signup.module.css';
 import {checkInputValidity} from '../util/auth-util';
 
+import {connect} from 'react-redux';
+
+import Loader from '../../../components/UI/Loader/loader'
+
+import * as signupActions from '../../../store/actions/index'
+
 class Signup extends Component{
 
     state={
@@ -66,9 +72,8 @@ class Signup extends Component{
 
     submitFormHandler = (event) => {
         event.preventDefault();
-        if( !this.state.isFormValid ){
-            this.setState({ showErrors : true })
-        }
+        console.log('Signup');
+        this.props.onStartSignup();
     }
 
     inputChangeHandler = (event,inputKey) => {
@@ -148,13 +153,17 @@ class Signup extends Component{
             )
         }
 
-        const submitButton = <div className={classes.button} >
+        let submitButton = <div className={classes.button} >
                     <Button 
                     variant="contained" 
                     color="primary"
                     onClick={this.submitFormHandler}
                     >SignUp</Button>
                 </div>
+
+        if( this.props.loading ){
+            submitButton = <Loader />
+        }
 
         return (
             <div className={classes.form} >
@@ -167,4 +176,17 @@ class Signup extends Component{
     }
 }
 
-export default Signup;
+const mapStateToProps = state => {
+    return {
+        loading : state.signup.loading ,
+        error : state.signup.error
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onStartSignup : () => dispatch(signupActions.signupStart())
+    }
+}
+
+export default connect( mapStateToProps , mapDispatchToProps)(Signup);
