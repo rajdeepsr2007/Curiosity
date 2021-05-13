@@ -1,3 +1,4 @@
 export {
-    signupStart
+    signUp ,
+    resetSignup
 } from './auth/signup';

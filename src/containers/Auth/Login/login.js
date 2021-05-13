@@ -4,6 +4,8 @@ import classes from './login.module.css';
 import { checkInputValidity } from '../util/auth-util';
 import Alert from '../../../components/UI/Feedback/Alert/alert'
 
+import {connect} from 'react-redux';
+
 class Login extends Component{
 
     state={
@@ -102,16 +104,25 @@ class Login extends Component{
                 >Login</Button>
             </div>
 
+        const message = this.props.signup ? <Alert alertType="success" text={'You were successfully Signed up'} size="big" /> : null;
+
         return(
             <div className={classes.form} >
                 <form>
                     {formInputs}
                     {submitButton}
                 </form>  
+                {message}
             </div>
             
         )
     }
 }
 
-export default Login;
+const mapStateToProps = state => {
+    return {
+        signup : state.signup.signup
+    }
+}
+
+export default connect(mapStateToProps)(Login);

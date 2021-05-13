@@ -70,10 +70,28 @@ class Signup extends Component{
         showErrors : false
     }
 
+    componentWillMount = () => {
+        this.props.setSignupFalse();
+    }
+
+    componentDidUpdate = () => {
+        if( this.props.signup ){
+            this.props.changeAuthMode();
+        }
+    }
+
     submitFormHandler = (event) => {
         event.preventDefault();
-        console.log('Signup');
-        this.props.onStartSignup();
+        //console.log('Signup');
+
+        if( !this.state.isFormValid ){
+            this.setState({ showErrors : true })
+        }else{
+            this.props.onSignup( 
+                this.state.controls.email.value ,
+                this.state.controls.username.value,
+                this.state.controls.password.value );
+        }
     }
 
     inputChangeHandler = (event,inputKey) => {
@@ -179,13 +197,15 @@ class Signup extends Component{
 const mapStateToProps = state => {
     return {
         loading : state.signup.loading ,
-        error : state.signup.error
+        error : state.signup.error,
+        signup : state.signup.signup
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onStartSignup : () => dispatch(signupActions.signupStart())
+        onSignup : (email,username,password) => dispatch(signupActions.signUp(email,username,password)),
+        setSignupFalse : () => dispatch(signupActions.resetSignup())
     }
 }
 

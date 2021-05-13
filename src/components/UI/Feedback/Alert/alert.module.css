@@ -17,3 +17,9 @@
     color : rgb(224, 108, 108);
     border : 0.2px solid rgb(224, 108, 108)
 }
+
+.big{
+    width : 23rem;
+    font-size : 1.2rem;
+    margin : 2rem 0;
+}

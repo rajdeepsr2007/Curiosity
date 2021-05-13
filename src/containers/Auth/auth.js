@@ -24,7 +24,7 @@ class Auth extends Component{
     }
 
     render(){
-        let content = this.state.isLogin ? <Login /> : <Signup />
+        let content = this.state.isLogin ? <Login /> : <Signup changeAuthMode={this.switchAuthModeHandler} />
         const formContainerClass = this.state.isLogin ? classes.inputs : classes.inputs_signup ;
 
         return (
