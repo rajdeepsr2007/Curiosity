@@ -1,5 +1,5 @@
 .auth{
-    width : 80%;
+    width : 35%;
     height : 40rem ;
     position: absolute;
     /* border : 1px solid black; */
@@ -10,6 +10,7 @@
     top:3rem;
     background : white;
     box-shadow: 0px 0px 20px 2px grey;
+    justify-content: center;
 }
 .align{
     display: flex;
@@ -24,43 +25,60 @@
 }
 
 .auth .form{
-    width:40%;
+    width:90%;
     height : inherit;
     /* border:1px solid; */
     display: flex;
     flex-flow: column;
     align-items: center;
     justify-content: flex-start;
-    box-shadow: 0px 0px 1px 1px rgb(238, 236, 236);
+    /* box-shadow: 0px 0px 1px 1px rgb(238, 236, 236); */
     padding : 3rem 0 0 0
 }
 
-@media (max-width:1200px){
+/* @media (max-width:1200px){
     .auth .form,.auth .info{
         width : 50%;
     }
-}
+} */
 
-@media (max-width : 900px ){
+@media (max-width : 1500px){
     .auth{
-        width : 100%;
-        top:0;
-        height:45rem;
+        width : 40%;
     }
 }
 
-@media (max-width:800px){
+@media (max-width : 1200px ){
     .auth{
-        flex-flow: column-reverse;
-        height:auto
+        width : 50%;
+        top:2rem;
+        height:40rem;
+    }
+}
+
+@media (max-width:900px){
+    .auth{
+        /* flex-flow: column-reverse;
+        height:50rem */
+        width : 65%;
     }
     .auth .form,.auth .info{
-        width:100%;
+        width:90%;
         height:35rem;
         padding: 2rem 0;
     }
 }
 
+@media (max-width : 600px){
+    .auth{
+        width:100%;
+        top : 0;
+        height : 60rem
+    }
+    .auth .form{
+        width : 100%;
+    }
+}
 
 
 .inputs{

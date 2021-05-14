@@ -19,6 +19,7 @@ class Login extends Component{
                 type : null,
                 label : 'Email or Username',
                 valid : false ,
+                value : '',
                 error : 'Please fill out this field' ,
                 validation : {
                     rules : {
