@@ -126,6 +126,7 @@ class Login extends Component{
 
         return(
             <div className={classes.form} >
+                { this.props.error ? <Alert alertType="error" size="big" text={this.props.error} /> : null }
                 <form>
                     {formInputs}
                     {submitButton}
@@ -141,7 +142,8 @@ const mapStateToProps = state => {
     return {
         signup : state.signup.signup,
         token : state.auth.token,
-        loading : state.auth.loading
+        loading : state.auth.loading,
+        error : state.auth.error
     }
 }
 

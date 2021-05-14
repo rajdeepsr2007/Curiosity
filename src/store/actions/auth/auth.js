@@ -28,10 +28,13 @@ export const login = (email,password) => {
         dispatch( loginStart() );
         axiosInstance.post('/api/auth/login' , { email : email , password : password })
         .then( response => {
-            if(response){
-                dispatch(loginSuccess(response.email,response.username,response.token))
+            if(response.data.success){
+                localStorage.setItem( 'token' , response.data.token );
+                localStorage.setItem( 'username' , response.data.username );
+                localStorage.setItem( 'email' , response.data.email )
+                dispatch(loginSuccess(response.data.email,response.data.username,response.data.token))
             }else{
-                dispatch(loginFailed())
+                dispatch(loginFailed(response.data.message))
             }
         } )
         .catch( error => {
