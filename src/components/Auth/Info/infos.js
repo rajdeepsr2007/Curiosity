@@ -15,7 +15,7 @@ const Infos = () => {
         <div className={classes.infos} >
             <ul>
                 {
-                    infoItems.map( info => <li><Info info={info} /></li> )
+                    infoItems.map( info => <li key={info.description} ><Info info={info} /></li> )
                 }
             </ul>
         </div>
