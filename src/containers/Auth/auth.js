@@ -30,9 +30,9 @@ class Auth extends Component{
         return (
             <div className={classes.align} >
                 <div className={classes.auth} >
-                    {/* <div className={classes.info} >
-                        <Info />
-                    </div> */}
+                    <div className={classes.info} >
+                        {/*Website Info*/}
+                    </div>
                     <div className={classes.form} >
                         <Logo />
                         <div className={formContainerClass} >
