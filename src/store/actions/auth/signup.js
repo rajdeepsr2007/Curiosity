@@ -26,13 +26,13 @@ export const signUp = (email , username , password) => {
         const user = { email , username , password }
 
         //dispatch(signupFailed());
-
         axiosInstance.post('/api/auth/signup' , user )
         .then( response => {
-            if(response){
+            console.log(response)
+            if(response.data.success){
                 dispatch(signupSuccess())
             }else{
-                dispatch(signupFailed())
+                dispatch(signupFailed( response.data.message ))
             }
         } )
         .catch( error => {
