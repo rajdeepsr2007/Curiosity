@@ -5,5 +5,5 @@ export const RESET_SIGNUP = 'RESET_SIGNUP';
 
 export const LOGIN_START = 'LOGIN_START';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export const LOGIN_FAILED = 'SIGNUP_FAILED';
+export const LOGIN_FAILED = 'LOGIN_FAILED';
 export const LOGIN_AUTO = 'LOGIN_AUTO';
