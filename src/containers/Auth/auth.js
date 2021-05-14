@@ -6,6 +6,7 @@ import Logo from '../../components/UI/Logo/logo';
 import {Button} from '@material-ui/core';
 import EmailIcon from '@material-ui/icons/MailOutlineRounded'
 import ArrowBack from '@material-ui/icons/ArrowBack'
+import Infos from '../../components/Auth/Info/infos';
 
 class Auth extends Component{
 
@@ -31,7 +32,7 @@ class Auth extends Component{
             <div className={classes.align} >
                 <div className={classes.auth} >
                     <div className={classes.info} >
-                        {/*Website Info*/}
+                        <Infos />
                     </div>
                     <div className={classes.form} >
                         <Logo />
