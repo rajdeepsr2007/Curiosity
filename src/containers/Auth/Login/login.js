@@ -3,10 +3,13 @@ import {TextField , Button } from '@material-ui/core';
 import classes from './login.module.css';
 import { checkInputValidity } from '../util/auth-util';
 import Alert from '../../../components/UI/Feedback/Alert/alert'
+import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
+import axiosInstance from '../../../axiosInstance';
 
 import {connect} from 'react-redux';
 
-import * as actions from '../../../store/actions/auth/signup';
+import * as actions from '../../../store/actions/index';
+import Loader from '../../../components/UI/Loader/loader';
 
 class Login extends Component{
 
@@ -50,6 +53,11 @@ class Login extends Component{
         console.log('Login');
         if(!this.state.isFormValid){
             this.setState({ showErrors : true })
+        }else{
+            this.props.onLogin(
+                this.state.controls.email.value,
+                this.state.controls.password.value 
+            )
         }
     }
 
@@ -102,13 +110,17 @@ class Login extends Component{
             )
         }
 
-        const submitButton = <div className={classes.button} >
+        let submitButton = <div className={classes.button} >
                 <Button 
                 variant="contained" 
                 color="primary"
                 onClick={this.submitFormHandler}
                 >Login</Button>
             </div>
+        
+        if( this.props.loading ){
+            submitButton = <Loader />
+        }
 
         const message = this.props.signup ? <Alert alertType="success" text={'You were successfully Signed up'} size="big" /> : null;
 
@@ -127,14 +139,17 @@ class Login extends Component{
 
 const mapStateToProps = state => {
     return {
-        signup : state.signup.signup
+        signup : state.signup.signup,
+        token : state.auth.token,
+        loading : state.auth.loading
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onResetSignup : () => dispatch(actions.resetSignup())
+        onResetSignup : () => dispatch(actions.resetSignup()),
+        onLogin : (email,password) => dispatch(actions.login(email,password))
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Login);
+export default withErrorHandler(connect(mapStateToProps,mapDispatchToProps)(Login) , axiosInstance );

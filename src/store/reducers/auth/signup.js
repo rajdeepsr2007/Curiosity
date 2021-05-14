@@ -17,6 +17,7 @@ const reducer = (state=initialState , action) => {
                 loading : true, 
                 error : false
             }
+
         case actionTypes.SIGNUP_FAILED :
             return {
                 ...state ,
@@ -24,6 +25,8 @@ const reducer = (state=initialState , action) => {
                 error : action.error,
                 signup : false
             }
+
+
         case actionTypes.SIGNUP_SUCCESS :
             return {
                 ...state ,
@@ -31,11 +34,13 @@ const reducer = (state=initialState , action) => {
                 error : false ,
                 signup : true
             }
+
         case actionTypes.RESET_SIGNUP : 
             return {
                 ...state,
                 signup : false
             }
+            
         default : 
             return {
                 ...state
