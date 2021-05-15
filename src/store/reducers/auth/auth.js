@@ -5,7 +5,8 @@ const initialState = {
     error : null ,
     token : null ,
     username : null ,
-    email : null
+    email : null ,
+    firstLogin : false
 }
 
 const reducer = (state=initialState , action) => {
@@ -21,7 +22,8 @@ const reducer = (state=initialState , action) => {
                 loading : false ,
                 token : action.token ,
                 username : action.username ,
-                email : action.email
+                email : action.email ,
+                firstLogin : action.firstLogin
             }
         
         case actionTypes.LOGIN_FAILED :
