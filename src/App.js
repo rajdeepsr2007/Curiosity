@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 import './App.css';
-import { BrowserRouter , Route } from 'react-router-dom';
+import { BrowserRouter , Redirect, Route , Switch } from 'react-router-dom';
 import Auth from './containers/Auth/auth';
 
 import {connect} from 'react-redux';
@@ -13,13 +13,15 @@ class App extends Component {
     if( this.props.auth ){
       routes = (
         <Switch>
-          <Route path="/user/edit-topics" exact render={Auth} />
+          <Route path="/user/edit-topics" exact component={Auth} />
+          <Route path="/auth" exact component={Auth} />
         </Switch>
       )
     }else{
       routes = (
         <Switch>
-          <Route path="/auth" exact render={Auth} />
+          <Route path="/auth" exact component={Auth} />
+          <Redirect to="/auth" />
         </Switch>
       )
     }
@@ -34,7 +36,7 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return{
-    auth : state.auth.token !== null
+    auth : state.auth.token
   }
 }
 

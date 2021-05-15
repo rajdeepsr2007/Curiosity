@@ -11,6 +11,8 @@ import {connect} from 'react-redux';
 import * as actions from '../../../store/actions/index';
 import Loader from '../../../components/UI/Loader/loader';
 
+import { withRouter } from 'react-router';
+
 class Login extends Component{
 
     state={
@@ -47,6 +49,17 @@ class Login extends Component{
 
     componentWillUnmount = () => {
         this.props.onResetSignup();
+    }
+
+    componentDidUpdate = () => {
+        console.log(this.props)
+        if( this.props.auth ){
+            if( this.props.firstLogin ){
+                this.props.history.push('/user/edit-topics')
+            }else{
+                this.props.history.push('/home')
+            }
+        }
     }
 
     submitFormHandler = (event) => {
@@ -144,7 +157,9 @@ const mapStateToProps = state => {
         signup : state.signup.signup,
         token : state.auth.token,
         loading : state.auth.loading,
-        error : state.auth.error
+        error : state.auth.error,
+        auth : state.auth.token !== null,
+        firstLogin : state.auth.firstLogin
     }
 }
 
@@ -155,4 +170,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default withErrorHandler(connect(mapStateToProps,mapDispatchToProps)(Login) , axiosInstance );
+export default withErrorHandler(connect(mapStateToProps,mapDispatchToProps)(withRouter(Login)) , axiosInstance );
