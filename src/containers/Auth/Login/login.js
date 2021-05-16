@@ -52,7 +52,7 @@ class Login extends Component{
     }
 
     componentDidUpdate = () => {
-        console.log(this.props)
+        // console.log(this.props)
         if( this.props.auth ){
             if( this.props.firstLogin ){
                 this.props.history.push('/user/edit-topics')

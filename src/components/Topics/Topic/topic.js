@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './topic.module.css'
+import classes from './topic.module.css';
 
 const Topic = (props) => {
     const {topic} = props;

@@ -5,10 +5,15 @@ import Topic from '../../components/Topics/Topic/topic';
 import classes from './topics.module.css'
 import { Button } from '@material-ui/core';
 
+import {connect} from 'react-redux';
+import Alert from '../../components/UI/Feedback/Alert/alert';
+
 class Topics extends Component{
 
     state = {
-        topics : null
+        topics : null,
+        loading : true,
+        error : null
     }
 
     selectTopicHandler = (id) => {
@@ -31,7 +36,11 @@ class Topics extends Component{
 
     componentDidMount = () => {
         if( !this.state.interests ){
-            axiosInstance.get('/api/auth/topics')
+            axiosInstance.get('/api/user/topics',{
+                headers : {
+                    "Authorization" : "Bearer " + this.props.token
+                }
+            })
             .then( response => {
                 this.setState({ topics : response.data.topics })
             })
@@ -66,15 +75,22 @@ class Topics extends Component{
                             </div>
 
         return (
-            <div className={classes.topics} >
+            <div className={classes.topics} >        
                  <h2>Select Atleast 3 Topics</h2>
+                 {submitButton}
+                 {this.state.error ? <Alert alertType="success" size="big" text={this.state.error}/> : null}
                  <div className={listClasses.join(' ')}>
                      {content}
-                 </div>
-                 {submitButton}
+                 </div> 
             </div>
         )
     }
 }
 
-export default Topics;
+const mapStateToProps = state => {
+    return {
+        token : state.auth.token
+    }
+}
+
+export default connect(mapStateToProps)(Topics);

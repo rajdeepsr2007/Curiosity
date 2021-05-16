@@ -1,6 +1,6 @@
 .topics{
     width : 80%;
-    position : fixed;
+    position : absolute;
     height : auto;
     top:2rem;
     left : 10%;
@@ -50,5 +50,7 @@
  }
 
  .button{
-     width : 12%;
+     text-align: center;
+     width : 40%;
+     margin-bottom: 2rem;
  }

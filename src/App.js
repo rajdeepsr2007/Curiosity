@@ -14,7 +14,7 @@ class App extends Component {
     if( this.props.auth ){
       routes = (
         <Switch>
-          <Route path="/user/edit-topics" exact component={Auth} />
+          <Route path="/user/edit-topics" exact component={Topics} />
           <Route path="/auth" exact component={Auth} />
         </Switch>
       )
@@ -29,7 +29,7 @@ class App extends Component {
 
     return (
       <BrowserRouter>
-          <Route path="/" component={Topics} />
+          {routes}
       </BrowserRouter>
     );
   }

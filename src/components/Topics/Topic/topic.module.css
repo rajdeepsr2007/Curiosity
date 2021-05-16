@@ -7,7 +7,7 @@
     /* border: 1px solid black; */
     margin-bottom: 1rem;
     padding : 1rem;
-    background : linear-gradient(rgb(78, 159, 190) , rgb(106, 166, 194),rgb(158, 198, 224));
+    background : linear-gradient(rgb(34, 82, 110) , rgb(63, 114, 138) , rgb(114, 161, 175));
     color : white;
     font-weight: bolder;
     transition: 0.2s;
@@ -34,9 +34,9 @@
 }
 
 .selected{
-    transform: scale(0.95);
+    transform: scale(0.9);
     border-radius : 15px;
-    background : rgb(26, 110, 106)
+    background : linear-gradient(rgb(77, 170, 113),rgb(107, 179, 155) , rgb(156, 206, 185));
 }
 
 .topic:hover{
