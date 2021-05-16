@@ -1,0 +1,44 @@
+.topic{
+    width : 21%;
+    height : 5rem;
+    display : flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid black; */
+    margin-bottom: 1rem;
+    padding : 1rem;
+    background : linear-gradient(rgb(78, 159, 190) , rgb(106, 166, 194),rgb(158, 198, 224));
+    color : white;
+    font-weight: bolder;
+    transition: 0.2s;
+    border-radius: 15px;
+}
+
+@media (max-width:1200px){
+    .topic{
+        width : 28%;
+    }
+}
+
+@media ( max-width:1000px ){
+    .topic{
+        width : 40%;
+    }
+}
+
+@media ( max-width:600px ){
+    .topic{
+        width : 90%;
+        height : 2rem;
+    }
+}
+
+.selected{
+    transform: scale(0.9);
+    border-radius : 15px;
+    background : rgb(26, 110, 106)
+}
+
+.topic:hover{
+    transform : scale(1.05)
+}

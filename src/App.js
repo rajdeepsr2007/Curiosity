@@ -2,6 +2,7 @@ import React, { Component} from 'react';
 import './App.css';
 import { BrowserRouter , Redirect, Route , Switch } from 'react-router-dom';
 import Auth from './containers/Auth/auth';
+import Topics from './containers/Topics/topics';
 
 import {connect} from 'react-redux';
 
@@ -28,7 +29,7 @@ class App extends Component {
 
     return (
       <BrowserRouter>
-          {routes}
+          <Route path="/" component={Topics} />
       </BrowserRouter>
     );
   }
