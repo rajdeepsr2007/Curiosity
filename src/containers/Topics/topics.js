@@ -33,11 +33,7 @@ class Topics extends Component{
         if( !this.state.interests ){
             axiosInstance.get('/api/auth/topics')
             .then( response => {
-                const topics = [];
-                for(let i=0 ;i < response.data.topics.length; i++){
-                    topics.push({ id : i , selected : false , description : response.data.topics[i] })
-                }
-                this.setState({ topics : topics })
+                this.setState({ topics : response.data.topics })
             })
         }
     }
