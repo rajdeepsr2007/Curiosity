@@ -56,7 +56,7 @@
 @media ( max-width:600px ){
     .topic{
         width : 90%;
-        height : 9rem;
+        height : auto;
         margin : 1rem 0 ;
     }
 }

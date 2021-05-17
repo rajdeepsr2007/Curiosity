@@ -6,6 +6,9 @@ import Topics from './containers/Topics/topics';
 
 import {connect} from 'react-redux';
 
+import Layout from './components/Layout/layout';
+import Home from './containers/Home/home';
+
 class App extends Component {
   render() {
 
@@ -14,22 +17,26 @@ class App extends Component {
     if( this.props.auth ){
       routes = (
         <Switch>
+          <Route path="/home" exact component={Home} />
           <Route path="/user/edit-topics" exact component={Topics} />
           <Route path="/auth" exact component={Auth} />
+          <Redirect to="/home" />
         </Switch>
       )
     }else{
       routes = (
         <Switch>
-          <Route path="/auth" exact component={Auth} />
-          <Redirect to="/auth" />
+            <Route path="/auth" exact component={Auth} />
+            <Redirect to="/auth" />
         </Switch>
       )
     }
 
     return (
       <BrowserRouter>
+        <Layout auth={this.props.auth ? true : false} >
           {routes}
+        </Layout>     
       </BrowserRouter>
     );
   }

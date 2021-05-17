@@ -21,7 +21,11 @@ class Topics extends Component{
     }
 
     saveChangesHandler = () => {
-        this.setState({ submitting : true })
+
+        if( this.state.success ){
+            this.props.history.push('/home');
+        }else{
+            this.setState({ submitting : true })
         let selectedTopics = this.state.topics.map( topic => {
             return topic.selected ? 1 : 0
         } )
@@ -43,7 +47,7 @@ class Topics extends Component{
                 }
             } )
         }
-
+      }
     }
 
     selectTopicHandler = (id) => {
