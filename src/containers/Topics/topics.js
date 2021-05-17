@@ -109,7 +109,7 @@ class Topics extends Component{
 
         let submitButton = <div className={classes.button} >
                                 <Button variant="contained" color="primary" onClick={this.saveChangesHandler} >
-                                    Save Changes
+                                   {this.state.success ? 'Next' : 'Save Changes'}
                                 </Button>
                             </div>
 
