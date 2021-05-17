@@ -4,5 +4,6 @@ export {
 } from './auth/signup';
 
 export {
-    login
+    login,
+    loginAuto
 } from './auth/auth';

@@ -6,10 +6,19 @@ import Topics from './containers/Topics/topics';
 
 import {connect} from 'react-redux';
 
-import Layout from './components/Layout/layout';
+//import Layout from './components/Layout/layout';
 import Home from './containers/Home/home';
 
+import * as actions from './store/actions/index';
+import withErrorHandler from './hoc/withErrorHandler/withErrorHandler';
+import axiosInstance from './axiosInstance';
+
 class App extends Component {
+
+  componentDidMount = () => {
+    this.props.onAutoLogin();
+  }
+
   render() {
 
     let routes;
@@ -34,9 +43,7 @@ class App extends Component {
 
     return (
       <BrowserRouter>
-        <Layout auth={this.props.auth ? true : false} >
-          {routes}
-        </Layout>     
+          {routes}     
       </BrowserRouter>
     );
   }
@@ -48,4 +55,10 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => {
+  return{
+    onAutoLogin : () => dispatch(actions.loginAuto())
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);

@@ -48,3 +48,36 @@ export const login = (email,password) => {
         })
     }
 }
+
+export const loginAuto = () => {
+    return dispatch => {
+        const token = localStorage.getItem('token');
+        console.log(token);
+        if( token ){
+            axiosInstance.get('/api/auth/auto-login' , {
+                headers : {
+                    "Authorization" : "Bearer " + token
+                }
+            })
+            .then( response => {
+                if( response ){
+                    if( response.data.success ){
+                        localStorage.setItem( 'token' , response.data.token );
+                        localStorage.setItem( 'username' , response.data.username );
+                        localStorage.setItem( 'email' , response.data.email )
+                        dispatch(
+                            loginSuccess(
+                                response.data.email ,
+                                response.data.username,
+                                response.data.token
+                            )
+                        )
+                    }
+                }
+            } )
+            .catch( error => {
+                console.log('Auto login failed');
+            } )
+        }
+    }
+}
