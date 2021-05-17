@@ -12,23 +12,54 @@ import Alert from '../../../components/UI/Feedback/Alert/alert';
 
 class Picture extends Component{
 
-    state = {
-        loading : true,
-        error : null,
-        src : null,
-        success : null,
-        submitting : false
+
+    constructor(){
+
+        super();
+
+        this.state = {
+            loading : true,
+            error : null,
+            src : null,
+            success : null,
+            submitting : false
+        }
+
+        this.fileInputRef = React.createRef();
     }
+    
 
     changeFileHandler = (event) => {
         this.setState({ src : URL.createObjectURL(event.target.files[0]) })
     }
 
     saveChangesHandler = () => {
-        this.setState({ submitting : true });
-        setTimeout( () => {
-            this.setState({ submitting : false })
-        } , 5000)
+        if( !this.fileInputRef.current.files[0] ){
+            this.setState({  error : 'Please Select A File' })
+        }else{
+            this.setState({ submitting : true, error : null , success : null });
+            const fd = new FormData();
+            fd.append("picture", this.fileInputRef.current.files[0])
+            axiosInstance.post('/api/user/edit-picture',fd,{
+                headers : {
+                    "Authorization" : "Bearer " + this.props.token,
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+            .then( response => {
+                if( response ){
+                    if( response.data.success ){
+                        this.setState({ submitting : false , success : "Changes Saved" })
+                        this.props.history.replace('/user/edit-picture')
+                    }
+                }else{
+                    this.setState({ submitting : false , error : 'Network Error' })
+                }
+            } )
+            .catch( error => {
+                this.setState({ submitting : false , error : 'Netwrok Error' })
+            })
+        }
     }
 
     goToHomeHandler = () => {
@@ -40,7 +71,7 @@ class Picture extends Component{
             this.setState({ loading : true  })
             axiosInstance.get( '/api/user/picture' , {
                 headers : {
-                    "Authorization" : "Bearer " + this.props.token
+                    "Authorization" : "Bearer " + this.props.token,
                 }
             } )
             .then( response => {
@@ -58,8 +89,8 @@ class Picture extends Component{
 
         let image = <Loader />
 
-        if( this.state.src && !this.state.error){
-            if(this.state.src[0] === '/'){
+        if( this.state.src ){
+            if(this.state.src[0] === '/' || this.state.src[0] === '\\'){
                 image = <img src={baseURL + this.state.src} alt={'Your pic'} />
             }else{
                 image = <img src={this.state.src} alt="Your pic" />
@@ -89,6 +120,7 @@ class Picture extends Component{
                     id="contained-button-file"
                     type="file"
                     onChange={this.changeFileHandler}
+                    ref={this.fileInputRef}
                 />
                 <label htmlFor="contained-button-file">
                     <Button variant="contained" color="primary" component="span">

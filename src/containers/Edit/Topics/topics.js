@@ -44,6 +44,8 @@ class Topics extends Component{
             .then( response => {
                 if( response ){
                     this.setState({ submitting : false , success : response.data.message })
+                }else{
+                    this.setState({ submitting : false , error : 'Network Error' })
                 }
             } )
         }
