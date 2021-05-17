@@ -2,7 +2,7 @@ import React, { Component} from 'react';
 import './App.css';
 import { BrowserRouter , Redirect, Route , Switch } from 'react-router-dom';
 import Auth from './containers/Auth/auth';
-import Topics from './containers/Topics/topics';
+import Topics from './containers/Edit/Topics/topics';
 
 import {connect} from 'react-redux';
 
@@ -10,8 +10,7 @@ import {connect} from 'react-redux';
 import Home from './containers/Home/home';
 
 import * as actions from './store/actions/index';
-import withErrorHandler from './hoc/withErrorHandler/withErrorHandler';
-import axiosInstance from './axiosInstance';
+import Picture from './containers/Edit/Picture/picture';
 
 class App extends Component {
 
@@ -28,6 +27,7 @@ class App extends Component {
         <Switch>
           <Route path="/home" exact component={Home} />
           <Route path="/user/edit-topics" exact component={Topics} />
+          <Route path="/user/edit-picture" exact component={Picture} />
           <Route path="/auth" exact component={Auth} />
           <Redirect to="/home" />
         </Switch>

@@ -1,14 +1,14 @@
 import React , { Component, Fragment } from 'react';
-import Loader from '../../components/UI/Loader/loader';
-import axiosInstance from '../../axiosInstance';
-import Topic from '../../components/Topics/Topic/topic';
+import Loader from '../../../components/UI/Loader/loader';
+import axiosInstance from '../../../axiosInstance';
+import Topic from '../../../components/Topics/Topic/topic';
 import classes from './topics.module.css'
 import { Button } from '@material-ui/core';
 
 import {connect} from 'react-redux';
-import Alert from '../../components/UI/Feedback/Alert/alert';
+import Alert from '../../../components/UI/Feedback/Alert/alert';
 
-import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
+import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
 
 class Topics extends Component{
 
@@ -23,7 +23,7 @@ class Topics extends Component{
     saveChangesHandler = () => {
 
         if( this.state.success ){
-            this.props.history.push('/home');
+            this.props.history.push('/user/edit-picture');
         }else{
             this.setState({ submitting : true })
         let selectedTopics = this.state.topics.map( topic => {

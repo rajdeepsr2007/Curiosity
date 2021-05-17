@@ -1,5 +1,5 @@
 import React from 'react';
-import baseURL from '../../../baseURLStatic';
+import baseURL from '../../../baseURL';
 import classes from './topic.module.css';
 
 const Topic = (props) => {
