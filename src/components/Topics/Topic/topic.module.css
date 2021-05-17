@@ -1,17 +1,44 @@
-.topic{
+/* .topic{
     width : 21%;
     height : 5rem;
     display : flex;
     justify-content: center;
     align-items: center;
     /* border: 1px solid black; */
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem;
     padding : 1rem;
-    background : linear-gradient(rgb(34, 82, 110) , rgb(63, 114, 138) , rgb(114, 161, 175));
+    background : linear-gradient(rgb(114, 170, 184) , rgb(164, 187, 201) , rgb(166, 197, 214));
+    border : 1px solid rgb(50, 115, 134);
     color : white;
     font-weight: bolder;
     transition: 0.2s;
     border-radius: 15px;
+} */ 
+
+.topic{
+    width : 21%;
+    height : auto;
+    display : flex;
+    justify-content: center;
+    align-items: center;
+    padding : 0.5rem;
+    flex-flow: column;
+    margin-bottom: 2rem;
+    transition: 0.2s;
+    box-shadow: 0px 0px 10px 2px rgb(218, 213, 213);
+}
+
+.topic img {
+    height : 9rem;
+    width : 100%
+}
+
+.topic .title{
+    width : 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding : 1.5rem;
 }
 
 @media (max-width:1200px){
@@ -29,16 +56,19 @@
 @media ( max-width:600px ){
     .topic{
         width : 90%;
-        height : 2rem;
+        height : 9rem;
     }
 }
 
 .selected{
     transform: scale(0.9);
     border-radius : 15px;
-    background : linear-gradient(rgb(77, 170, 113),rgb(107, 179, 155) , rgb(156, 206, 185));
+    border : 1px solid rgb(0, 128, 75);
+    opacity : 60%;
 }
 
 .topic:hover{
-    box-shadow: 0px 0px 10px 2px grey;
+    box-shadow: 0px 0px 10px 2px rgb(218, 216, 216);
+    transform : scale(1.05);
 }
+

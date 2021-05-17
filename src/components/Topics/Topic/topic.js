@@ -1,4 +1,5 @@
 import React from 'react';
+import baseURL from '../../../baseURLStatic';
 import classes from './topic.module.css';
 
 const Topic = (props) => {
@@ -12,7 +13,10 @@ const Topic = (props) => {
 
     return (
         <div className={topicClasses.join(' ')} onClick={props.onClick} >
-            {topic.description}
+                <img src={`${baseURL}${topic.image}`} alt={topic.title} />
+                <div className={classes.title} >
+                    {topic.title}
+                </div>
         </div>
     )
 }

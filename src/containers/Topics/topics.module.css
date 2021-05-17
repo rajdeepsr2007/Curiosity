@@ -13,7 +13,7 @@
  .topics h2{
      text-align: center;
      font-family:sans-serif;
-     color : rgb(76, 136, 151);
+     color : grey;
      margin-bottom : 2rem;
  }
 
@@ -52,5 +52,5 @@
  .button{
      text-align: center;
      width : 40%;
-     margin-bottom: 2rem;
+     margin-bottom: 1rem;
  }

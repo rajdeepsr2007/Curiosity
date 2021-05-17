@@ -8,12 +8,42 @@ import { Button } from '@material-ui/core';
 import {connect} from 'react-redux';
 import Alert from '../../components/UI/Feedback/Alert/alert';
 
+import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
+
 class Topics extends Component{
 
     state = {
         topics : null,
         loading : true,
-        error : null
+        error : null,
+        submitting : false,
+        success : null
+    }
+
+    saveChangesHandler = () => {
+        this.setState({ submitting : true })
+        let selectedTopics = this.state.topics.map( topic => {
+            return topic.selected ? 1 : 0
+        } )
+        .reduce( (sum , el) => {
+           return sum += el
+        } , 0 )
+
+        if( selectedTopics < 3 ){
+            this.setState({ error : 'Please select atleast 3 topics' , submitting : false })
+        }else{
+            axiosInstance.post('/api/user/edit-topics' , { topics : this.state.topics },{
+                headers : {
+                    "Authorization" : "Bearer " + this.props.token
+                }
+            })
+            .then( response => {
+                if( response ){
+                    this.setState({ submitting : false , success : response.data.message })
+                }
+            } )
+        }
+
     }
 
     selectTopicHandler = (id) => {
@@ -23,26 +53,35 @@ class Topics extends Component{
                 updatedTopics.push({...topic})
             }
             for( let i= 0; i<updatedTopics.length ; i++ ){
-                if( updatedTopics[i].id === id ){
+                if( updatedTopics[i]._id === id ){
                     updatedTopics[i].selected = !updatedTopics[i].selected
                 }
             }
             return {
                 ...prevState ,
-                topics : updatedTopics
+                topics : updatedTopics,
+                error : null
             }
         } )
     }
 
     componentDidMount = () => {
-        if( !this.state.interests ){
+        if( !this.state.topics ){
+            this.setState({ loading : true , error : null })
             axiosInstance.get('/api/user/topics',{
                 headers : {
                     "Authorization" : "Bearer " + this.props.token
                 }
             })
             .then( response => {
-                this.setState({ topics : response.data.topics })
+              if(response){
+                  for( let i = 0 ; i < response.data.topics.length ; i++ ){
+                      response.data.topics[i] = {...response.data.topics[i] , selected : false}
+                  }
+                  this.setState({ topics : response.data.topics , loading : false })
+              }else{
+                  this.setState({ loading : false , error : 'Network Error' })
+              }
             })
         }
     }
@@ -54,9 +93,9 @@ class Topics extends Component{
             content = this.state.topics.map( topic => {
                 return (
                    <Topic 
-                   key={topic.id} 
+                   key={topic._id} 
                    topic={topic} 
-                   onClick={() => this.selectTopicHandler(topic.id)}/>
+                   onClick={() => this.selectTopicHandler(topic._id)}/>
                 )
             } )
         }
@@ -68,17 +107,22 @@ class Topics extends Component{
             listClasses.push(classes.loading)
         }
 
-        const submitButton = <div className={classes.button} >
-                                <Button variant="outlined" color="primary">
+        let submitButton = <div className={classes.button} >
+                                <Button variant="contained" color="primary" onClick={this.saveChangesHandler} >
                                     Save Changes
                                 </Button>
                             </div>
 
+        if( this.state.submitting ){
+            submitButton = <Loader />
+        }
+
         return (
             <div className={classes.topics} >        
-                 <h2>Select Atleast 3 Topics</h2>
+                 <h2>Select Topics That Interest You</h2>
                  {submitButton}
-                 {this.state.error ? <Alert alertType="success" size="big" text={this.state.error}/> : null}
+                 {this.state.error ? <Alert alertType="error" size="small" text={this.state.error}/> : null}
+                 {this.state.success ? <Alert alertType="success" size="small" text={this.state.success} /> : null }
                  <div className={listClasses.join(' ')}>
                      {content}
                  </div> 
@@ -93,4 +137,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(Topics);
+export default connect(mapStateToProps)(withErrorHandler(Topics,axiosInstance));
