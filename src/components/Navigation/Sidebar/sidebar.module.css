@@ -1,4 +1,5 @@
 .sidebar{
+    display: none;
     position: fixed;
     height : 50rem;
     width : 20rem;
@@ -9,4 +10,57 @@
     box-shadow: 0px 0px 10px 2px rgb(209, 208, 208);
     transition: 0.2s;
 }
+@media (max-width:960px){
+    .sidebar{
+        display : block
+    }
+}
+.logo{
+    height : 2rem;
+    width : 50%;
+    margin : 2rem auto;
+}
+.nav{
+    margin-left:2rem;
+    text-align: center;
+}
+.nav ul{
+    list-style-type: none;
+    padding : 0 ;
+    margin : 0;
+    text-align: center;
+}
+.nav ul li{
+    display: block;
+    margin : 0 1rem;
+    padding:0;
+    margin:0 2rem;
+}
+.nav a{
+    color : black;
+    text-decoration: none;
+}
+.link{
+    display: flex;
+    align-items: center;
+    padding : 0.5rem 0.8rem;
+    font-size: 0.8rem;
+    border-radius: 20px;
+    margin : 1rem 0;
+    justify-content: center;
+    width:10rem;
+}
+
+.link:hover{
+    border : 0.5px solid rgb(46, 122, 141);
+    color :rgb(53, 113, 141);
+    transition: 0.2s;
+}
+
+.active .link{
+    background :rgb(53, 113, 141);
+    color : white;
+    transition: 0.2s;
+}
+
 
