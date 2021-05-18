@@ -19,17 +19,15 @@
     height : 2rem;
     width : 10rem;
 }
-@media (max-width:800px){
-    .logo{
-        transform: scale(0.8);
-    }
-}
-@media (max-width:600px){
+@media (max-width:960px){
     .logo{
         display: none;
     }
     .hamburger{
         display: block;
+    }
+    .nav{
+        display: none;
     }
 }
 .nav{
@@ -43,6 +41,8 @@
 .nav ul li{
     display: inline-block;
     margin : 0 1rem;
+    padding:0;
+    margin:0 0.5rem;
 }
 .nav a{
     color : black;
@@ -51,5 +51,21 @@
 .link{
     display: flex;
     align-items: center;
+    padding : 0.5rem 0.8rem;
+    font-size: 0.8rem;
+    border-radius: 20px;
+    justify-content: space-around;
+}
+
+.link:hover{
+    border : 0.5px solid rgb(46, 122, 141);
+    color :rgb(53, 113, 141);
+    transition: 0.2s;
+}
+
+.active .link{
+    background :rgb(53, 113, 141);
+    color : white;
+    transition: 0.2s;
 }
 
