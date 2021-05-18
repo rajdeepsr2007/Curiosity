@@ -4,7 +4,7 @@ import {withRouter} from  'react-router';
 class Home extends Component{
 
     componentDidMount = () => {
-        this.props.history.push('/user/edit-picture')
+        this.props.history.push('/user/edit-topics')
     }
 
     render(){

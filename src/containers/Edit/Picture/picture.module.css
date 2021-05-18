@@ -1,13 +1,12 @@
 .picture{
-    position: fixed;
     display: flex;
+    position: absolute;
     flex-flow: column;
     justify-content: flex-start;
     align-items: center;
-    top : 2rem;
-    left : 35%;
     width : 30%;
     height : 40rem;
+    left : 35%;
     box-shadow: 0px 0px 10px 2px rgb(187, 184, 184);
 }
 .picture h2{

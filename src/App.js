@@ -12,6 +12,8 @@ import Home from './containers/Home/home';
 import * as actions from './store/actions/index';
 import Picture from './containers/Edit/Picture/picture';
 
+import Layout from './hoc/Layout/layout';
+
 class App extends Component {
 
   componentDidMount = () => {
@@ -43,7 +45,9 @@ class App extends Component {
 
     return (
       <BrowserRouter>
-          {routes}     
+        <Layout>
+          {routes}
+        </Layout>     
       </BrowserRouter>
     );
   }
