@@ -6,5 +6,50 @@
     box-shadow: 0px 0px 10px 2px grey;
     top : 0;
     left : 0;
-    z-index:90
+    z-index:90;
+    padding : 0.5rem;
+    display: flex;
+    align-items: center;
 }
+.hamburger{
+    display : none;
+    padding : 0 0.5rem;
+}
+.logo{
+    height : 2rem;
+    width : 10rem;
+}
+@media (max-width:800px){
+    .logo{
+        transform: scale(0.8);
+    }
+}
+@media (max-width:600px){
+    .logo{
+        display: none;
+    }
+    .hamburger{
+        display: block;
+    }
+}
+.nav{
+    margin-left:2rem;
+}
+.nav ul{
+    list-style-type: none;
+    padding : 0 ;
+    margin : 0
+}
+.nav ul li{
+    display: inline-block;
+    margin : 0 1rem;
+}
+.nav a{
+    color : black;
+    text-decoration: none;
+}
+.link{
+    display: flex;
+    align-items: center;
+}
+

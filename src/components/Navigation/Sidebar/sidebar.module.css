@@ -1,0 +1,11 @@
+.sidebar{
+    position: fixed;
+    height : 50rem;
+    width : 20rem;
+    background : white;
+    left : 0;
+    top : 5rem;
+    z-index: 95;
+    box-shadow: 0px 0px 10px 2px rgb(209, 208, 208);
+    transition: 0.2s;
+}
