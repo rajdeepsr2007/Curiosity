@@ -1,0 +1,9 @@
+.pagetitle{
+    width : 100%;
+    text-align: center;
+    color: white;
+    font-family: sans-serif;
+    padding : 1rem;
+    box-sizing: border-box;
+    background: rgb(73, 123, 163);
+}

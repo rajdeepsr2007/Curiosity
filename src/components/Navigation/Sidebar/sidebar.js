@@ -45,14 +45,14 @@ const Sidebar = (props) => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/home" exact>
+                            <NavLink to="/spaces/add" exact>
                                 <div className={classes.link} >
                                     <Add /> Add Space
                                 </div>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/home" exact>
+                            <NavLink to="/spaces/discover" exact>
                                 <div className={classes.link} >
                                     <ExploreOutlined /> Discover Spaces
                                 </div>

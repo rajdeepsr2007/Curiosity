@@ -1,4 +1,17 @@
-.content{
+.main{
     position: relative;
     margin-top: 5rem;
+    display: flex;
+    width : 100%;
+    justify-content: center;
+    height : auto;
+}
+
+.content{
+    width : 60%;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    height : auto;
+    padding : 1rem 2rem;
 }

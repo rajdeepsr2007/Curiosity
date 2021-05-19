@@ -1,6 +1,5 @@
 import React , { Component , Fragment } from 'react';
 import Navigation from '../../components/Navigation/navigation';
-import Sidebar from '../../components/Navigation/Sidebar/sidebar';
 import classes from './layout.module.css';
 
 class Layout extends Component{
@@ -26,8 +25,10 @@ class Layout extends Component{
                     showSidebar={this.state.showSidebar} 
                 />
                 {/* <Sidebar /> */}
-                <main className={classes.content} >
-                    {this.props.children}
+                <main className={classes.main} >
+                    <div className={classes.content}>
+                        {this.props.children}
+                    </div>
                 </main>
             </Fragment>
         )
