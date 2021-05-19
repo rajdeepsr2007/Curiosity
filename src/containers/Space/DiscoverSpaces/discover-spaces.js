@@ -1,5 +1,5 @@
 import React , { Component } from 'react';
-import PageTitle from '../../../components/PageTitle/page-title';
+import PageTitle from '../../../components/UI/PageTitle/page-title';
 
 class DiscoverSpaces extends Component{
     state = {

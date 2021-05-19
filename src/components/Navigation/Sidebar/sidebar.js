@@ -17,42 +17,42 @@ const Sidebar = (props) => {
             <div className={classes.nav} >
                     <ul>
                         <li>
-                            <NavLink to="/user/edit-topics" exact activeClassName={classes.active} >
+                            <NavLink to="/user/edit-topics"  activeClassName={classes.active} >
                                 <div className={classes.link} >
                                     <HomeOutlined /> Home
                                 </div>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/home" exact>
+                            <NavLink to="/home"  activeClassName={classes.active}>
                                 <div className={classes.link} >
                                     <QuestionAnswerOutlined /> Add Question
                                 </div>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/home" exact>
+                            <NavLink to="/home"  activeClassName={classes.active}>
                                 <div className={classes.link} >
                                     <CreateOutlined /> Answer
                                 </div>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/home" exact>
+                            <NavLink to="/home"  activeClassName={classes.active}>
                                 <div className={classes.link} >
                                     <List /> Following
                                 </div>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/spaces/add" exact>
+                            <NavLink to="/spaces/add" exact activeClassName={classes.active}>
                                 <div className={classes.link} >
                                     <Add /> Add Space
                                 </div>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/spaces/discover" exact>
+                            <NavLink to="/spaces/discover" exact activeClassName={classes.active}>
                                 <div className={classes.link} >
                                     <ExploreOutlined /> Discover Spaces
                                 </div>
