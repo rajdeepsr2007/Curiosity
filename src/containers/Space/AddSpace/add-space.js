@@ -8,7 +8,8 @@ import {connect} from 'react-redux';
 import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
 import SpaceCard from '../../../components/Space/SpaceCard/space-card';
 import {Button} from '@material-ui/core';
-import {PhotoCameraOutlined} from '@material-ui/icons';
+import {Create, PhotoCameraOutlined} from '@material-ui/icons';
+import Alert from '../../../components/UI/Feedback/Alert/alert';
 
 class AddSpace extends Component{
 
@@ -19,10 +20,10 @@ class AddSpace extends Component{
         this.state = {
             controls : {
                 title : {
-                    value : ''
+                    value : '',
                 },
                 topic : {
-                    value : '-'
+                    value : '-',
                 }
             },
             options : null,
@@ -35,8 +36,31 @@ class AddSpace extends Component{
         this.inputFileRef = React.createRef();
     }
 
+    submitHandler = (event) => {
+        event.preventDefault();
+        if(this.state.controls.title.value === '' || this.state.controls.topic.value === '-'){
+            this.setState({ showErrors : true , error : 'Please fill out all the fields'})
+        }else if( !this.state.src){
+            this.setState({ showErrors : true , error : 'Please select a background image file'})
+        }else{
+            this.setState({ loading : true , error : null ,success : null ,showErrors : false })
+            axiosInstance.post('/api/spaces/create')
+            .then( response => {
+                if(response){
+                    if( response.data.success ){
+                        this.setState( { loading : false , success : response.data.message } )
+                    }else{
+                        this.setState({ loading : false , error : response.data.message })
+                    }
+                }else{
+                    this.setState({ loading : false , error : 'Network Error' })
+                }
+            } )
+        }
+    }
+
     changeFileHandler = () => {
-        this.setState({ src : URL.createObjectURL(this.inputFileRef.current.files[0]) })
+        this.setState({ src : URL.createObjectURL(this.inputFileRef.current.files[0]) });
     }
 
     changeInputHandler = (event,inputKey) => {
@@ -45,11 +69,7 @@ class AddSpace extends Component{
            topic : this.state.controls.topic
         }
         updatedControls[inputKey].value = event.target.value;
-        let error = null;
-        if(event.target.value === '' || event.target.value === '-' ){
-            error = `${inputKey} can't be empty`
-        }
-        this.setState({ controls : updatedControls , error : error })
+        this.setState({ controls : updatedControls })
     }
 
     componentDidMount = () => {
@@ -127,6 +147,11 @@ class AddSpace extends Component{
                         <PhotoCameraOutlined /><span style={{margin : '0 1rem'}}>Change Background</span>
                     </Button>
                 </label>
+                {this.state.error && this.state.showErrors ? <Alert alertType="error" size="big" text={this.state.error} />:null}
+                {this.state.success ? <Alert alertType="success" size="big" text={this.state.success} />:null}
+                <Button variant="contained" color="primary" onClick={this.submitHandler} >
+                    <Create />Create Space
+                </Button>
             </Fragment>   
         )
     }
