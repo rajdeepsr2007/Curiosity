@@ -11,7 +11,7 @@ const TitleInput = (props) => {
                     style: {
                       height : '3rem',
                       padding: '0 14px',
-                      fontSize : '1.5rem',
+                      fontSize : '1.2rem',
                       width : '100%'
                  }}}
                 onChange={props.onChange} 

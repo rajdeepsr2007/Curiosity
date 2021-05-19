@@ -1,24 +1,42 @@
+import { Button } from '@material-ui/core';
 import React from 'react';
+import defaultBackground from './background.webp';
 import classes from './space-card.module.css';
+import baseURL from '../../../baseURL';
 
 const SpaceCard = (props) => {
 
-    const space = {
-        title : 'Title',
-        topic : {
-            title : 'Topic'
+    const { space } = props;
+
+    let image = defaultBackground;
+
+    if( space.image){
+        if(space.image[0] == '/' || space.image[0] == '\\'){
+            image = baseURL + space.image
+        }else{
+            image = space.image;
         }
     }
 
     return (
         <div className={classes.card} >
-            <div className={classes.header} >
                 <div className={classes.background}>
-                    <img src="" />
+                    <img src={image} />
                 </div>
-                <h3>{space.title}</h3>
-                <h5>{space.topic.title}</h5>
-            </div>
+                <div className={classes.info} >
+                    <span className={classes.label}>{'0 Questions'}</span>
+                    <span className={classes.label}>{'0 Followers'}</span>
+                    <Button
+                    variant="outlined"
+                    color="primary"
+                    onClick={props.onClick}>
+                        Follow
+                    </Button> 
+                </div>
+                <div className={classes.about} >
+                    <h3>{space.title}</h3>
+                    <h5>{space.topic.title}</h5>
+                </div>
         </div>
     )
 }

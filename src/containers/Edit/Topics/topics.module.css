@@ -2,6 +2,7 @@
     width : 80%;
     position : absolute;
     height : auto;
+    top : 5rem;
     left : 10%;
     display: flex;
     flex-flow:column;
