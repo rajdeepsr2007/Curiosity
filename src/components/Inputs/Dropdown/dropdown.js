@@ -1,5 +1,5 @@
 import React , { Fragment } from 'react';
-import {Select,MenuItem,InputLabel} from '@material-ui/core';
+import {Select,MenuItem} from '@material-ui/core';
 
 const Dropdown = (props) => {
     return (

@@ -65,8 +65,8 @@
     box-sizing: border-box;
 }
 .info .label{
-    color: rgb(52, 106, 128);
+    color: rgb(182, 95, 95);
     padding : 0.5rem;
     font-family: sans-serif;
-    border-radius: 20px;
+    border : 1px solid rgb(182, 95, 95);
 }

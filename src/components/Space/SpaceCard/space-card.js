@@ -1,6 +1,7 @@
 import { Button } from '@material-ui/core';
 import React from 'react';
 import defaultBackground from './background.webp';
+import { Check } from '@material-ui/icons'
 import classes from './space-card.module.css';
 import baseURL from '../../../baseURL';
 
@@ -11,7 +12,7 @@ const SpaceCard = (props) => {
     let image = defaultBackground;
 
     if( space.image){
-        if(space.image[0] == '/' || space.image[0] == '\\'){
+        if(space.image[0] === '/' || space.image[0] === '\\'){
             image = baseURL + space.image
         }else{
             image = space.image;
@@ -21,7 +22,7 @@ const SpaceCard = (props) => {
     return (
         <div className={classes.card} >
                 <div className={classes.background}>
-                    <img src={image} />
+                    <img src={image} alt="background" />
                 </div>
                 <div className={classes.info} >
                     <span className={classes.label}>{'0 Questions'}</span>
@@ -30,6 +31,7 @@ const SpaceCard = (props) => {
                     variant="outlined"
                     color="primary"
                     onClick={props.onClick}>
+                    {space.follow ? <Check /> : <Check /> }
                         Follow
                     </Button> 
                 </div>

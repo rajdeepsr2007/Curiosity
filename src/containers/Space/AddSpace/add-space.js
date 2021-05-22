@@ -43,8 +43,16 @@ class AddSpace extends Component{
         }else if( !this.state.src){
             this.setState({ showErrors : true , error : 'Please select a background image file'})
         }else{
-            this.setState({ loading : true , error : null ,success : null ,showErrors : false })
-            axiosInstance.post('/api/spaces/create')
+            this.setState({ loading : true , error : null ,success : null ,showErrors : false });
+            const fd = new FormData();
+            fd.append("title",this.state.controls.title.value); fd.append("topic",this.state.controls.topic.value);
+            fd.append("background", this.inputFileRef.current.files[0]);
+            axiosInstance.post('/api/spaces/add', fd ,{
+                headers : {
+                    "Authorization" : "Bearer " + this.props.token,
+                    'Content-Type' : 'multipart/form-data'
+                }
+            } )
             .then( response => {
                 if(response){
                     if( response.data.success ){
@@ -97,7 +105,7 @@ class AddSpace extends Component{
 
     render(){
 
-        if( this.state.loading ){
+        if( this.state.loading && !this.state.options ){
             return <Loader />
         }
 
@@ -118,6 +126,10 @@ class AddSpace extends Component{
                 title : spaceTitle    
             }
         }
+
+        const submitButton = this.state.loading ? <Loader /> : <Button variant="contained" color="primary" onClick={this.submitHandler} >
+                                                                    <Create />Create Space
+                                                                </Button>
 
         return (
             <Fragment>
@@ -147,11 +159,9 @@ class AddSpace extends Component{
                         <PhotoCameraOutlined /><span style={{margin : '0 1rem'}}>Change Background</span>
                     </Button>
                 </label>
-                {this.state.error && this.state.showErrors ? <Alert alertType="error" size="big" text={this.state.error} />:null}
+                {this.state.error ? <Alert alertType="error" size="big" text={this.state.error} />:null}
                 {this.state.success ? <Alert alertType="success" size="big" text={this.state.success} />:null}
-                <Button variant="contained" color="primary" onClick={this.submitHandler} >
-                    <Create />Create Space
-                </Button>
+                {submitButton}
             </Fragment>   
         )
     }
