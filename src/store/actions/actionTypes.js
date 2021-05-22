@@ -7,3 +7,7 @@ export const LOGIN_START = 'LOGIN_START';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILED = 'LOGIN_FAILED';
 export const LOGIN_AUTO = 'LOGIN_AUTO';
+
+export const LOAD_SPACES = 'LOAD_SPACES';
+export const LOAD_SPACES_SUCCESS = 'LOAD_SPACES_SUCCESS';
+export const LOAD_SPACES_FAILED = 'LOAD_SPACES_FAILED';

@@ -11,10 +11,12 @@ import registerServiceWorker from './registerServiceWorker';
 
 import signupReducer from './store/reducers/auth/signup';
 import authReducer from './store/reducers/auth/auth';
+import spacesReducer from './store/reducers/spaces/';
 
 const rootReducer = combineReducers({
     signup : signupReducer,
-    auth : authReducer
+    auth : authReducer,
+    spaces : spacesReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
