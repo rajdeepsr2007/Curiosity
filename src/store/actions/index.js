@@ -9,5 +9,6 @@ export {
 } from './auth/auth';
 
 export {
-
+    loadSpaces,
+    followSpace
 } from './spaces/'

@@ -8,7 +8,7 @@ import {connect} from 'react-redux';
 import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
 import SpaceCard from '../../../components/Space/SpaceCard/space-card';
 import {Button} from '@material-ui/core';
-import {Create, PhotoCameraOutlined} from '@material-ui/icons';
+import {Create, PhotoCameraOutlined , Add} from '@material-ui/icons';
 import Alert from '../../../components/UI/Feedback/Alert/alert';
 
 class AddSpace extends Component{
@@ -120,11 +120,13 @@ class AddSpace extends Component{
         }
 
         const space = {
-            image : this.state.src,
+            background : this.state.src,
             title : this.state.controls.title.value,
             topic : {
                 title : spaceTitle    
-            }
+            },
+            questions : [] ,
+            followers : []
         }
 
         const submitButton = this.state.loading ? <Loader /> : <Button variant="contained" color="primary" onClick={this.submitHandler} >
@@ -133,7 +135,7 @@ class AddSpace extends Component{
 
         return (
             <Fragment>
-                <PageTitle>Add Space</PageTitle>
+                <PageTitle><Add /> Add Space</PageTitle>
                 <TitleInput 
                 label="Space Title" 
                 onChange={(event) => this.changeInputHandler(event ,'title')} 
