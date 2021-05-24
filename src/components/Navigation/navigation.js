@@ -30,7 +30,7 @@ const Navigation = (props) => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/home"  activeClassName={classes.active}>
+                            <NavLink to="/question/add"  activeClassName={classes.active}>
                                 <div className={classes.link} >
                                     <QuestionAnswerOutlined /> Add Question
                                 </div>

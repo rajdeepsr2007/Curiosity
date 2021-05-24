@@ -2,11 +2,20 @@ import React from 'react';
 import {TextField} from '@material-ui/core';
 
 const TitleInput = (props) => {
+
+    const wrapperStyle = { 
+        height : '3rem' ,
+        width : props.width ? props.width : '80%' ,
+        margin : '2rem auto' ,
+        fontWeight : 'bolder' ,
+    }
+
     return (
         <TextField 
-                style={{ height : '3rem' , width : '100%' , margin : '1rem auto' ,fontWeight : 'bolder' }}
+                style={wrapperStyle}
                 label={props.label}
                 value={props.value}
+                variant="outlined"
                 inputProps={{
                     style: {
                       height : '3rem',

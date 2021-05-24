@@ -14,6 +14,7 @@ import Picture from './containers/Edit/Picture/picture';
 
 import Layout from './hoc/Layout/layout';
 import Space from './containers/Space/space';
+import Question from './containers/Question/question';
 
 class App extends Component {
 
@@ -28,6 +29,7 @@ class App extends Component {
     if( this.props.auth ){
       routes = (
         <Switch>
+          <Route path="/question" component={Question} />
           <Route path="/spaces" component={Space} />
           <Route path="/home" exact component={Home} />
           <Route path="/user/edit-topics" exact component={Topics} />

@@ -105,7 +105,7 @@ class AddSpace extends Component{
 
     render(){
 
-        if( this.state.loading && !this.state.options ){
+        if( this.state.loading && !this.state.options && !this.state.error ){
             return <Loader />
         }
 
@@ -146,6 +146,7 @@ class AddSpace extends Component{
                 value={this.state.controls.topic.value}
                 label="Topic"
                 options = {this.state.options}
+                width = "80%"
                 />
                 <SpaceCard space={space} onClick={() => {}} />
                 <input

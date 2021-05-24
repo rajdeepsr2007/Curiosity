@@ -4,10 +4,11 @@
     flex-flow: column;
     justify-content: flex-start;
     align-items: center;
-    width : 30%;
-    top:5rem;
+    width : 60%;
+    top:0;
     height : 40rem;
-    left : 35%;
+    left : 0;
+    margin-left : 20%;
     box-shadow: 0px 0px 10px 2px rgb(187, 184, 184);
 }
 .picture h2{
@@ -38,13 +39,13 @@
 @media (max-width:1200px){
     .picture{
         width: 60%;
-        left:20%;
+        margin-left:20%;
     }
 }
-@media (max-width:600px){
+@media (max-width:960px){
     .picture{
-        width: 90%;
-        left:5%;
+        width: 100%;
+        margin : 0
     }
 }
 .button{
