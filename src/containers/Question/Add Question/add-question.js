@@ -8,6 +8,7 @@ import Loader from '../../../components/UI/Loader/loader';
 import axiosInstance from '../../../axiosInstance';
 import {connect} from 'react-redux';
 import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
+import RichTextEditor from 'react-rte';
 
 class AddQuestion extends Component{
 
@@ -17,7 +18,7 @@ class AddQuestion extends Component{
         topicOptions : null ,
         spaceOptions : null ,
         topic : '-',
-        space : '-'
+        space : '-',
     }
 
     changeSpaceHandler = (event) => {
