@@ -1,0 +1,12 @@
+.badges{
+    width : 80%;
+    height : auto;
+    min-height: 2rem;
+    border : 1px solid grey;
+    border-radius: 15px;
+    margin-bottom: 1rem;
+    padding : 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}

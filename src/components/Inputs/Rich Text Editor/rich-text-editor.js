@@ -1,27 +1,45 @@
 import React , { Component } from 'react';
-import RichTextEditor from 'react-rte';
+import {EditorState, convertToRaw } from 'draft-js';
+import {Editor} from 'react-draft-wysiwyg';
+import classes from './editor.module.css'
+import './react-draft-wysiwyg.customcss'
 
 class TextEditor extends Component{
-
-    state = {
-        value : RichTextEditor.createEmptyValue()
+    constructor(){
+        super()
+        this.state = {
+            content : EditorState.createEmpty()
+        }
     }
 
-    onChange = (value) => {
-        this.setState({ value : value })
+    onEditorStateChange = (editorState) => {
+        this.setState({ editorState });
         if( this.props.onChange ){
             this.props.onChange(
-                value.toString('html')
+                JSON.stringify(
+                    convertToRaw(editorState.getCurrentContent() )
+                )
             )
         }
     }
 
     render(){
-        return(
-            <RichTextEditor
-            value={this.state.value}
-            onchange={this.onChange}
-            />
+        return (
+            <div className={classes.editor} >
+                <Editor 
+                editorState={this.state.editorState} 
+                onEditorStateChange={this.onEditorStateChange}
+                placeholder={'Description...'}
+                toolbar = {{
+                    options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'emoji', 'remove', 'history'],
+                    inline: { inDropdown: true },
+                    list: { inDropdown: true },
+                    textAlign: { inDropdown: true },
+                    link: { inDropdown: true },
+                    history: { inDropdown: true },
+                }}
+                />
+            </div>
         )
     }
 }
