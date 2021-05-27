@@ -1,11 +1,27 @@
 .answers{
+    width : 100%;
+    height : auto;
+    margin : 2rem 0;
+    display : flex;
+    flex-flow: column;
+    align-items: center;
+    background: rgb(222, 226, 233);
+    min-height: 5rem;
+    padding: 1rem 0;
+}
+
+.options{
     width : 80%;
     height : auto;
+    margin : 2rem 0;
 }
 @media (max-width : 960px){
-    .answers{
+    .options{
         width : 100%;
     }
+}
+.button{
+    margin : 1rem 0;
 }
  
 

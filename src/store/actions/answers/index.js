@@ -1,4 +1,3 @@
-import { EvalSourceMapDevToolPlugin } from 'webpack';
 import axiosInstance from '../../../axiosInstance';
 import * as actionTypes from '../actionTypes';
 
@@ -26,14 +25,14 @@ export const loadAnswersFailed = (error) => {
 export const loadAnswers = (token,questionId) => {
     return dispatch => {
         dispatch(loadAnswersStart())
-        axiosInstance.get('/answers/get-answers',{ questionId : questionId },{
+        axiosInstance.post('/api/answers/get-answers',{ questionId : questionId },{
             headers : {
-                "AUthorization" : "Bearer " + token
+                "Authorization" : "Bearer " + token
             }
         })
         .then( response => {
             if( response ){
-                dispatch(loadAnswersSuccess(response.data.answers), questionId)
+                dispatch(loadAnswersSuccess(response.data.answers, questionId))
             }else{
                 dispatch(loadAnswersFailed('Network Error'))
             }

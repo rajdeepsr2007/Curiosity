@@ -1,0 +1,12 @@
+.questions{
+    font-size: 1.5rem;
+    color : rgb(155, 151, 151);
+    font-family : sans-serif;
+    padding : 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+.label{
+    margin-left : 2rem
+}

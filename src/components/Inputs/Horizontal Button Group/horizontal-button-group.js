@@ -9,6 +9,7 @@ const HorizontalButtonGroup = (props) => {
     let buttonGroup = buttons.map( button => {
         return (
             <NavLink
+            key={button.to}
             to={button.to}
             exact
             activeClassName={classes.active}

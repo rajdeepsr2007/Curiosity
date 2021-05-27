@@ -6,10 +6,17 @@ import * as actions from '../../store/actions/';
 import PageTitle from '../../components/UI/PageTitle/page-title';
 import QuestionGrid from '../../components/Question/QuestionGrid/question-grid';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
+import { Button } from '@material-ui/core';
+import { Replay } from '@material-ui/icons';
+import Alert from '../../components/UI/Feedback/Alert/alert';
 
 class Home extends Component{
 
     componentDidMount = () => {
+        this.props.onLoadQuestions(this.props.token);
+    }
+
+    onRefreshHandler = () => {
         this.props.onLoadQuestions(this.props.token);
     }
 
@@ -18,12 +25,20 @@ class Home extends Component{
            return <Loader />
        }
 
-       console.log(this.props.questions)
+       const refreshButton = (
+            <div style={{ margin : '2rem 0' }} >
+                <Button variant="outlined" color="primary" onClick={this.onRefreshHandler}>
+                    <Replay /> Refresh 
+                </Button>
+            </div>
+       )
 
        return (
            <Fragment>
                <PageTitle>Home</PageTitle>
-               <QuestionGrid questions={this.props.questions} />
+               {refreshButton}
+               {this.props.error ? <Alert alertType="error" text={this.props.error} /> : null }
+               {this.props.questions ? <QuestionGrid questions={this.props.questions} /> : null }
            </Fragment>
        )
    }
@@ -33,7 +48,8 @@ const mapStateToProps = state => {
     return {
         token : state.auth.token,
         loading : state.questions.loading,
-        questions : state.questions.questions
+        questions : state.questions.questions,
+        error : state.questions.error
     }
 }
 

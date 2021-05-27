@@ -16,3 +16,7 @@ export {
 export {
     loadQuestions
 } from './questions/'
+
+export {
+    loadAnswers
+} from './answers/'

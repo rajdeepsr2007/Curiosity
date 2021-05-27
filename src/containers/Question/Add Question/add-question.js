@@ -11,6 +11,7 @@ import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
 import Badges from '../../../components/Inputs/Badges/badges';
 import TextEditor from '../../../components/Inputs/Rich Text Editor/rich-text-editor';
 import {Button} from '@material-ui/core';
+import Alert from '../../../components/UI/Feedback/Alert/alert';
 
 class AddQuestion extends Component{
 
@@ -128,6 +129,8 @@ class AddQuestion extends Component{
                 <TitleInput label="Question Title" value={this.state.title} onChange={(event) => { this.setState({ title : event.target.value }) }} />
                 <TextEditor onChange={ description => { this.setState({ description }) }} />
                 <Badges onChange={this.onBadgesChange} />
+                {this.state.error && this.state.showErrors ? <Alert alertType="error" text={this.state.error} /> : null} 
+                {this.state.success ? <Alert alertType="success" text={this.state.success} /> : null }
                 {submitButton}
             </Fragment>
         )

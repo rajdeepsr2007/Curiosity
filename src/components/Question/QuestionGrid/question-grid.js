@@ -1,21 +1,31 @@
 import React , { Component } from 'react';
 import { Fragment } from 'react';
 import QuestionCard from './QuestionCard/question-card';
+import {Create} from '@material-ui/icons';
+import classes from './question-grid.module.css';
 
 const QuestionGrid = (props) => {
 
     const {questions} = props;
-    const questionList = questions.map( question => {
-        return <QuestionCard 
-                key={Math.random()*100000}
-                question={question} 
-                showAnswerButton
-                />
-    } )
+
+    let content = <div className={classes.questions} >
+        <Create /> 
+        <span className={classes.label}>No Questions</span>
+    </div>
+
+    if( questions && questions.length > 0 ){
+        content = questions.map( question => {
+            return <QuestionCard 
+                    key={question._id}
+                    question={question} 
+                    showAnswerButton
+                    />
+        } )
+    }
 
     return (
         <Fragment>
-            {questionList}
+            {content}
         </Fragment>
     )
 }
