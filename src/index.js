@@ -13,12 +13,14 @@ import signupReducer from './store/reducers/auth/signup';
 import authReducer from './store/reducers/auth/auth';
 import spacesReducer from './store/reducers/spaces/';
 import questionsReducer from './store/reducers/questions';
+import answersReducers from './store/reducers/answers';
 
 const rootReducer = combineReducers({
     signup : signupReducer,
     auth : authReducer,
     spaces : spacesReducer,
-    questions : questionsReducer
+    questions : questionsReducer,
+    answers : answersReducers
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

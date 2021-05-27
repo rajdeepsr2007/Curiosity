@@ -56,9 +56,11 @@ const QuestionCard = (props) => {
                 />
             </div>
             <div className={classes.options} >
-                <Button variant="outlined" color="primary" >
-                    {`View all ${question.answers.length} Answers`}
-                </Button>
+                <Link to={`/question/${question._id}`}>
+                    <Button variant="outlined" color="primary" >
+                        {`View all ${question.answers.length} Answers`}
+                    </Button>
+                </Link>
                 {
                     props.showAnswerButton ? <Link to={`/answer/${question._id}`} >
                                                 <Button variant="outlined" color="primary" >

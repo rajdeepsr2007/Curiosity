@@ -28,7 +28,7 @@ class AnswerQuestion extends Component{
             this.setState({ error : 'Please fill answer description' , showErrors : true });
         }else{
             this.setState({ submitting : true , error : null , showErrors : false , success : null })
-            axiosInstance.post('/answer/add',{ questionId : this.state.question._id , description : this.state.answerDescription },
+            axiosInstance.post('/api/answers/add',{ questionId : this.state.question._id , description : this.state.answerDescription },
                 {
                     headers : {
                         "Authorization" : "Bearer " + this.props.token
