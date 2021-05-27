@@ -1,0 +1,9 @@
+.answer{
+    width : 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+.button{
+    margin : 2rem 0;
+}

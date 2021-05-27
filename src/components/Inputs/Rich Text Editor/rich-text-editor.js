@@ -29,7 +29,7 @@ class TextEditor extends Component{
                 <Editor 
                 editorState={this.state.editorState} 
                 onEditorStateChange={this.onEditorStateChange}
-                placeholder={'Description...'}
+                placeholder={ this.props.placeholder ? this.props.placeholder :  'Description...'}
                 toolbar = {{
                     options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'emoji', 'remove', 'history'],
                     inline: { inDropdown: true },

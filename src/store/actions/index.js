@@ -12,3 +12,7 @@ export {
     loadSpaces,
     followSpace
 } from './spaces/'
+
+export {
+    loadQuestions
+} from './questions/'

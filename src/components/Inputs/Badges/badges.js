@@ -38,6 +38,23 @@ class Badges extends Component{
 
         const style={ width : '80%' , padding : '1rem 0'}
 
+        if(this.props.showBadges){
+            return <Fragment>
+                {
+                this.state.badges.length ? <div className={classes.badges} >
+                                                {
+                                                    this.state.badges.map(badge => {
+                                                        return <Badge 
+                                                                key={badge} 
+                                                                badge={badge} 
+                                                                />
+                                                    })
+                                                }
+                                            </div> : null
+                }
+            </Fragment>
+        }
+
         return(
             <Fragment>
                 <TextField

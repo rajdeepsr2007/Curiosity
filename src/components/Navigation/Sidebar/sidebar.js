@@ -17,7 +17,7 @@ const Sidebar = (props) => {
             <div className={classes.nav} >
                     <ul>
                         <li>
-                            <NavLink to="/user/edit-topics"  activeClassName={classes.active} >
+                            <NavLink to="/home"  activeClassName={classes.active} >
                                 <div className={classes.link} >
                                     <HomeOutlined /> Home
                                 </div>
