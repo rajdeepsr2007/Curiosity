@@ -8,7 +8,7 @@ class Question extends Component{
         return(
             <Switch>
                 <Route path="/question/add" exact component={AddQuestion} />
-                <Route path="/question/:id" exact component={QuestionComplete} />
+                <Route path="/question/:id" component={QuestionComplete} />
                 <Redirect to="/home" />
             </Switch>
         )

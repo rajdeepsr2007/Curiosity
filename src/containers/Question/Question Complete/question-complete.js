@@ -1,7 +1,9 @@
-import React , { Component } from 'react';
+import React , { Component , Fragment} from 'react';
 import Loader from '../../../components/UI/Loader/loader';
 import {connect} from 'react-redux';
 import QuestionCard from '../../../components/Question/QuestionGrid/QuestionCard/question-card';
+import HorizontalButtonGroup from '../../../components/Inputs/Horizontal Button Group/horizontal-button-group';
+import classes from './question-complete.module.css'
 
 class QuestionComplete extends Component{
 
@@ -10,7 +12,7 @@ class QuestionComplete extends Component{
     }
 
     componentDidUpdate = () => {
-        
+
     }
 
     componentDidMount = () => {
@@ -29,11 +31,31 @@ class QuestionComplete extends Component{
             return <Loader />
         }
 
+        const navigationButtons = [
+            { 
+                to : `/question/${this.state.question._id}/answers` , 
+                title : `(${this.state.question.answers.length}) Answers`
+            },
+            { 
+                to : `/question/${this.state.question._id}/similar` , 
+                title : `Similar Questions`
+            }
+        ]
+
+        const buttons = (
+            <HorizontalButtonGroup buttons={navigationButtons} />
+        )
+
         return(
-           <QuestionCard 
-           question={this.state.question} 
-           showAnswerButton
-           />
+            <Fragment>
+                <QuestionCard 
+                question={this.state.question} 
+                showAnswerButton
+                />
+                <div className={classes.answers} >
+                    {buttons}
+                </div>
+            </Fragment>
         )
     }
 }

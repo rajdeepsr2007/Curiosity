@@ -1,0 +1,25 @@
+.navigation{
+    width : 100%;
+    height : auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navigation a{
+    text-align: center;
+    padding : 1rem;
+    border : 1px solid rgb(39, 98, 138);
+    box-sizing: border-box;
+    text-decoration: none;
+    background : white ;
+    color : rgb(39, 98, 138);
+    cursor : pointer;
+    transition: 0.2s;
+    flex-grow: 1;
+}
+
+.navigation .active{
+    background : rgb(39, 98, 138);
+    color : white;
+    transition: 0.2s;
+}
