@@ -37,7 +37,7 @@ const QuestionFilter = (props) => {
             <div className={classes.filter} >
                 {topicsList}
                 {spacesList}
-                <div className={classes.button} >
+                <div className={classes.button} onClick={props.onApplyFilter} >
                     <Button variant="contained" color="primary">
                         Save
                     </Button>

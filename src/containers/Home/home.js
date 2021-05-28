@@ -48,6 +48,19 @@ class Home extends Component{
             }
     }
 
+    onApplyfilter = () => {
+       let topics = this.state.userTopics.filter( topic => topic.selected );
+       let spaces = this.state.userSpaces.filter( space => space.selected );
+       topics = topics.map( topic => topic._id );
+       spaces = spaces.map( space => space._id );
+       if( topics.length > 0 || spaces.length > 0 ){
+            this.props.onLoadQuestions( this.props.token , { spaces , topics } );
+       }else{
+            this.onRefreshHandler();
+       }
+       this.toggleShowFilter();
+    }
+
     toggleShowFilter = () => {
         const updatedShowFilter = this.state.showFilter;
         this.setState({ showFilter : !updatedShowFilter })
@@ -83,6 +96,7 @@ class Home extends Component{
                             spaces={this.state.userSpaces} 
                             onClick={this.toggleShowFilter}
                             onChange={this.onFilterChange}
+                            onApplyFilter={() => this.onApplyfilter()}
                             />
             showFilter = <Button variant="outlined" color="primary" onClick={this.toggleShowFilter} >
                 {this.state.showFilter ? 'Hide' : 'Show'} Filter
@@ -118,7 +132,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onLoadQuestions : (token) => dispatch(actions.loadQuestions(token))
+        onLoadQuestions : (token , filter) => dispatch(actions.loadQuestions(token , filter ))
     }
 }
 

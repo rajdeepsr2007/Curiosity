@@ -21,10 +21,10 @@ const loadQuestionsFailed = (error) => {
     }
 }
 
-export const loadQuestions = (token) => {
+export const loadQuestions = (token , filter ) => {
     return dispatch => {
         dispatch( loadQuestionsStart() );
-        axiosInstance.get('/api/questions/get-questions',{
+        axiosInstance.post('/api/questions/get-questions',{ filter : filter } , {
             headers : {
                 "Authorization" : "Bearer " + token
             }
