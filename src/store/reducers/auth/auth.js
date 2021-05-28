@@ -23,7 +23,8 @@ const reducer = (state=initialState , action) => {
                 token : action.token ,
                 username : action.username ,
                 email : action.email ,
-                firstLogin : action.firstLogin
+                firstLogin : action.firstLogin,
+                user : action.user
             }
         
         case actionTypes.LOGIN_FAILED :

@@ -14,13 +14,14 @@ export const loginFailed = (error) => {
     }
 } 
 
-export const loginSuccess = (email ,username, token ,firstLogin) => {
+export const loginSuccess = (email ,username, token ,firstLogin,user) => {
     return {
         type : actionTypes.LOGIN_SUCCESS,
         email,
         username,
         token,
-        firstLogin
+        firstLogin,
+        user
     }
 }
 
@@ -34,7 +35,7 @@ export const login = (email,password) => {
                     localStorage.setItem( 'token' , response.data.token );
                     localStorage.setItem( 'username' , response.data.username );
                     localStorage.setItem( 'email' , response.data.email )
-                    dispatch(loginSuccess(response.data.email,response.data.username,response.data.token,response.data.firstLogin))
+                    dispatch(loginSuccess(response.data.email,response.data.username,response.data.token,response.data.firstLogin,response.data.user))
                 }else{
                     dispatch(loginFailed(response.data.message))
                 }
@@ -69,7 +70,9 @@ export const loginAuto = () => {
                             loginSuccess(
                                 response.data.email ,
                                 response.data.username,
-                                response.data.token
+                                response.data.token,
+                                null,
+                                response.data.user
                             )
                         )
                     }

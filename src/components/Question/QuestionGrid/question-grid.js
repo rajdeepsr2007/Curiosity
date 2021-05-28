@@ -16,7 +16,7 @@ const QuestionGrid = (props) => {
     if( questions && questions.length > 0 ){
         content = questions.map( question => {
             return <QuestionCard 
-                    key={question._id}
+                    key={Math.random()*1000000}
                     question={question} 
                     showAnswerButton
                     />
