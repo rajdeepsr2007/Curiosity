@@ -7,7 +7,7 @@ import PageTitle from '../../components/UI/PageTitle/page-title';
 import QuestionGrid from '../../components/Question/QuestionGrid/question-grid';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import { Button } from '@material-ui/core';
-import { Replay } from '@material-ui/icons';
+import { FilterList, Replay } from '@material-ui/icons';
 import Alert from '../../components/UI/Feedback/Alert/alert';
 import QuestionFilter from '../../components/Home/QuestionFilter/question-filter';
 import classes from './home.module.css';
@@ -99,7 +99,7 @@ class Home extends Component{
                             onApplyFilter={() => this.onApplyfilter()}
                             />
             showFilter = <Button variant="outlined" color="primary" onClick={this.toggleShowFilter} >
-                {this.state.showFilter ? 'Hide' : 'Show'} Filter
+                <FilterList /> {this.state.showFilter ? 'Hide' : 'Show'} Filter
             </Button>
        }
 
@@ -110,6 +110,11 @@ class Home extends Component{
                <PageTitle>Home</PageTitle>
                <div className={classes.options} >
                     {showFilter}
+                    {
+                        <Button variant="contained" disabled >
+                            Found {this.props.questions.length} Results
+                        </Button>
+                    }
                     {refreshButton}
                </div>
                {this.props.error ? <Alert alertType="error" text={this.props.error} /> : null }

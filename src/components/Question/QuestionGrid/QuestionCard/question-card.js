@@ -34,6 +34,8 @@ const QuestionCard = (props) => {
     let {picture} = question.user;
     picture = baseURL + picture;
 
+    const badges = [question.topic.title , question.space.title , ...question.badges];
+
     return (
         <div className={classes.question} >
             <div className={classes.header} >
@@ -51,7 +53,7 @@ const QuestionCard = (props) => {
             <ReadOnlyEditor rawContent={question.description} />
             <div className={classes.badges} >
                 <Badges 
-                badges={question.badges} 
+                badges={badges} 
                 showBadges
                 />
             </div>
