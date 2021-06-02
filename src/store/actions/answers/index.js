@@ -42,3 +42,34 @@ export const loadAnswers = (token,questionId) => {
         } )
     }
 }
+
+
+const voteAnswerSuccess = (questionId , answerId , type , message ) => {
+    return {
+        type : actionTypes.VOTE_ANSWER_SUCCESS ,
+        questionId ,
+        answerId , 
+        voteType : type ,
+        message
+    }
+}
+
+
+
+export const voteAnswer = (token , answerId , type , questionId) => {
+    return dispatch => {
+        axiosInstance.post('/api/answers/vote' , { answerId : answerId , type : type },{
+           headers : {
+               "Authorization" : "Bearer " + token
+           }
+        } )
+        .then( response => {
+            if( response ){
+                dispatch( voteAnswerSuccess(questionId , answerId , type , response.data.message) )
+            }
+        })
+        .catch( error => {
+           
+        } )
+    }
+}

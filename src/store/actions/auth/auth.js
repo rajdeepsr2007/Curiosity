@@ -53,7 +53,6 @@ export const login = (email,password) => {
 export const loginAuto = () => {
     return dispatch => {
         const token = localStorage.getItem('token');
-        console.log(token);
         if( token ){
             axiosInstance.get('/api/auth/auto-login' , {
                 headers : {

@@ -60,3 +60,7 @@
 .options .label{
     margin-left: 0.5rem;
 }
+.button button{
+    color : rgb(105, 153, 185);
+    background: rgb(248, 245, 245);
+}

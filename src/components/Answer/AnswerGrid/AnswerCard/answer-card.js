@@ -4,6 +4,8 @@ import baseURL from '../../../../baseURL';
 import classes from './answer-card.module.css';
 import { Button } from '@material-ui/core';
 import { ThumbDown, ThumbUp } from '@material-ui/icons';
+import * as actions from '../../../../store/actions/index'
+import {connect} from 'react-redux';
 
 const formatDate = (date) => {
     const formattedDate = new Date(date);
@@ -48,17 +50,33 @@ const AnswerCard = (props) => {
             </div>
             <ReadOnlyEditor rawContent={answer.description} />
             <div className={classes.options} >
-                <Button>
-                    <ThumbUp /> 
-                    <span className={classes.label}>{answer.upvotes}</span>
-                </Button>
-                <Button>
-                    <ThumbDown />
-                    <span className={classes.label}>{answer.downvotes}</span>
-                </Button>
+                <span className={answer.upvoted ? classes.button : null}>
+                    <Button onClick={() => props.onVoteAnswer(props.token , answer._id , 'upvote' , answer.question )} >
+                        <ThumbUp /> 
+                        <span className={classes.label}>{answer.upvotes}</span>
+                    </Button>
+                </span>
+                <span className={answer.downvoted ? classes.button : null}>
+                    <Button onClick={() => props.onVoteAnswer(props.token , answer._id , 'downvote' , answer.question )}>
+                        <ThumbDown />
+                        <span className={classes.label}>{answer.downvotes}</span>
+                    </Button>
+                </span>
             </div>
         </div>
     )
 }
 
-export default AnswerCard;
+const mapStateToProps = state => {
+    return {
+        token : state.auth.token
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onVoteAnswer : (token , answerId , type , questionId ) => dispatch( actions.voteAnswer(token , answerId , type , questionId ) )
+    }
+}
+
+export default connect(mapStateToProps , mapDispatchToProps)(AnswerCard);

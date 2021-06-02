@@ -18,5 +18,6 @@ export {
 } from './questions/'
 
 export {
-    loadAnswers
+    loadAnswers,
+    voteAnswer
 } from './answers/'

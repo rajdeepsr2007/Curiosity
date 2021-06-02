@@ -18,18 +18,53 @@ const copyAnswersObject = (answers) => {
 }
 
 const reducer = (state=initialState , action) => {
+    let updatedAnswers;
     switch( action.type ){
 
         case actionTypes.LOAD_ANSWERS : 
             return {...state , loading : true , error : null , answers : copyAnswersObject(state.answers) }
 
         case actionTypes.LOAD_ANSWERS_SUCCESS : 
-            const updatedAnswers = copyAnswersObject(state.answers);
+            updatedAnswers = copyAnswersObject(state.answers);
             updatedAnswers[action.questionId] = action.answers;
             return {...state , loading : false , answers : updatedAnswers }
 
         case actionTypes.LOAD_ANSWERS_FAILED : 
             return {...state , loading : false , error : action.error}
+
+        case actionTypes.VOTE_ANSWER_SUCCESS :
+
+            updatedAnswers = copyAnswersObject(state.answers);
+            const updatedAnswer = updatedAnswers[action.questionId].find( answer => {
+                return JSON.stringify(answer._id) === JSON.stringify(action.answerId)
+            } )
+            const updatedAnswersArray = updatedAnswers[action.questionId].filter( answer => {
+                return JSON.stringify(answer._id) !== JSON.stringify(action.answerId)
+            } )
+            let upvoteInc = 0 , downvoteInc = 0 , upvoted = false , downvoted = false;
+            if( action.message === 'Vote Removed' ){
+                upvoteInc = action.voteType === 'upvote' ? -1 : 0 ;
+                downvoteInc = action.voteType === 'downvote' ? -1 : 0;
+            }else if( action.message === 'Vote Created' ){
+                upvoteInc = action.voteType === 'upvote' ? upvoted = true &&  1 : 0 ;
+                downvoteInc = action.voteType === 'downvote' ? downvoted = true &&  1 : 0;
+            }else{
+                if( action.voteType === 'upvote' ){
+                    upvoteInc = 1 ; downvoteInc = -1;
+                    upvoted = true;
+                }else{
+                    upvoteInc = -1 ; downvoteInc = 1;
+                    downvoted = true;
+                }
+            }
+            updatedAnswer.upvotes = parseInt(updatedAnswer.upvotes , 10) + upvoteInc;
+            updatedAnswer.downvotes = parseInt(updatedAnswer.downvotes , 10) + downvoteInc;
+            updatedAnswer.upvoted = upvoted;
+            updatedAnswer.downvoted = downvoted;
+            updatedAnswersArray.push(updatedAnswer);
+            updatedAnswers[action.questionId] = updatedAnswersArray;
+
+            return {...state , answers : updatedAnswers}
 
         default : 
             return state
