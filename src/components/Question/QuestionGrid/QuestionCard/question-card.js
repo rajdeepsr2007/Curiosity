@@ -19,12 +19,12 @@ const formatDate = (date) => {
     }
     else if(timeDifference < 3600000 * 24){
         return `${Math.floor(timeDifference/(3600000))} hours ago`
-    }else if(timeDifference < 360000 * 24 * 30){
+    }else if(timeDifference < 3600000 * 24 * 30){
         return `${Math.floor(timeDifference/(3600000*24))} days ago`
-    }else if(timeDifference < 360000 * 24 * 30 * 12){
-        return `${Math.floor(timeDifference/(3600*24*30))} months ago`
+    }else if(timeDifference < 3600000 * 24 * 30 * 12){
+        return `${Math.floor(timeDifference/(3600000*24*30))} months ago`
     }else{
-        return `${Math.floor(timeDifference/36000*24*30*12)} years ago`
+        return `${Math.floor(timeDifference/3600000*24*30*12)} years ago`
     }
 }
 
