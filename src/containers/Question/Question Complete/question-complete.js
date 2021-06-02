@@ -20,7 +20,7 @@ class QuestionComplete extends Component{
     }
 
     componentDidUpdate = () => {
-        if( !this.props.error && !this.props.loading && this.state.question && ( !this.props.answers || JSON.stringify(this.props.questionId) !== JSON.stringify(this.state.question._id)  ) ){
+        if( !this.props.error && !this.props.loading && this.state.question && (this.props.answers && !this.props.answers[this.state.question._id]) ){
             this.props.onLoadAnswers(this.props.token , this.state.question._id);
         }
     }
@@ -74,10 +74,10 @@ class QuestionComplete extends Component{
             </div>   
         )
 
-        if( this.props.answers ){
+        if( this.props.answers && this.props.answers[this.state.question._id] ){
             answers = <div className={classes.answers} >
                         <AnswerGrid
-                        answers={this.props.answers}
+                        answers={this.props.answers[this.state.question._id]}
                         />
                       </div>
             
