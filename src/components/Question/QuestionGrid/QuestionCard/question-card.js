@@ -40,7 +40,7 @@ const QuestionCard = (props) => {
         <div className={classes.question} >
             <div className={classes.header} >
                 <div className={classes.user} >
-                    <img src={picture} />
+                    <img src={picture} alt={question.user.username} />
                     {question.user.username}
                 </div>
                 <div className={classes.title}>

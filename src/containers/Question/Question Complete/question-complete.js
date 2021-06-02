@@ -7,7 +7,6 @@ import * as actions from '../../../store/actions/';
 import axiosInstance from '../../../axiosInstance';
 import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
 import classes from './question-complete.module.css'
-import AnswerCard from '../../../components/Answer/AnswerGrid/AnswerCard/answer-card';
 import AnswerGrid from '../../../components/Answer/AnswerGrid/answer-grid';
 import { Route } from 'react-router';
 import { Button } from '@material-ui/core';

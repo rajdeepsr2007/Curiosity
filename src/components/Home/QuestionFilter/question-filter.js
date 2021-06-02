@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Button } from '@material-ui/core';
 import baseURL from '../../../baseURL';
 import classes from './question-filter.module.css';
-import Backdrop from '../../UI/Modal/Backdrop/backdrop';
+import ScrollableModal from '../../UI/Scrollable Modal/scrollable-modal';
 
 const QuestionFilter = (props) => {
 
@@ -14,7 +14,7 @@ const QuestionFilter = (props) => {
         topic.selected ?  topicClasses.push(classes.selected) : null;
         return (
             <span key={topic._id} className={topicClasses.join(' ')} onClick={() => props.onChange('topic',topic._id)}  >
-                <img src={baseURL + topic.image} />
+                <img src={baseURL + topic.image} alt={topic.title} />
                 <span>{topic.title}</span>
             </span>
         )
@@ -25,24 +25,33 @@ const QuestionFilter = (props) => {
         space.selected ? spaceClasses.push(classes.selected) : null;
         return (
             <span key={space._id} className={spaceClasses.join(' ')} onClick={() => props.onChange('space',space._id)}  >
-                <img src={baseURL + space.background} />
+                <img src={baseURL + space.background} alt={space.title}/>
                 <span>{space.title}</span>
             </span>
         )
     } )
 
+    const saveButton = (
+        <div className={classes.button} onClick={props.onApplyFilter} >
+            <Button variant="contained" color="primary">
+                Save
+            </Button>
+        </div>
+    )
+
     return (
         <Fragment>
-            <Backdrop onClick={props.onClick} show />
-            <div className={classes.filter} >
-                {topicsList}
-                {spacesList}
-                <div className={classes.button} onClick={props.onApplyFilter} >
-                    <Button variant="contained" color="primary">
-                        Save
-                    </Button>
+            <ScrollableModal 
+            show 
+            onClick={props.onClick} 
+            title={'Filters'}
+            >
+                <div className={classes.filter}>
+                    {topicsList}
+                    {spacesList}
+                    {saveButton}
                 </div>
-            </div>
+            </ScrollableModal>
         </Fragment>
         
     )

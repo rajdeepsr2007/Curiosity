@@ -9,7 +9,6 @@ import { Fragment } from 'react';
 import SpaceCard from '../../../components/Space/SpaceCard/space-card';
 import Alert from '../../../components/UI/Feedback/Alert/alert';
 import { ExploreOutlined } from '@material-ui/icons';
-import Dropdown from '../../../components/Inputs/Dropdown/dropdown';
 
 class DiscoverSpaces extends Component{
 

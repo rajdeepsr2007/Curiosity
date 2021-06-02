@@ -37,7 +37,7 @@ const AnswerCard = (props) => {
         <div className={classes.answer} >
             <div className={classes.header} >
                 <div className={classes.user} >
-                    <img src={picture} />
+                    <img src={picture} alt={answer.user.username}/>
                     {answer.user.username}
                 </div>
                 <div className={classes.title}>

@@ -1,4 +1,4 @@
-import React , { Component } from 'react';
+import React  from 'react';
 import { Fragment } from 'react';
 import QuestionCard from './QuestionCard/question-card';
 import {Create} from '@material-ui/icons';

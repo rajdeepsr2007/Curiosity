@@ -129,16 +129,16 @@ class Home extends Component{
                <PageTitle><HomeOutlined /> Home</PageTitle>
                <div className={classes.options} >
                     {showFilter}
-                    {
-                        <Button variant="contained" disabled >
-                            {this.props.results} Results
-                        </Button>
-                    }
                     {refreshButton}
                </div>
                {this.props.error ? <Alert alertType="error" text={this.props.error} /> : null }
                {this.props.questions ? <QuestionGrid questions={this.props.questions} /> : null }
                {this.state.showFilter ? questionFilter : null}
+               {
+                        <Button variant="contained" disabled >
+                            {'Showing ' + this.props.showing + ' of ' + this.props.results} Results
+                        </Button>
+                }
                {loadMoreButton}
            </Fragment>
        )
