@@ -6,27 +6,8 @@ import classes from './question-card.module.css';
 import { Button } from '@material-ui/core';
 import { Create } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
+import {formatDate} from '../../../util/util';
 
-const formatDate = (date) => {
-    const formattedDate = new Date(date);
-    const presentDate = new Date();
-    const timeDifference = presentDate.getTime() - formattedDate.getTime();
-    if( timeDifference < 60000 ){
-        return `${Math.floor(timeDifference/1000)} seconds ago`
-    }
-    else if(timeDifference < 3600000){
-        return `${Math.floor(timeDifference/60000)} minutes ago`
-    }
-    else if(timeDifference < 3600000 * 24){
-        return `${Math.floor(timeDifference/(3600000))} hours ago`
-    }else if(timeDifference < 3600000 * 24 * 30){
-        return `${Math.floor(timeDifference/(3600000*24))} days ago`
-    }else if(timeDifference < 3600000 * 24 * 30 * 12){
-        return `${Math.floor(timeDifference/(3600000*24*30))} months ago`
-    }else{
-        return `${Math.floor(timeDifference/3600000*24*30*12)} years ago`
-    }
-}
 
 const QuestionCard = (props) => {
 

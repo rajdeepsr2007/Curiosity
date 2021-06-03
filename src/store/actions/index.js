@@ -21,3 +21,8 @@ export {
     loadAnswers,
     voteAnswer
 } from './answers/'
+
+export {
+    addComment,
+    loadComments
+} from './comments/'

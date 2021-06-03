@@ -24,20 +24,25 @@ class TextEditor extends Component{
     }
 
     render(){
+
+        const config = this.props.config ? 
+                       this.props.config :
+                       {
+                        options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'emoji', 'remove', 'history'],
+                        inline: { inDropdown: true },
+                        list: { inDropdown: true },
+                        textAlign: { inDropdown: true },
+                        link: { inDropdown: true },
+                        history: { inDropdown: true },
+                        }
+
         return (
-            <div className={classes.editor} >
+            <div className={classes.editor} style={this.props.style} >
                 <Editor 
                 editorState={this.state.editorState} 
                 onEditorStateChange={this.onEditorStateChange}
                 placeholder={ this.props.placeholder ? this.props.placeholder :  'Description...'}
-                toolbar = {{
-                    options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'emoji', 'remove', 'history'],
-                    inline: { inDropdown: true },
-                    list: { inDropdown: true },
-                    textAlign: { inDropdown: true },
-                    link: { inDropdown: true },
-                    history: { inDropdown: true },
-                }}
+                toolbar = {config}
                 />
             </div>
         )
