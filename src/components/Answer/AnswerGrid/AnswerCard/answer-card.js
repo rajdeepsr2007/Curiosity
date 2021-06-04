@@ -17,7 +17,7 @@ const AnswerCard = (props) => {
     picture = baseURL + picture;
 
     return(
-        <div className={classes.answer} >
+        <div className={classes.answer} style={props.style}  >
             <div className={classes.header} >
                 <div className={classes.user} >
                     <img src={picture} alt={answer.user.username}/>

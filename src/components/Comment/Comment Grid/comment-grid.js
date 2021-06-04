@@ -79,11 +79,15 @@ class CommentGrid extends Component{
                         onAddComment={this.addCommentHandler}
                         />
         }
+
+        let commentCount = this.props.comments[this.state.answer._id] ? 
+                           this.props.comments[this.state.answer._id].length
+                           : this.state.answer.comments.length; 
         const toggler = <div className={classes.toggler} >
             <span 
             onClick={this.toggleShowComments} 
             >
-                {this.state.showComments ? 'Hide' : 'Show'} Comments{`(${this.props.answer.comments.length})`}
+                {this.state.showComments ? 'Hide' : 'Show'} Comments{`(${commentCount})`}
             </span>
             <span 
             onClick={this.toggleShowAddComment}

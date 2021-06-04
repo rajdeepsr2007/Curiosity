@@ -19,10 +19,11 @@ const QuestionGrid = (props) => {
                     key={Math.random()*1000000}
                     question={question} 
                     showAnswerButton
+                    showAnswerCard
                     />
         } )
     }
-
+    
     return (
         <Fragment>
             {content}

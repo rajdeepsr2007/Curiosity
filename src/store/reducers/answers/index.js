@@ -35,11 +35,8 @@ const reducer = (state=initialState , action) => {
         case actionTypes.VOTE_ANSWER_SUCCESS :
 
             updatedAnswers = copyAnswersObject(state.answers);
-            const updatedAnswer = updatedAnswers[action.questionId].find( answer => {
+            const answerIndex = updatedAnswers[action.questionId].findIndex( answer => {
                 return JSON.stringify(answer._id) === JSON.stringify(action.answerId)
-            } )
-            const updatedAnswersArray = updatedAnswers[action.questionId].filter( answer => {
-                return JSON.stringify(answer._id) !== JSON.stringify(action.answerId)
             } )
             let upvoteInc = 0 , downvoteInc = 0 , upvoted = false , downvoted = false;
             if( action.message === 'Vote Removed' ){
@@ -57,12 +54,10 @@ const reducer = (state=initialState , action) => {
                     downvoted = true;
                 }
             }
-            updatedAnswer.upvotes = parseInt(updatedAnswer.upvotes , 10) + upvoteInc;
-            updatedAnswer.downvotes = parseInt(updatedAnswer.downvotes , 10) + downvoteInc;
-            updatedAnswer.upvoted = upvoted;
-            updatedAnswer.downvoted = downvoted;
-            updatedAnswersArray.push(updatedAnswer);
-            updatedAnswers[action.questionId] = updatedAnswersArray;
+            updatedAnswers[action.questionId][answerIndex].upvotes = parseInt(updatedAnswers[action.questionId][answerIndex].upvotes , 10) + upvoteInc;
+            updatedAnswers[action.questionId][answerIndex].downvotes = parseInt(updatedAnswers[action.questionId][answerIndex].downvotes , 10) + downvoteInc;
+            updatedAnswers[action.questionId][answerIndex].upvoted = upvoted;
+            updatedAnswers[action.questionId][answerIndex].downvoted = downvoted;
 
             return {...state , answers : updatedAnswers}
 

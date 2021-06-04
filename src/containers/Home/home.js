@@ -11,8 +11,9 @@ import { FilterList, HomeOutlined, Replay } from '@material-ui/icons';
 import Alert from '../../components/UI/Feedback/Alert/alert';
 import QuestionFilter from '../../components/Home/QuestionFilter/question-filter';
 import classes from './home.module.css';
+import { PureComponent } from 'react';
 
-class Home extends Component{
+class Home extends PureComponent{
 
     state = {
         userTopics : [] ,
@@ -64,7 +65,9 @@ class Home extends Component{
         this.setState({ userTopics : this.props.user.topics , userSpaces : this.props.user.spaces });
     }
 
-    componentDidUpdate = (prevProps) => {
+    componentDidUpdate = (prevProps , prevState) => {
+        console.log(prevState, this.state);
+        console.log(prevProps, this.props)
         if( prevProps.showing !== this.state.showing ){
             window.scrollTo(0 , document.body.scrollHeight - 2500)
         }
