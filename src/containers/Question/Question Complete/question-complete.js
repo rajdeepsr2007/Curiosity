@@ -12,6 +12,7 @@ import { Route } from 'react-router';
 import { Button } from '@material-ui/core';
 import { Replay } from '@material-ui/icons';
 import Alert from '../../../components/UI/Feedback/Alert/alert';
+import SimilarQuestions from './Similar Questions/similar-questions';
 
 class QuestionComplete extends Component{
 
@@ -96,6 +97,7 @@ class QuestionComplete extends Component{
                     {this.props.error ? <Alert alertType="error" text={this.props.error} /> : null }
                     {refreshButton}
                     <Route path={`/question/${this.state.question._id}/answers`} render={() => answers}  />
+                    <Route path={`/question/${this.state.question._id}/similar`} render={(props) => <SimilarQuestions questionId={this.state.question._id} /> }  />
                 </div>
             </Fragment>
         )

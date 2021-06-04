@@ -66,8 +66,6 @@ class Home extends PureComponent{
     }
 
     componentDidUpdate = (prevProps , prevState) => {
-        console.log(prevState, this.state);
-        console.log(prevProps, this.props)
         if( prevProps.showing !== this.state.showing ){
             window.scrollTo(0 , document.body.scrollHeight - 2500)
         }

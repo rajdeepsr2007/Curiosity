@@ -28,7 +28,7 @@ const loadQuestionsFailed = (error) => {
 const compareFilters = (filter1 , filter2 , fields) => {
     if( filter1 && filter2 ){
         for( let field of fields ){
-            if( filter1[field] && filter2[field] && filter1[field].length === filter2[field].length ){
+            if( (filter1[field] && filter2[field] && filter1[field].length === filter2[field].length) ){
                 filter1[field].sort();
                 filter2[field].sort();
                 for( let i = 0 ; i < filter1.length ; i++ ){
@@ -37,7 +37,10 @@ const compareFilters = (filter1 , filter2 , fields) => {
                         return false;
                     }
                 }
-            }else{
+            }else if(!filter1[field] && !filter2[field]){
+                continue;
+            }
+            else{
                 return false;
             }
         }
@@ -54,7 +57,7 @@ export const loadQuestions = (token , filter , refresh ) => {
     return (dispatch , getState) => {
 
         const alreadyAppliedFilter = getState().questions.filter;
-        if( !compareFilters(alreadyAppliedFilter , filter , ['topics','spaces']) ){
+        if( !compareFilters(alreadyAppliedFilter , filter , ['topics','spaces','similar']) ){
             refresh = true;
         }
 

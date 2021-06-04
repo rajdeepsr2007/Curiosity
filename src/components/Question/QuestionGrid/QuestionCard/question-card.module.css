@@ -9,6 +9,7 @@
     box-shadow: 0px 0px 10px 2px rgb(223, 217, 217);
     display: flex;
     flex-flow: column;
+    background : white;
 }
 @media (max-width : 900px){
     .question{
