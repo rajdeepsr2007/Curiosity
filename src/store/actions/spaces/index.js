@@ -1,5 +1,6 @@
 import axiosInstance from '../../../axiosInstance';
 import * as actionTypes from '../actionTypes';
+import {compareFilters} from '../util/util';
 
 export const loadSpacesStart = () => {
     return {
@@ -7,10 +8,11 @@ export const loadSpacesStart = () => {
     }
 }
 
-export const loadSpacesSuccess = (spaces) => {
+export const loadSpacesSuccess = (spaces , filter) => {
     return {
         type : actionTypes.LOAD_SPACES_SUCCESS,
-        spaces : spaces
+        spaces : spaces,
+        filter : filter
     }
 }
 
@@ -21,17 +23,28 @@ export const loadSpacesFailed = (error) => {
     }
 }
 
-export const loadSpaces = (token) => {
-    return dispatch => {
+export const loadSpaces = (token,filter) => {
+    return (dispatch , getState) => {
+        const alreadySetFilter = getState().spaces.filter;
+        let spaces = getState().spaces.spaces ?  getState().spaces.spaces : [] ;
+        const refresh = !compareFilters( alreadySetFilter , filter , [] );
+        const startRange = refresh ? 0 : spaces.length;
         dispatch(loadSpacesStart())
-        axiosInstance.get('/api/spaces/get-spaces',{
+        axiosInstance.post('/api/spaces/get-spaces',{ filter : filter , startRange },{
             headers : {
                 "Authorization" : "Bearer " + token
             }
         })
         .then( response => {
             if(response){
-                dispatch(loadSpacesSuccess(response.data.spaces))
+                if( refresh ){
+                    spaces = response.data.spaces
+                }else{
+                    for( let i = 0 ; i < response.data.spaces.length ; i++ ){
+                        spaces.push(response.data.spaces[i]);
+                    }
+                }
+                dispatch(loadSpacesSuccess(spaces , filter))
             }else{
                 dispatch(loadSpacesFailed('Network Error'))
             }
@@ -65,7 +78,7 @@ const followSpaceFailed = (spaceId , error) => {
     }
 }
 
-export const followSpace = (token,spaceId) => {
+export const followSpace = (token,spaceId,filter) => {
     return dispatch => {
         dispatch(followSpaceStart(spaceId))
         axiosInstance.post('/api/spaces/follow',{ spaceId : spaceId },{

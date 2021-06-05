@@ -6,7 +6,7 @@ import axiosInstance from '../../../axiosInstance';
 import Loader from '../../../components/UI/Loader/loader';
 import {connect} from 'react-redux';
 import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
-import SpaceCard from '../../../components/Space/SpaceCard/space-card';
+import SpaceCard from '../../../components/Space/Space Grid/SpaceCard/space-card';
 import {Button} from '@material-ui/core';
 import {Create, PhotoCameraOutlined , Add} from '@material-ui/icons';
 import Alert from '../../../components/UI/Feedback/Alert/alert';
@@ -148,7 +148,7 @@ class AddSpace extends Component{
                 options = {this.state.options}
                 width = "80%"
                 />
-                <SpaceCard space={space} onClick={() => {}} />
+                <SpaceCard space={space} followSpaceHandler={() => {}} />
                 <input
                     accept="image/*"
                     id="contained-button-file"

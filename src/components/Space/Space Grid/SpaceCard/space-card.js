@@ -1,9 +1,10 @@
-import { Button } from '@material-ui/core';
 import React from 'react';
 import defaultBackground from './background.webp';
-import { Add, Check } from '@material-ui/icons'
+import { Add, Check } from '@material-ui/icons';
+import { Button } from '@material-ui/core';
+import Loader from '../../../UI/Loader/loader';
 import classes from './space-card.module.css';
-import baseURL from '../../../baseURL';
+import baseURL from '../../../../baseURL';
 
 const SpaceCard = (props) => {
 
@@ -19,22 +20,26 @@ const SpaceCard = (props) => {
         }
     }
 
-    console.log(space);
 
-    const followButton = space.follow ? <Button
+    let followButton = space.follow ? <Button
                                         variant="contained"
                                         color="primary"
-                                        onClick={props.onFollow}>
+                                        onClick={() => props.followSpaceHandler(space._id)}>
                                         <Check />
                                             Following
                                         </Button> : 
                                         <Button
                                         variant="outlined"
                                         color="primary"
-                                        onClick={props.onFollow}>
+                                        onClick={() => props.followSpaceHandler(space._id)}>
                                         <Add />
                                             Follow
                                         </Button>
+    if( props.followLoading === true ){
+        followButton = <div className={classes.Loader} >
+                            <Loader />
+                        </div>
+    }
 
     return (
         <div className={classes.card} >

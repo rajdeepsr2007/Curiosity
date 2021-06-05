@@ -1,59 +1,44 @@
 import React , { Component } from 'react';
 import PageTitle from '../../../components/UI/PageTitle/page-title';
 import axiosInstance from '../../../axiosInstance';
-import Loader from '../../../components/UI/Loader/loader';
 import {connect} from 'react-redux';
 import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
 import * as actions from '../../../store/actions/';
 import { Fragment } from 'react';
-import SpaceCard from '../../../components/Space/SpaceCard/space-card';
-import Alert from '../../../components/UI/Feedback/Alert/alert';
 import { ExploreOutlined } from '@material-ui/icons';
+import SpaceGrid from '../../../components/Space/Space Grid/space-grid';
+import {Button} from '@material-ui/core';
 
 class DiscoverSpaces extends Component{
-
-    state = {
-        sortOptions : [
-            { value : 'popularity' , title : 'Popularity' },
-            { value : 'questions', title : 'Questions' }
-        ],
-        sortOption : '-'
-    }
-    
-    changeSortHandler = (event) => {
-        //this.setState({ sortOption :  })
-    }
 
     componentDidMount = () => {
         this.props.onLoadSpaces(this.props.token);
     }
 
-    onFollowHandler = (spaceId) => {
-        this.props.onFollowSpace(this.props.token,spaceId)
+    loadSpacesHandler = () => {
+        this.props.onLoadSpaces(this.props.token);
     }
 
     render(){
 
-        if(this.props.loading){
-            return <Loader />
-        }
+        let loadMoreButton = (
+            <div style={{ margin : '2rem 0' }} >
+                <Button variant="contained" color="primary" onClick={this.loadSpacesHandler}>
+                    Load More
+                </Button>
+            </div>
+            
+        )
 
-        let spaces = null;
-        if(this.props.spaces){
-            spaces = this.props.spaces.map( space => {
-                return <SpaceCard  
-                        key={space._id} 
-                        space={space} 
-                        onFollow = {() => this.onFollowHandler(space._id)}
-                        />
-            } )
+        if( !this.props.spaces ){
+            loadMoreButton = null;
         }
 
         return (
             <Fragment>
                 <PageTitle><ExploreOutlined />Discover Spaces</PageTitle>
-                {this.props.error ? <Alert alertType="error" text={this.props.error} /> : null }
-                {spaces}
+                <SpaceGrid spaces={this.props.spaces} />
+                {loadMoreButton}
             </Fragment>
         )
        
@@ -62,8 +47,6 @@ class DiscoverSpaces extends Component{
 
 const mapStateToProps = state => {
     return {
-        loading : state.spaces.loading ,
-        error : state.spaces.error,
         spaces : state.spaces.spaces,
         token : state.auth.token
     }
@@ -72,7 +55,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return{
         onLoadSpaces : (token) => dispatch(actions.loadSpaces(token)),
-        onFollowSpace : (token,spaceId) => dispatch(actions.followSpace(token,spaceId))
     }
 }
 

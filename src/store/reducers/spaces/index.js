@@ -1,18 +1,19 @@
 import * as actionTypes from '../../actions/actionTypes';
 
 const initialState = {
-    loading : true ,
+    loading : false ,
     error : null ,
-    spaces : null, 
+    spaces : null,
+    filter : {}
 }
 
 const reducer = (state=initialState , action) => {
     switch( action.type ){
         case actionTypes.LOAD_SPACES : 
-            return {...state , loading : true , error : null  , spaces : null }
+            return {...state , loading : true , error : null }
 
         case actionTypes.LOAD_SPACES_SUCCESS : 
-            return {...state , loading :false , spaces : action.spaces }
+            return {...state , loading :false , spaces : action.spaces , filter : action.filter }
 
         case actionTypes.LOAD_SPACES_FAILED : 
             return {...state , loading : false , error : action.error}
@@ -20,7 +21,11 @@ const reducer = (state=initialState , action) => {
         case actionTypes.FOLLOW_SPACE :
             return {
                 ...state ,
-                //followProgress : [...state.followProgress , action.spaceId]
+                loading : {
+                    type : 'following',
+                    spaceId : action.spaceId
+                },
+                error : null
             }
 
         case actionTypes.FOLLOW_SPACE_SUCCESS : 
@@ -34,11 +39,12 @@ const reducer = (state=initialState , action) => {
             }
             return {
                 ...state,
+                loading : false,
                 spaces : updatedSpaces
             }
 
         case actionTypes.FOLLOW_SPACE_FAILED : 
-            return {...state , error : action.error}
+            return {...state , loading : false , error : action.error}
         
         default :
             return state
