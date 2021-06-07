@@ -8,11 +8,12 @@ export const loadSpacesStart = () => {
     }
 }
 
-export const loadSpacesSuccess = (spaces , filter) => {
+export const loadSpacesSuccess = (spaces , filter , results) => {
     return {
         type : actionTypes.LOAD_SPACES_SUCCESS,
         spaces : spaces,
-        filter : filter
+        filter : filter,
+        results
     }
 }
 
@@ -27,7 +28,7 @@ export const loadSpaces = (token,filter) => {
     return (dispatch , getState) => {
         const alreadySetFilter = getState().spaces.filter;
         let spaces = getState().spaces.spaces ?  getState().spaces.spaces : [] ;
-        const refresh = !compareFilters( alreadySetFilter , filter , [] );
+        const refresh = !compareFilters( alreadySetFilter , filter , ['follow'] );
         const startRange = refresh ? 0 : spaces.length;
         dispatch(loadSpacesStart())
         axiosInstance.post('/api/spaces/get-spaces',{ filter : filter , startRange },{
@@ -44,7 +45,7 @@ export const loadSpaces = (token,filter) => {
                         spaces.push(response.data.spaces[i]);
                     }
                 }
-                dispatch(loadSpacesSuccess(spaces , filter))
+                dispatch(loadSpacesSuccess(spaces , filter , response.data.results))
             }else{
                 dispatch(loadSpacesFailed('Network Error'))
             }

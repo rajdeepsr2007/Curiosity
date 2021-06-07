@@ -44,7 +44,7 @@ const Navigation = (props) => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/user/following"  activeClassName={classes.active}>
+                            <NavLink to="/following/spaces"  activeClassName={classes.active}>
                                 <div className={classes.link} >
                                     <List /> Following
                                 </div>

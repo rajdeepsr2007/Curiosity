@@ -29,7 +29,7 @@ export const loadUsers = (token , filter) => {
         dispatch( loadUsersStart() );
         const alreadySetFilter = getState().users.filter;
         let users = getState().users.users ? getState().users.users : [];
-        const refresh = !compareFilters(alreadySetFilter , filter , ['space_followers'] );
+        const refresh = !compareFilters(alreadySetFilter , filter , ['space_followers','follow'] );
         const startRange = refresh ? 0 : users.length;
         axiosInstance.post('/api/user/get-users',{ filter , startRange },{
             headers : {

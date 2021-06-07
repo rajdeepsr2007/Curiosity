@@ -4,7 +4,8 @@ const initialState = {
     loading : false ,
     error : null ,
     spaces : null,
-    filter : {}
+    filter : {},
+    results : 0
 }
 
 const reducer = (state=initialState , action) => {
@@ -13,7 +14,7 @@ const reducer = (state=initialState , action) => {
             return {...state , loading : true , error : null }
 
         case actionTypes.LOAD_SPACES_SUCCESS : 
-            return {...state , loading :false , spaces : action.spaces , filter : action.filter }
+            return {...state , loading :false , spaces : action.spaces , filter : action.filter , results : action.results }
 
         case actionTypes.LOAD_SPACES_FAILED : 
             return {...state , loading : false , error : action.error}

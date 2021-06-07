@@ -16,6 +16,7 @@ import Layout from './hoc/Layout/layout';
 import Space from './containers/Space/space';
 import Question from './containers/Question/question';
 import AnswerQuestion from './containers/Answer/Answer Question/answer-question';
+import Following from './containers/Following/following';
 
 class App extends Component {
 
@@ -30,6 +31,7 @@ class App extends Component {
     if( this.props.auth ){
       routes = (
         <Switch>
+          <Route path="/following" component={Following} />
           <Route path="/answer/:id" component={AnswerQuestion} />
           <Route path="/question" component={Question} />
           <Route path="/spaces" component={Space} />

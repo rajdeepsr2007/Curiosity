@@ -38,7 +38,7 @@ const Sidebar = (props) => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/following"  activeClassName={classes.active}>
+                            <NavLink to="/following/spaces"  activeClassName={classes.active}>
                                 <div className={classes.link} >
                                     <List /> Following
                                 </div>
