@@ -24,5 +24,10 @@ export {
 
 export {
     addComment,
-    loadComments
+    loadComments,
 } from './comments/'
+
+export {
+    loadUsers,
+    followUser
+} from './users/'

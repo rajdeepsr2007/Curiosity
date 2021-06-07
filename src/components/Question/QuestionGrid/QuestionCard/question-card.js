@@ -53,7 +53,7 @@ class QuestionCard extends Component{
         }
 
         return (
-            <div className={classes.question} >
+            <div className={classes.question} style={this.props.style} >
                 <div className={classes.header} >
                     <div className={classes.user} >
                         <img src={picture} alt={question.user.username} />

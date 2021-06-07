@@ -1,0 +1,9 @@
+.users{
+    width : 80%;
+    height : auto;
+    padding : 5rem 0;
+    background: rgb(221, 217, 217);
+    color : rgb(114, 110, 110);
+    text-align: center;
+    margin: 5rem 0;
+}

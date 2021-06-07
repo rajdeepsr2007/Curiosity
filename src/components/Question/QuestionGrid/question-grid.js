@@ -2,11 +2,16 @@ import React  from 'react';
 import { Fragment } from 'react';
 import QuestionCard from './QuestionCard/question-card';
 import {Create} from '@material-ui/icons';
+import Loader from '../../UI/Loader/loader';
 import classes from './question-grid.module.css';
 
 const QuestionGrid = (props) => {
 
     const {questions} = props;
+
+    if( props.loading ){
+        <Loader />
+    }
 
     let content = <div className={classes.questions} >
         <Create /> 
@@ -20,6 +25,7 @@ const QuestionGrid = (props) => {
                     question={question} 
                     showAnswerButton
                     showAnswerCard
+                    style={props.style}
                     />
         } )
     }

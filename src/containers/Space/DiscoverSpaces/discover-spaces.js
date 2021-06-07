@@ -17,6 +17,9 @@ class DiscoverSpaces extends Component{
 
     loadSpacesHandler = () => {
         this.props.onLoadSpaces(this.props.token);
+        setTimeout( () => {
+            window.scrollTo(0 , document.body.scrollHeight - 1500);
+        } , 2000)
     }
 
     render(){

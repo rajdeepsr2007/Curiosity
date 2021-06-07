@@ -43,7 +43,7 @@ class AddQuestion extends Component{
                 }
             })
             .then( response => {
-                this.setState({ submitting : false });
+                this.setState({ submitting : false , success : 'Question submitted' });
             } )
         }
     }

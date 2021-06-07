@@ -8,9 +8,6 @@ import Loader from '../../UI/Loader/loader';
 import classes from './space-grid.module.css';
 
 class SpaceGrid extends Component{
-    state = {
-        
-    }
 
     followSpaceHandler = (spaceId) => {
         if( !this.props.loading ){
@@ -43,6 +40,7 @@ class SpaceGrid extends Component{
                    space={space}
                    followSpaceHandler={this.followSpaceHandler}
                    followLoading={this.props.loading && this.props.loading.spaceId === space._id }
+                   style={this.props.style}
                    />
         })
 
@@ -58,13 +56,13 @@ const mapStateToProps = state => {
     return{
         loading : state.spaces.loading ,
         error : state.spaces.error,
-        token : state.auth.token
+        token : state.auth.token,
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return{
-        onFollowSpace : (token , spaceId) => dispatch(actions.followSpace(token,spaceId))
+        onFollowSpace : (token , spaceId) => dispatch(actions.followSpace(token,spaceId)),
     }
 }
 

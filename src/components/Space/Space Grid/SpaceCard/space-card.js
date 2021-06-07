@@ -3,6 +3,7 @@ import defaultBackground from './background.webp';
 import { Add, Check } from '@material-ui/icons';
 import { Button } from '@material-ui/core';
 import Loader from '../../../UI/Loader/loader';
+import {Link} from 'react-router-dom';
 import classes from './space-card.module.css';
 import baseURL from '../../../../baseURL';
 
@@ -42,13 +43,22 @@ const SpaceCard = (props) => {
     }
 
     return (
-        <div className={classes.card} >
+        <div className={classes.card} style={props.style}  >
                 <div className={classes.background}>
                     <img src={background} alt="background" />
                 </div>
                 <div className={classes.info} >
-                    <span className={classes.label}>{space.questions.length + ' Questions'}</span>
-                    <span className={classes.label}>{space.followers.length + ' Followers'}</span>
+
+                    <Link to={`/spaces/${space._id}/questions`} style={{textDecoration : 'none'}} >
+                        <span 
+                        className={classes.label} 
+                        >
+                            {space.questions.length + ' Questions'}
+                        </span>
+                    </Link>
+                    <Link to={`/spaces/${space._id}/followers`} style={{textDecoration : 'none'}} >
+                        <span className={classes.label}>{space.followers.length + ' Followers'}</span>
+                    </Link>
                     { followButton }
                 </div>
                 <div className={classes.about} >

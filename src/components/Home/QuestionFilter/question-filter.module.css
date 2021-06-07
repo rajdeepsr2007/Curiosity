@@ -12,7 +12,6 @@
 .label{
     width : 100%;
     /* border : 1px solid rgb(67, 136, 168); */
-    color : rgb(67, 136, 168);
     margin : 1rem 0;
     font-size: 1rem;
     display: flex;
@@ -23,6 +22,10 @@
     border : 1px solid rgb(137, 179, 207); 
     padding: 0.5rem;
     border-radius: 15px;
+    box-shadow: 0px 0px 5px 1px rgb(230, 223, 223);
+    background: rgb(205, 227, 245);
+    color:  rgb(53, 101, 133);
+    transition: 0.2s;
 }
 
 .label img{
@@ -41,6 +44,8 @@
 }
 
 .selected{
-    background: rgb(148, 187, 219);
-    color : white;
+   box-shadow: 0px 0px 10px 2px rgb(28, 68, 94);
+   background :  rgb(53, 101, 133);
+   color : white;
+   background: 0.2s;
 }

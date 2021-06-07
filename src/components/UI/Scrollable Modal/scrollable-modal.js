@@ -10,6 +10,7 @@ const ScrollableModal = (props) => {
         open={props.show}
         onClose={props.onClick}
         scroll={scroll}
+        fullWidth={true}
         >
         <DialogTitle id="scroll-dialog-title">{props.title}</DialogTitle>
             <DialogContent dividers={scroll === 'paper'}>

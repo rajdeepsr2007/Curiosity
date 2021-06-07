@@ -15,6 +15,7 @@ import spacesReducer from './store/reducers/spaces/';
 import questionsReducer from './store/reducers/questions';
 import answersReducers from './store/reducers/answers';
 import commentsReducer from './store/reducers/comments/index';
+import usersReducer from './store/reducers/users/index';
 
 const rootReducer = combineReducers({
     signup : signupReducer,
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
     spaces : spacesReducer,
     questions : questionsReducer,
     answers : answersReducers,
-    comments : commentsReducer
+    comments : commentsReducer,
+    users : usersReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
