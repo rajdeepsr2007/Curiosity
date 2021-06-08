@@ -31,7 +31,7 @@ const Sidebar = (props) => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/answer"  activeClassName={classes.active}>
+                            <NavLink to="/answer/"  activeClassName={classes.active}>
                                 <div className={classes.link} >
                                     <CreateOutlined /> Answer
                                 </div>

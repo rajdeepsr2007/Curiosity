@@ -34,8 +34,6 @@ class QuestionCard extends Component{
 
     render(){
 
-       
-
         const {question} = this.props;
         let {picture} = question.user;
         picture = baseURL + picture;
@@ -74,11 +72,13 @@ class QuestionCard extends Component{
                     />
                 </div>
                 <div className={classes.options} >
-                    <Link to={`/question/${question._id}/answers`}>
+                    {
+                        this.props.showAllAnswer ? <Link to={`/question/${question._id}/answers`}>
                         <Button variant="outlined" color="primary" >
                             {`View all ${question.answers.length} Answers`}
                         </Button>
-                    </Link>
+                    </Link> : null
+                    }
                     {
                         this.props.showAnswerButton ? <Link to={`/answer/${question._id}`} >
                                                     <Button variant="outlined" color="primary" >

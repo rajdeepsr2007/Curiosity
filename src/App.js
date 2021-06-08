@@ -17,6 +17,7 @@ import Space from './containers/Space/space';
 import Question from './containers/Question/question';
 import AnswerQuestion from './containers/Answer/Answer Question/answer-question';
 import Following from './containers/Following/following';
+import Answer from './containers/Answer/answer';
 
 class App extends Component {
 
@@ -33,6 +34,7 @@ class App extends Component {
         <Switch>
           <Route path="/following" component={Following} />
           <Route path="/answer/:id" component={AnswerQuestion} />
+          <Route path="/answer" component={Answer} />
           <Route path="/question" component={Question} />
           <Route path="/spaces" component={Space} />
           <Route path="/home" exact component={Home} />

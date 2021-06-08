@@ -80,7 +80,7 @@ const followSpaceFailed = (spaceId , error) => {
 }
 
 export const followSpace = (token,spaceId,filter) => {
-    return dispatch => {
+    return (dispatch , getState) => {
         dispatch(followSpaceStart(spaceId))
         axiosInstance.post('/api/spaces/follow',{ spaceId : spaceId },{
             headers : {
@@ -89,7 +89,12 @@ export const followSpace = (token,spaceId,filter) => {
         })
         .then( response => {
             if(response){
-                console.log(response);
+                const filter = getState().spaces.filter;
+                if( filter && filter.follow ){
+                    if( !response.data.followed ){
+                        dispatch(removeSpace(spaceId))
+                    }
+                }      
                 dispatch(followSpaceSuccess(spaceId , response.data.followed ))
             }else{
                 dispatch(followSpaceFailed( spaceId , 'Network error' ));
@@ -98,5 +103,12 @@ export const followSpace = (token,spaceId,filter) => {
         .catch(error => {
             dispatch(followSpaceFailed( spaceId , error.message ));
         })
+    }
+} 
+
+const removeSpace = (spaceId) => {
+    return{
+        type : actionTypes.REMOVE_SPACE ,
+        spaceId
     }
 } 

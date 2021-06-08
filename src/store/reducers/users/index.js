@@ -9,7 +9,7 @@ const initialState = {
 }
 
 const reducer = (state=initialState , action) => {
-
+    let updatedUsers;
     switch( action.type ){
         case actionTypes.LOAD_USERS_START : 
             return {
@@ -43,7 +43,7 @@ const reducer = (state=initialState , action) => {
             }
 
         case actionTypes.FOLLOW_USER_SUCCESS :
-            const updatedUsers = [];
+            updatedUsers = [];
             for( const user of state.users ){
                 const updatedUser = {...user};
                 if( user._id === action.userId ){
@@ -55,6 +55,15 @@ const reducer = (state=initialState , action) => {
                 ...state ,
                 loading : false ,
                 users : updatedUsers
+            }
+
+        case actionTypes.REMOVE_USER :
+            updatedUsers = state.users.filter(user => user._id !== action.userId)
+            const updatedResults = state.results - 1;
+            return {
+                ...state,
+                users : updatedUsers ,
+                results : updatedResults
             }
 
         default :

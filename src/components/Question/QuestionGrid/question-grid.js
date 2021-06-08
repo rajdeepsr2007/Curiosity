@@ -24,7 +24,8 @@ const QuestionGrid = (props) => {
                     key={Math.random()*1000000}
                     question={question} 
                     showAnswerButton
-                    showAnswerCard
+                    showAnswerCard={!props.showAnswerCard}
+                    showAllAnswer={!props.showAllAnswer}
                     style={props.style}
                     />
         } )

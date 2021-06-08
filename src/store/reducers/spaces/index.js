@@ -9,6 +9,7 @@ const initialState = {
 }
 
 const reducer = (state=initialState , action) => {
+    let updatedSpaces;
     switch( action.type ){
         case actionTypes.LOAD_SPACES : 
             return {...state , loading : true , error : null }
@@ -30,7 +31,7 @@ const reducer = (state=initialState , action) => {
             }
 
         case actionTypes.FOLLOW_SPACE_SUCCESS : 
-            const updatedSpaces = [];
+            updatedSpaces = [];
             for(let space of state.spaces){
                 if( JSON.stringify(space._id) === JSON.stringify(action.spaceId) ){
                     updatedSpaces.push({ ...space , follow : action.follow })
@@ -46,6 +47,15 @@ const reducer = (state=initialState , action) => {
 
         case actionTypes.FOLLOW_SPACE_FAILED : 
             return {...state , loading : false , error : action.error}
+
+        case actionTypes.REMOVE_SPACE :
+            updatedSpaces = state.spaces.filter( space => space._id !== action.spaceId );
+            const updatedResults = state.results - 1;
+            return {
+                ...state ,
+                spaces : updatedSpaces ,
+                results : updatedResults
+            }
         
         default :
             return state

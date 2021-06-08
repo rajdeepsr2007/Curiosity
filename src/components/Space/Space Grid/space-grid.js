@@ -24,7 +24,7 @@ class SpaceGrid extends Component{
             return <Loader />
         }
 
-        if( !this.props.spaces ){
+        if( !this.props.spaces || (this.props.spaces && this.props.spaces.length < 1) ){
             return <div className={classes.spaces} >
                 {
                     this.props.error ?

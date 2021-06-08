@@ -79,7 +79,7 @@ const followUserFailed = (userId , error) => {
 }
 
 export const followUser = (token , userId) => {
-    return dispatch => {
+    return (dispatch , getState) => {
         dispatch( followUserStart(userId) )
         axiosInstance.post('/api/user/follow',{ userId },{
             headers : {
@@ -88,8 +88,19 @@ export const followUser = (token , userId) => {
         })
         .then( response => {
             if( response ){
+                const filter = getState().users.filter;
+                if( !response.data.follow && filter && filter.follow ){
+                    dispatch( removeUser(userId) )
+                }
                 dispatch(followUserSuccess(userId));
             }
         } )
+    }
+}
+
+const removeUser = (userId) => {
+    return {
+        type : actionTypes.REMOVE_USER,
+        userId
     }
 }

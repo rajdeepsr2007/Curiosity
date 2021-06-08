@@ -16,6 +16,7 @@ const UserCard = (props) => {
                                                     {user.follow ? <Check /> : <Add />}{buttonText}
                                                 </Button>
                                             ) : <Loader />
+    console.log(user);
     const content = (
         <Fragment>
             <div className={classes.label} >
