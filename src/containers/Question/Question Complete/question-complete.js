@@ -79,6 +79,7 @@ class QuestionComplete extends Component{
             answers = <div className={classes.answers} >
                         <AnswerGrid
                         answers={this.props.answers[this.state.question._id]}
+                        style={{ width : '80%' }}
                         />
                       </div>
             

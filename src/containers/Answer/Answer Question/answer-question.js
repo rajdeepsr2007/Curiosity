@@ -9,6 +9,7 @@ import QuestionCard from '../../../components/Question/QuestionGrid/QuestionCard
 import Alert from '../../../components/UI/Feedback/Alert/alert';
 import Loader from '../../../components/UI/Loader/loader';
 import PageTitle from '../../../components/UI/PageTitle/page-title';
+import ImagesInput from '../../../components/Inputs/Images Input/images-input';
 import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
 import classes from './answer.module.css';
 
@@ -19,7 +20,12 @@ class AnswerQuestion extends Component{
         answerDescription : null,
         error : null,
         showErrors : false,
-        submitting : false
+        submitting : false ,
+        images : []
+    }
+
+    onImagesChange = (images) => {
+        this.setState({ images });
     }
 
     submitAnswerHandler = (event) => {
@@ -28,10 +34,17 @@ class AnswerQuestion extends Component{
             this.setState({ error : 'Please fill answer description' , showErrors : true });
         }else{
             this.setState({ submitting : true , error : null , showErrors : false , success : null })
-            axiosInstance.post('/api/answers/add',{ questionId : this.state.question._id , description : this.state.answerDescription },
+            const fd = new FormData();
+            fd.append( 'questionId' , this.state.question._id );
+            fd.append( 'description' , this.state.answerDescription );
+            for( const image of this.state.images ){
+                fd.append('images',image);
+            }
+            axiosInstance.post('/api/answers/add',fd,
                 {
                     headers : {
-                        "Authorization" : "Bearer " + this.props.token
+                        "Authorization" : "Bearer " + this.props.token,
+                        'Content-Type' : 'multipart/form-data'
                     }
                 }
             )
@@ -73,6 +86,9 @@ class AnswerQuestion extends Component{
                         <TextEditor 
                         placeholder='Answer Description...'
                         onChange={this.onChange}
+                        />
+                        <ImagesInput 
+                        onChange={this.onImagesChange}
                         />
                       </div>
         }

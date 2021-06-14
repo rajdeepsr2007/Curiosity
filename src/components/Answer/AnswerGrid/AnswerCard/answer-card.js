@@ -3,7 +3,7 @@ import ReadOnlyEditor from '../../../Inputs/Read Only Editor/read-only-editor';
 import baseURL from '../../../../baseURL';
 import classes from './answer-card.module.css';
 import { Button } from '@material-ui/core';
-import { ThumbDown, ThumbUp } from '@material-ui/icons';
+import { Image, ThumbDown, ThumbUp } from '@material-ui/icons';
 import * as actions from '../../../../store/actions/index'
 import {connect} from 'react-redux';
 import CommentGrid from '../../../Comment/Comment Grid/comment-grid';
@@ -15,6 +15,14 @@ const AnswerCard = (props) => {
 
     let {picture} = answer.user;
     picture = baseURL + picture;
+
+    let showAnswerImagesButton = null;
+
+    if( answer.images && answer.images.length > 0  ){
+        showAnswerImagesButton = <Button variant="contained" color="primary" onClick={props.onShowImages}>
+                                    <Image />{` (${answer.images.length})`}
+                                 </Button>
+    }
 
     return(
         <div className={classes.answer} style={props.style}  >
@@ -42,6 +50,9 @@ const AnswerCard = (props) => {
                         <ThumbDown />
                         <span className={classes.label}>{answer.downvotes}</span>
                     </Button>
+                </span>
+                <span>
+                    {showAnswerImagesButton}
                 </span>
             </div>
             <CommentGrid answer={answer} />

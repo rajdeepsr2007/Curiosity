@@ -1,0 +1,81 @@
+.slider{
+    position: fixed;
+    top : 0;
+    left : 0;
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.slider img{
+    width: 30%;
+    height: 100%;
+}
+.button{
+    border-radius: 50%;
+    text-align: center;
+    background: white;
+    margin: 2rem;
+    cursor: pointer;
+    padding: 0 0.2rem;
+}
+.button:hover{
+    color : rgb(99, 151, 182);
+}
+.button:disabled{
+    color: grey;
+    background: rgb(231, 229, 229);
+}
+@media (max-width : 960px){
+    .slider img{
+        width : 100%;
+    }
+}
+.images{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.label{   
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30%;
+}
+.label span{
+    padding: 0.5rem 1rem;
+    border: 2px solid white;
+    border-radius: 20px;
+    opacity: 50%;
+}
+.close{
+    position: fixed;
+    right: 1rem;
+    top : 1rem;
+    color : white;
+    cursor: pointer;
+}
+.navigation{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 30%;
+}
+.navigation div{
+    height: 0.5rem;
+    width: 0.5rem;
+    border-radius: 50%;
+    background: white;
+    margin: 0 0.5rem;
+    cursor: pointer;
+    opacity: 50%;
+}
+.navigation .selected{
+    opacity: 100%;
+}

@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import {formatDate} from '../../../util/util';
 import {connect} from 'react-redux';
 import * as actions from '../../../../store/actions/index';
-import AnswerCard from '../../../Answer/AnswerGrid/AnswerCard/answer-card';
+import AnswerGrid from '../../../Answer/AnswerGrid/answer-grid';
 
 
 class QuestionCard extends Component{
@@ -40,12 +40,11 @@ class QuestionCard extends Component{
 
         const badges = [question.topic.title , question.space.title , ...question.badges];
 
-        let answerCard = null;
+        let answerGrid = null;
         if( this.props.answers[question._id] && this.props.showAnswerCard ){
             if( this.props.answers[question._id].length ){
-                answerCard = <AnswerCard 
-                              answer={this.props.answers[question._id][0]}
-                              style={{width : '100%'}} 
+                answerGrid = <AnswerGrid
+                              answers={[this.props.answers[question._id][0]]}
                               />
             }
         }
@@ -87,7 +86,7 @@ class QuestionCard extends Component{
                                                 </Link> : null
                     }
                 </div>
-                {answerCard}
+                {answerGrid}
             </div>
         )
     }  

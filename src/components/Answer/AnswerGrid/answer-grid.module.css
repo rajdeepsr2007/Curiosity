@@ -7,6 +7,9 @@
     justify-content: center;
     align-items: center; 
 }
+.answersgrid{
+    width: 100%;
+}
 .label{
     margin-left : 2rem
 }
