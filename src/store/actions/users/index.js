@@ -104,3 +104,46 @@ const removeUser = (userId) => {
         userId
     }
 }
+
+const loadUserStart = (userId) => {
+    return {
+        type : actionTypes.LOAD_USER_START,
+        userId
+    }
+}
+const loadUserSuccess = (user) => {
+    return {
+        type : actionTypes.LOAD_USER_SUCCESS ,
+        user
+    }
+}
+const loadUserFailed = (error) => {
+    return {
+        type : actionTypes.LOAD_USERS_FAILED ,
+        error
+    }
+}
+export const loadUser = (token , userId) => {
+    return dispatch => {
+        dispatch(loadUserStart(userId));
+        axiosInstance.get('/api/user/get-user/' + userId , {
+            headers : {
+                "Authorization" : "Bearer " + token
+            }
+        })
+        .then( response => {
+            if( response ){
+                if( response.data.success ){
+                    dispatch(loadUserSuccess(response.data.user))
+                }else{
+                    dispatch(loadUsersFailed(response.data.message))
+                }
+            }else{
+                dispatch(loadUserFailed('Network Error'))
+            }
+        } )
+        .catch(error => {
+            dispatch( loadUserFailed(error.message) )
+        })
+    }
+}

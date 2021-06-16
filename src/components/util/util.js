@@ -18,3 +18,12 @@ export const formatDate = (date) => {
         return `${Math.floor(timeDifference/3600000*24*30*12)} years ago`
     }
 }
+
+export const formatDateExact = (date) => {
+    const formattedDate = new Date(date).toLocaleDateString('en-us',{
+        day : 'numeric',
+        month : 'long',
+        year : 'numeric'
+    })
+    return formattedDate;
+}

@@ -8,6 +8,8 @@ import * as actions from '../../../../store/actions/index'
 import {connect} from 'react-redux';
 import CommentGrid from '../../../Comment/Comment Grid/comment-grid';
 import {formatDate} from '../../../util/util';
+import { Link } from 'react-router-dom';
+
 
 const AnswerCard = (props) => {
 
@@ -28,8 +30,11 @@ const AnswerCard = (props) => {
         <div className={classes.answer} style={props.style}  >
             <div className={classes.header} >
                 <div className={classes.user} >
-                    <img src={picture} alt={answer.user.username}/>
-                    {answer.user.username}
+                    <Link to={`/user/${answer.user._id}`} >
+                        <img src={picture} alt={answer.user.username}/>
+                        {answer.user.username}
+                        
+                    </Link> 
                 </div>
                 <div className={classes.title}>
                     <span className={classes.date} >

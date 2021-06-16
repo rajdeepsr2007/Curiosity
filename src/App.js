@@ -18,6 +18,8 @@ import Question from './containers/Question/question';
 import AnswerQuestion from './containers/Answer/Answer Question/answer-question';
 import Following from './containers/Following/following';
 import Answer from './containers/Answer/answer';
+import User from './containers/User Profile/user-profile';
+import Description from './containers/Edit/Description/description';
 
 class App extends Component {
 
@@ -40,6 +42,8 @@ class App extends Component {
           <Route path="/home" exact component={Home} />
           <Route path="/user/edit-topics" exact component={Topics} />
           <Route path="/user/edit-picture" exact component={Picture} />
+          <Route path="/user/edit-description" exact component={Description} />
+          <Route path="/user/:id" component={User} />
           <Route path="/auth" exact component={Auth} />
           <Redirect to="/home" />
         </Switch>

@@ -29,5 +29,6 @@ export {
 
 export {
     loadUsers,
-    followUser
+    followUser,
+    loadUser
 } from './users/'

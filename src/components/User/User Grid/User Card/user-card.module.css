@@ -41,3 +41,6 @@
 .user button{
     font-size: 0.8rem;
 }
+.user a{
+    text-decoration: none;
+}

@@ -5,9 +5,10 @@ import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
 import {connect} from 'react-redux';
 import baseURL from '../../../baseURL';
 import Loader from '../../../components/UI/Loader/loader';
-import {PhotoCameraOutlined,CloudUploadOutlined , HomeOutlined} from '@material-ui/icons';
+import {PhotoCameraOutlined,CloudUploadOutlined} from '@material-ui/icons';
 import {Button} from '@material-ui/core';
 import Alert from '../../../components/UI/Feedback/Alert/alert';
+import { Link } from 'react-router-dom';
 
 
 class Picture extends Component{
@@ -102,11 +103,6 @@ class Picture extends Component{
                                 </Button>
                             </div> : <Loader />
         
-        const goToHomeButton = !this.state.submitting ? <div className={classes.button} >
-                                    <Button variant="contained" color="primary" onClick={this.goToHomeHandler} >
-                                        <HomeOutlined /> <span className={classes.label}>Go To Home</span>
-                                    </Button>
-                                </div> : null
 
         return (
             <div className={classes.picture} >
@@ -128,7 +124,11 @@ class Picture extends Component{
                     </Button>
                 </label>
                 {submitButton}
-                {goToHomeButton}
+                <Link to="/user/edit-description">
+                    <Button variant="text" color="primary">
+                        Next
+                    </Button>
+                </Link>
             </div>
             
         )

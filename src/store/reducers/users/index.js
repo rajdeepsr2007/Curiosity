@@ -5,7 +5,8 @@ const initialState = {
     error : null ,
     users : null ,
     filter : null ,
-    results : 0
+    results : 0 ,
+    user : null
 }
 
 const reducer = (state=initialState , action) => {
@@ -44,17 +45,27 @@ const reducer = (state=initialState , action) => {
 
         case actionTypes.FOLLOW_USER_SUCCESS :
             updatedUsers = [];
-            for( const user of state.users ){
-                const updatedUser = {...user};
-                if( user._id === action.userId ){
-                    updatedUser.follow = !user.follow
+            if( state.users ){
+                for( const user of state.users ){
+                    const updatedUser = {...user};
+                    if( user._id === action.userId ){
+                        updatedUser.follow = !user.follow
+                    }
+                    updatedUsers.push( updatedUser );
                 }
-                updatedUsers.push( updatedUser );
+            }
+            let user = null;
+            if( state.user){
+                user = {...state.user} ;
+                if( user._id === action.userId ){
+                    user.follow = !user.follow
+                }
             }
             return {
                 ...state ,
                 loading : false ,
-                users : updatedUsers
+                users : updatedUsers ,
+                user : user
             }
 
         case actionTypes.REMOVE_USER :
@@ -65,6 +76,29 @@ const reducer = (state=initialState , action) => {
                 users : updatedUsers ,
                 results : updatedResults
             }
+
+        case actionTypes.LOAD_USER_START :
+            return {
+                ...state ,
+                loading : {userId : action.userId},
+                error : null ,
+                user : null
+            }
+        
+        case actionTypes.LOAD_USER_SUCCESS :
+            return {
+                ...state ,
+                loading : false ,
+                user : action.user
+            }  
+            
+        case actionTypes.LOAD_USER_FAILED :
+            return {
+                ...state,
+                loading : false,
+                error : action.error
+            }
+
 
         default :
             return state

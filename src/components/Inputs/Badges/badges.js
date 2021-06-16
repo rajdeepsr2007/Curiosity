@@ -41,7 +41,7 @@ class Badges extends Component{
         if(this.props.showBadges){
             return <Fragment>
                 {
-                this.state.badges.length ? <div className={classes.badges} >
+                this.state.badges.length ? <div className={classes.badges} style={{ border : '0px solid black' }} >
                                                 {
                                                     this.state.badges.map(badge => {
                                                         return <Badge 

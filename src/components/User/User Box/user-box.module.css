@@ -1,0 +1,77 @@
+.user{
+    height : auto;
+    min-height: 10rem;
+    width : 100%;
+    border-bottom: 1px solid grey;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 1rem;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    flex-wrap: wrap;
+}
+.user .label{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 0 3rem;
+    color: white;
+}
+.user .label .username{
+    color : rgb(66, 117, 138);
+    font-size: 1.2rem;
+}
+.user .label img{
+    height: 8rem;
+    width : 8rem ;
+    border: 2px solid white;
+    box-shadow: 0px 0px 10px 2px rgb(231, 229, 229);
+    margin-right: 2rem;
+}
+.info{
+    display: flex;
+    height: 8rem;
+    flex-flow: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.user .label .info .date{
+    color: rgb(173, 173, 173);
+    font-size: 0.8rem;
+}
+
+.about{
+    position: relative;
+    width : 50%;
+    height: 12rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: column;
+    overflow-y: hidden;
+    margin: 0 0 0 2rem;
+}
+.about h4{
+    width: 100%;
+    text-align: center;
+    background: rgb(127, 186, 204);
+    color: white;
+    margin: 0 0 2rem 0;
+    padding: 0.5rem 0;
+    position: absolute;
+    top : 0;
+}
+@media (max-width : 500px){
+    .about{
+        width : 100%;
+        margin: 2rem 0;
+    }
+    .user{
+        padding: 2rem 0;
+    }
+}
+.about{
+    padding: 2rem 0 0 0;
+}
+
+

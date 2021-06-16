@@ -25,12 +25,15 @@
     align-items: center;
     margin-bottom: 2rem;
 }
-.user{
+.user a{
     display: flex;
     align-items: center;
     margin-right: 3rem;
     color : rgb(40, 80, 107);
 } 
+.user a{
+    text-decoration: none;
+}
 .header .user img{
     height : 3rem;
     width: 3rem;

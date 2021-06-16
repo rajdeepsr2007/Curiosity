@@ -5,6 +5,7 @@ import baseURL from '../../../../baseURL';
 import { Button } from '@material-ui/core';
 import { Check , Add } from '@material-ui/icons';
 import Loader from '../../../UI/Loader/loader';
+import {Link} from 'react-router-dom';
 
 const UserCard = (props) => {
 
@@ -16,13 +17,14 @@ const UserCard = (props) => {
                                                     {user.follow ? <Check /> : <Add />}{buttonText}
                                                 </Button>
                                             ) : <Loader />
-    console.log(user);
     const content = (
         <Fragment>
-            <div className={classes.label} >
-                <img src={picture} />
-                {user.username}
-            </div>
+            <Link to={`/user/${user._id}`} >
+                <div className={classes.label} >
+                    <img src={picture} />
+                    {user.username}
+                </div>
+            </Link>
             <div className={classes.info} >
                 <span>{ user.followers.length } Followers</span>
                 <span>{ user.questions.length } Questions</span>

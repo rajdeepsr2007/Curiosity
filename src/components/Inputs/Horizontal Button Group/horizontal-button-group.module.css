@@ -8,7 +8,7 @@
 .navigation a{
     text-align: center;
     padding : 1rem;
-    border : 1px solid rgb(39, 98, 138);
+    border : 0.8px solid rgb(39, 98, 138);
     box-sizing: border-box;
     text-decoration: none;
     background : white ;
@@ -16,10 +16,16 @@
     cursor : pointer;
     transition: 0.2s;
     flex-grow: 1;
+    flex-shrink: 1;
 }
 
 .navigation .active{
     background : rgb(39, 98, 138);
     color : white;
     transition: 0.2s;
+}
+@media (max-width : 500px){
+    .navigation a{
+        font-size: 0.9rem;
+    }
 }

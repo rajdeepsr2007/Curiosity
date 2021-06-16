@@ -1,4 +1,6 @@
 .editor{
     width : 80%;
+    height : auto;
+    min-height : 15rem;
     margin : 2rem 0;
 }
