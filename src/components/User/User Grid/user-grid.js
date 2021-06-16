@@ -32,6 +32,15 @@ class UserGrid extends Component{
         }
     }
 
+    componentDidMount = () => {
+        if( this.props.load ){
+            this.props.onLoadUsers(
+                this.props.token ,
+                this.state.filter
+            )
+        }
+    }
+
     render(){
 
         if( this.props.loading && !this.props.loading.userId ){

@@ -7,6 +7,9 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import * as actions from '../../store/actions/index';
 import UserBox from '../../components/User/User Box/user-box';
 import HorizontalButtonGroup from '../../components/Inputs/Horizontal Button Group/horizontal-button-group';
+import UserFollowers from '../../components/User/User Profile/Followers/followers';
+import {Switch , Route , Redirect} from 'react-router-dom';
+import UserFollowing from '../../components/User/User Profile/Following/following';
 
 class UserProfile extends Component{
     state={
@@ -51,6 +54,10 @@ class UserProfile extends Component{
                 <HorizontalButtonGroup
                 buttons={buttons}
                 />
+                <Switch>
+                    <Route path={`/user/${user._id}/followers`}  render={() => <UserFollowers user={user} token={this.props.token}/>} />
+                    <Route path={`/user/${user._id}/following`} render={() => <UserFollowing user={user} />} />
+                </Switch>
             </Fragment>
         )
     }
@@ -69,7 +76,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return{
         onLoadUser : (token, userId) => dispatch(actions.loadUser(token ,userId)),
-        onFollowUser : (token , userId) => dispatch(actions.followUser(token , userId))
+        onFollowUser : (token , userId) => dispatch(actions.followUser(token , userId)),
+        onLoadUsers : (token , filter) => dispatch(actions.loadUsers(token , filter))
     }
 }
 

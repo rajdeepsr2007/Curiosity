@@ -19,7 +19,7 @@ const UserCard = (props) => {
                                             ) : <Loader />
     const content = (
         <Fragment>
-            <Link to={`/user/${user._id}`} >
+            <Link to={`/user/${user._id}/followers`} >
                 <div className={classes.label} >
                     <img src={picture} />
                     {user.username}

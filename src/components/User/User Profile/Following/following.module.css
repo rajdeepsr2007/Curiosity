@@ -1,0 +1,23 @@
+.following{
+    margin: 5rem auto 2rem auto;
+    width: 80%;
+    text-align: center;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: auto;
+    min-height: 15rem;
+    border: 1px solid rgb(240, 233, 233);
+    background: white;
+}
+@media (max-width : 960px) {
+    .following{
+        width : 100%;
+    }
+}
+
+.wrapper{
+    width: 100%;
+    background: rgb(230, 236, 238);
+}

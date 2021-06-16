@@ -55,7 +55,7 @@ class ImageSilder extends Component{
 
         const dotNavigation = this.state.images.map( (image,index) => {
             const dotClass = this.state.selected === index ? classes.selected : null;
-            return <div className={dotClass} onClick={() => this.selectImageHandler(index)} >
+            return <div key={image} className={dotClass} onClick={() => this.selectImageHandler(index)} >
                    </div>
         } )
 

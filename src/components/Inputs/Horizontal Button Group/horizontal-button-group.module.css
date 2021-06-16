@@ -1,11 +1,11 @@
-.navigation{
+.navigation,.navigationr{
     width : 100%;
     height : auto;
     display: flex;
     justify-content: space-between;
 }
 
-.navigation a{
+.navigation a,.navigationr a{
     text-align: center;
     padding : 1rem;
     border : 0.8px solid rgb(39, 98, 138);
@@ -23,7 +23,7 @@
     background: rgb(227, 236, 238);
 }
 
-.navigation .active{
+.navigation .active,.navigationr .active{
     background : rgb(39, 98, 138);
     color : white;
     transition: 0.2s;
@@ -32,7 +32,21 @@
     background : rgb(39, 98, 138);
 }
 @media (max-width : 500px){
-    .navigation a{
-        font-size: 0.9rem;
+    .navigation a,.navigationr a{
+        font-size: 0.8rem;
     }
+}
+
+.navigationr a{
+    border : 0.8px solid rgb(126, 188, 197);
+    color :rgb(126, 188, 197);
+}
+.navigationr a:hover{
+    background: rgb(235, 240, 241);
+}
+.navigationr .active{
+    background: rgb(127, 175, 187);
+}
+.navigationr .active:hover{
+    background: rgb(127, 175, 187);
 }

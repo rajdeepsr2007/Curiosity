@@ -21,6 +21,7 @@ const reducer = (state=initialState , action) => {
 
         case actionTypes.LOAD_USERS_SUCCESS :
             return {
+                ...state,
                 loading : false ,
                 users : action.users ,
                 filter : action.filter ,
@@ -29,6 +30,7 @@ const reducer = (state=initialState , action) => {
 
         case actionTypes.LOAD_USERS_FAILED :
             return {
+                ...state,
                 loading : false,
                 error : action.error
             }
@@ -55,6 +57,7 @@ const reducer = (state=initialState , action) => {
                 }
             }
             let user = null;
+            console.log(state.user);
             if( state.user){
                 user = {...state.user} ;
                 if( user._id === action.userId ){
@@ -74,7 +77,7 @@ const reducer = (state=initialState , action) => {
             return {
                 ...state,
                 users : updatedUsers ,
-                results : updatedResults
+                results : updatedResults > 0 ? updatedResults : 0
             }
 
         case actionTypes.LOAD_USER_START :

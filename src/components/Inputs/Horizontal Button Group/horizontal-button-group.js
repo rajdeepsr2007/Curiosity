@@ -6,19 +6,20 @@ const HorizontalButtonGroup = (props) => {
 
     const {buttons} = props;
 
+    const navigationClass = props.colorScheme ? classes.navigationr : classes.navigation;
+
     let buttonGroup = buttons.map( button => {
         return (
             <NavLink
             key={button.to}
             to={button.to}
-            exact
             activeClassName={classes.active}
             >{button.title}</NavLink>
         )
     } )
 
     return (
-        <div className={classes.navigation} >
+        <div className={navigationClass} >
             {buttonGroup}        
         </div>
     )
