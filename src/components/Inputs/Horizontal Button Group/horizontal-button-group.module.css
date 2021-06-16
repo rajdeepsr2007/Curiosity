@@ -19,10 +19,17 @@
     flex-shrink: 1;
 }
 
+.navigation a:hover{
+    background: rgb(227, 236, 238);
+}
+
 .navigation .active{
     background : rgb(39, 98, 138);
     color : white;
     transition: 0.2s;
+}
+.navigation .active:hover{
+    background : rgb(39, 98, 138);
 }
 @media (max-width : 500px){
     .navigation a{

@@ -46,6 +46,7 @@ class UserProfile extends Component{
                 user={user} 
                 onFollowUser={() => this.props.onFollowUser(this.props.token , this.state.user._id)}
                 following={this.props.loading && this.props.loading.type && this.props.loading.userId === this.state.user._id }
+                puser={this.props.puser}
                 />
                 <HorizontalButtonGroup
                 buttons={buttons}
@@ -60,7 +61,8 @@ const mapStateToProps = state => {
         user : state.users.user,
         error : state.users.error ,
         loading : state.users.loading,
-        token : state.auth.token
+        token : state.auth.token,
+        puser : state.auth.user
     }
 }
 

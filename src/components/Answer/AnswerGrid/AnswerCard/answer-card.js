@@ -30,7 +30,7 @@ const AnswerCard = (props) => {
         <div className={classes.answer} style={props.style}  >
             <div className={classes.header} >
                 <div className={classes.user} >
-                    <Link to={`/user/${answer.user._id}`} >
+                    <Link to={`/user/${answer.user._id}/followers`} >
                         <img src={picture} alt={answer.user.username}/>
                         {answer.user.username}
                         

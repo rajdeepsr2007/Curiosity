@@ -4,9 +4,10 @@ import baseURL from '../../../baseURL';
 import { formatDateExact } from '../../util/util';
 import ReadOnlyEditor from '../../Inputs/Read Only Editor/read-only-editor';
 import classes from './user-box.module.css';
-import { Add, Check } from '@material-ui/icons';
+import { Add, Check, Create } from '@material-ui/icons';
 import {Button} from '@material-ui/core';
 import Loader from '../../UI/Loader/loader';
+import { Link } from 'react-router-dom';
 
 const UserBox = (props) => {
     const {user} = props;
@@ -35,6 +36,22 @@ const UserBox = (props) => {
                 <ReadOnlyEditor
                 rawContent={user.description}
                 />
+                {
+                    props.puser && props.puser._id === props.user._id ?
+                    <div className={classes.options}>
+                        <Link to='/user/edit-picture'>
+                            <div>
+                                <Create /> Picture
+                            </div>
+                        </Link>
+                        <Link to='/user/edit-description'>
+                            <div>
+                                <Create /> About
+                            </div>
+                        </Link>
+                    </div>
+                    : null
+                }
             </div>
         </div>
     )

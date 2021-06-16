@@ -53,7 +53,7 @@ class QuestionCard extends Component{
             <div className={classes.question} style={this.props.style} >
                 <div className={classes.header} >
                     <div className={classes.user} >
-                        <Link to={`/user/${question.user._id}`} >
+                        <Link to={`/user/${question.user._id}/followers`} >
                             <img src={picture} alt={question.user.username} />
                             {question.user.username}  
                         </Link>   

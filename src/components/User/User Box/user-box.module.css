@@ -50,6 +50,7 @@
     flex-flow: column;
     overflow-y: hidden;
     margin: 0 0 0 2rem;
+    box-shadow: 0px 0px 5px 1px rgb(240, 236, 236);
 }
 .about h4{
     width: 100%;
@@ -64,7 +65,7 @@
 @media (max-width : 500px){
     .about{
         width : 100%;
-        margin: 2rem 0;
+        margin: 2rem 0 0 0;
     }
     .user{
         padding: 2rem 0;
@@ -72,6 +73,36 @@
 }
 .about{
     padding: 2rem 0 0 0;
+}
+.options{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+
+}
+.options a{
+    width: 50%;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+.options a div{
+    width: 100%;
+    color: rgb(81, 118, 148);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.3rem;
+    box-sizing: border-box;
+    background: rgb(243, 248, 248);
+}
+.options a div:hover{
+    background: rgb(81, 118, 148);
+    color : white;
+    transition: 0.2s;
 }
 
 
