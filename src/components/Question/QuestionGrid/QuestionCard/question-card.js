@@ -44,7 +44,11 @@ class QuestionCard extends Component{
         if( this.props.answers[question._id] && this.props.showAnswerCard ){
             if( this.props.answers[question._id].length ){
                 answerGrid = <AnswerGrid
-                              answers={[this.props.answers[question._id][0]]}
+                              answers={[
+                                  question.answer ? 
+                                  question.answer
+                                  : this.props.answers[question._id][0]
+                                ]}
                               />
             }
         }

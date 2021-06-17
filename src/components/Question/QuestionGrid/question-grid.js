@@ -15,7 +15,7 @@ const QuestionGrid = (props) => {
 
     let content = <div className={classes.questions} >
         <Create /> 
-        <span className={classes.label}>No Questions</span>
+        <span className={classes.label}>No {props.withAnswer ? 'Answers' : 'Questions'}</span>
     </div>
 
     if( questions && questions.length > 0 ){

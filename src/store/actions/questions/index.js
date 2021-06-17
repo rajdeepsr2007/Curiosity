@@ -33,7 +33,7 @@ export const loadQuestions = (token , filter , refresh ) => {
     return (dispatch , getState) => {
 
         const alreadyAppliedFilter = getState().questions.filter;
-        if( !compareFilters(alreadyAppliedFilter , filter , ['topics','spaces','similar']) ){
+        if( !compareFilters(alreadyAppliedFilter , filter , ['topics','spaces','similar','by','withAnswer']) ){
             refresh = true;
         }
 

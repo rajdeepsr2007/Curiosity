@@ -10,6 +10,7 @@ import HorizontalButtonGroup from '../../components/Inputs/Horizontal Button Gro
 import UserFollowers from '../../components/User/User Profile/Followers/followers';
 import {Switch , Route , Redirect} from 'react-router-dom';
 import UserFollowing from '../../components/User/User Profile/Following/following';
+import UserQuestions from '../../components/User/User Profile/Questions/questions';
 
 class UserProfile extends Component{
     state={
@@ -57,6 +58,8 @@ class UserProfile extends Component{
                 <Switch>
                     <Route path={`/user/${user._id}/followers`}  render={() => <UserFollowers user={user} token={this.props.token}/>} />
                     <Route path={`/user/${user._id}/following`} render={() => <UserFollowing user={user} />} />
+                    <Route path={`/user/${user._id}/questions`} render={() => <UserQuestions user={user}  onLoadQuestions={this.props.onLoadQuestions} />} />
+                    <Route path={`/user/${user._id}/answers`} render={() => <UserQuestions user={user} answers onLoadQuestions={this.props.onLoadQuestions} />} />
                 </Switch>
             </Fragment>
         )
@@ -77,7 +80,8 @@ const mapDispatchToProps = dispatch => {
     return{
         onLoadUser : (token, userId) => dispatch(actions.loadUser(token ,userId)),
         onFollowUser : (token , userId) => dispatch(actions.followUser(token , userId)),
-        onLoadUsers : (token , filter) => dispatch(actions.loadUsers(token , filter))
+        onLoadUsers : (token , filter) => dispatch(actions.loadUsers(token , filter)),
+        onLoadQuestions : (token , filter) => dispatch(actions.loadQuestions(token , filter , false))
     }
 }
 
