@@ -59,7 +59,7 @@ class App extends Component {
 
     return (
       <BrowserRouter>
-        <Layout>
+        <Layout user={this.props.user} >
           {routes}
         </Layout>     
       </BrowserRouter>
@@ -69,7 +69,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return{
-    auth : state.auth.token
+    auth : state.auth.token,
+    user : state.auth.user
   }
 }
 

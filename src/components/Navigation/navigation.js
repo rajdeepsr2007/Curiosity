@@ -1,9 +1,13 @@
 import React, { Fragment } from 'react';
 import Logo from '../UI/Logo/logo';
-import {HomeOutlined,Menu,Add,QuestionAnswerOutlined, CreateOutlined,List,ExploreOutlined} from '@material-ui/icons/';
+import {HomeOutlined,Menu,Add,QuestionAnswerOutlined, CreateOutlined,List,ExploreOutlined, AccountCircleOutlined,Create, ExitToApp} from '@material-ui/icons/';
 import classes from './navigation.module.css';
 import Sidebar from './Sidebar/sidebar';
 import {NavLink} from 'react-router-dom';
+import baseURL from '../../baseURL';
+import {MenuItem} from '@material-ui/core';
+import MenuWrapper from '@material-ui/core/Menu';
+import {Link} from 'react-router-dom';
 
 const Navigation = (props) => {
 
@@ -65,6 +69,40 @@ const Navigation = (props) => {
                             </NavLink>
                         </li>
                     </ul>
+                </div>
+                <div className={classes.controls} >
+                   <img 
+                   id="menu"
+                   src={baseURL + props.user.picture}
+                   alt={props.user.username}
+                   onClick={props.toggleMenu}
+                   />
+                   <MenuWrapper
+                    id="menu"
+                    keepMounted
+                    open={Boolean(props.anchorEl)}
+                    onClose={props.closeMenu}
+                    anchorEl={props.anchorEl}
+                    >
+                    <MenuItem onClick={props.closeMenu} >
+                        <div className={classes.option} >
+                            <span><AccountCircleOutlined /></span> 
+                            My Profile
+                        </div>
+                    </MenuItem>
+                    <MenuItem onClick={props.closeMenu} >
+                        <div className={classes.option} >
+                            <span><Create /></span>
+                            Edit 
+                        </div>
+                    </MenuItem>
+                    <MenuItem onClick={props.closeMenu} >
+                        <div className={classes.option} >
+                            <span><ExitToApp /></span>
+                            Logout
+                        </div>
+                    </MenuItem>
+                    </MenuWrapper>
                 </div>
             </header>
             {sideBar}

@@ -5,7 +5,21 @@ import classes from './layout.module.css';
 class Layout extends Component{
 
     state = {
-        showSidebar : false
+        showSidebar : false,
+        anchorEl : null
+    }
+
+    toggleMenu = (event) => {
+        this.setState(prevState => {
+            return{
+                ...prevState ,
+                anchorEl : event.target
+            }
+        })
+    }
+
+    closeMenu = () => {
+        this.setState({ anchorEl : null })
     }
 
     toggleSidebar = () => {
@@ -20,10 +34,14 @@ class Layout extends Component{
     render(){
         return(
             <Fragment>
-                <Navigation 
+                { this.props.user ? <Navigation 
                     toggleSidebar={this.toggleSidebar} 
                     showSidebar={this.state.showSidebar} 
-                />
+                    user={this.props.user}
+                    anchorEl={this.state.anchorEl}
+                    closeMenu={this.closeMenu}
+                    toggleMenu={this.toggleMenu}
+                /> : null }
                 {/* <Sidebar /> */}
                 <main className={classes.main} >
                     <div className={classes.content}>
