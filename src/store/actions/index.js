@@ -5,7 +5,8 @@ export {
 
 export {
     login,
-    loginAuto
+    loginAuto,
+    logout
 } from './auth/auth';
 
 export {

@@ -1,5 +1,6 @@
 import React , { Component , Fragment } from 'react';
 import Navigation from '../../components/Navigation/navigation';
+import {withRouter} from 'react-router-dom';
 import classes from './layout.module.css';
 
 class Layout extends Component{
@@ -18,8 +19,9 @@ class Layout extends Component{
         })
     }
 
-    closeMenu = () => {
+    closeMenu = (redirect) => {
         this.setState({ anchorEl : null })
+        this.props.history.push(redirect);
     }
 
     toggleSidebar = () => {
@@ -53,4 +55,4 @@ class Layout extends Component{
     }
 }
 
-export default Layout;
+export default withRouter(Layout);

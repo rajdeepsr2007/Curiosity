@@ -83,3 +83,18 @@ export const loginAuto = () => {
         }
     }
 }
+
+const logoutSuccess = () => {
+    return{
+        type : actionTypes.LOGOUT,
+    }
+}
+
+export const logout = () => {
+    return dispatch => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('email');
+        localStorage.removeItem('username');
+        dispatch(logoutSuccess())
+    }
+}

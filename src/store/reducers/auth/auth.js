@@ -6,7 +6,8 @@ const initialState = {
     token : null ,
     username : null ,
     email : null ,
-    firstLogin : false
+    firstLogin : false,
+    user : null
 }
 
 const reducer = (state=initialState , action) => {
@@ -32,6 +33,15 @@ const reducer = (state=initialState , action) => {
                 ...state, 
                 loading : false,
                 error : action.error
+            }
+
+        case actionTypes.LOGOUT :
+            return {
+                ...state ,
+                token : null ,
+                username : null ,
+                email : null ,
+                user : null
             }
 
         default : 

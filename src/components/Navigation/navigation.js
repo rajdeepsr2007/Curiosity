@@ -84,19 +84,19 @@ const Navigation = (props) => {
                     onClose={props.closeMenu}
                     anchorEl={props.anchorEl}
                     >
-                    <MenuItem onClick={props.closeMenu} >
+                    <MenuItem onClick={() => props.closeMenu(`/user/${props.user._id}/followers`)} >
                         <div className={classes.option} >
                             <span><AccountCircleOutlined /></span> 
                             My Profile
                         </div>
                     </MenuItem>
-                    <MenuItem onClick={props.closeMenu} >
+                    <MenuItem onClick={() => props.closeMenu(`/user/edit-topics`)} >
                         <div className={classes.option} >
                             <span><Create /></span>
                             Edit 
                         </div>
                     </MenuItem>
-                    <MenuItem onClick={props.closeMenu} >
+                    <MenuItem onClick={() => props.closeMenu(`/auth/logout`)} >
                         <div className={classes.option} >
                             <span><ExitToApp /></span>
                             Logout
