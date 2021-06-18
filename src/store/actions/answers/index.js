@@ -73,3 +73,41 @@ export const voteAnswer = (token , answerId , type , questionId) => {
         } )
     }
 }
+
+const deleteAnswerStart = () => {
+    return {
+        type : actionTypes.DELETE_ANSWER_START
+    }
+}
+const deleteAnswerComplete = () => {
+    return {
+        type : actionTypes.DELETE_ANSWER_COMPLETE
+    }
+}
+export const deleteAnswer = (token , answerId , questionId ) => {
+    return dispatch => {
+        dispatch(deleteAnswerStart())
+        axiosInstance.delete(`/api/answers/delete-answer/${answerId}/${questionId}`,{
+            headers : {
+                "Authorization" : "Bearer " + token
+            }
+        })
+        .then(response => {
+            if( response ){
+                dispatch(removeAnswer(answerId,questionId))
+            }
+            dispatch(deleteAnswerComplete())
+        })
+        .catch(error => {
+            dispatch(deleteAnswerComplete)
+        })
+    }
+}
+
+const removeAnswer = (answerId , questionId) => {
+    return{
+        type : actionTypes.REMOVE_ANSWER,
+        answerId ,
+        questionId
+    }
+}

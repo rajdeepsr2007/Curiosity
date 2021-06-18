@@ -61,6 +61,29 @@ const reducer = (state=initialState , action) => {
 
             return {...state , answers : updatedAnswers}
 
+
+        case actionTypes.DELETE_ANSWER_START : 
+            return{
+                ...state,
+                loading : true
+            }
+
+        case actionTypes.DELETE_ANSWER_COMPLETE : 
+            return{
+                ...state,
+                loading : false
+            }
+
+        case actionTypes.REMOVE_ANSWER :
+            updatedAnswers = copyAnswersObject(state.answers);
+            if( updatedAnswers && updatedAnswers[action.questionId] ){
+                updatedAnswers[action.questionId] =  updatedAnswers[action.questionId].filter(answer => answer._id !== action.answerId)
+            }
+            return{
+                ...state,
+                answers : updatedAnswers
+            }
+
         default : 
             return state
 

@@ -4,6 +4,8 @@ import { Create } from '@material-ui/icons';
 import classes from './answer-grid.module.css';
 import baseURL from '../../../baseURL';
 import ImageSilder from '../../UI/Image Silder/image-slider';
+import * as actions from '../../../store/actions/index';
+import {connect} from 'react-redux';
 
 class AnswerGrid extends Component{
 
@@ -44,6 +46,9 @@ class AnswerGrid extends Component{
                     answer = {answer}
                     onShowImages={() => this.toggleShowImages(answer._id)}
                     style={{ width : '100%' }}
+                    user={this.props.user}
+                    token={this.props.token}
+                    onDeleteAnswer={this.props.onDeleteAnswer}
                     />
                 )
             })
@@ -60,4 +65,17 @@ class AnswerGrid extends Component{
     }  
 }
 
-export default AnswerGrid;
+const mapStateToProps = state => {
+    return{
+        user : state.auth.user,
+        token : state.auth.token
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return{
+        onDeleteAnswer : (token , answerId, questionId) => dispatch(actions.deleteAnswer(token , answerId , questionId))
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(AnswerGrid);

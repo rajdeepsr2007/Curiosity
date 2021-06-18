@@ -9,6 +9,7 @@ import {connect} from 'react-redux';
 import CommentGrid from '../../../Comment/Comment Grid/comment-grid';
 import {formatDate} from '../../../util/util';
 import { Link } from 'react-router-dom';
+import DeleteButton from '../../../Inputs/Delete Button/delete-button';
 
 
 const AnswerCard = (props) => {
@@ -25,6 +26,18 @@ const AnswerCard = (props) => {
                                     <Image />{` (${answer.images.length})`}
                                  </Button>
     }
+
+    const deleteAnswerButton = props.user._id === answer.user._id ?
+                               <DeleteButton 
+                               onClick={
+                                   () => props.onDeleteAnswer(
+                                       props.token ,
+                                       answer._id,
+                                       answer.question
+                                   )
+                               }
+                               />
+                               : null 
 
     return(
         <div className={classes.answer} style={props.style}  >
@@ -59,6 +72,7 @@ const AnswerCard = (props) => {
                 <span>
                     {showAnswerImagesButton}
                 </span>
+                {deleteAnswerButton}
             </div>
             <CommentGrid answer={answer} />
         </div>

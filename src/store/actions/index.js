@@ -21,7 +21,8 @@ export {
 
 export {
     loadAnswers,
-    voteAnswer
+    voteAnswer,
+    deleteAnswer
 } from './answers/'
 
 export {
