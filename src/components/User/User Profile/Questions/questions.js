@@ -69,7 +69,7 @@ class UserQuestions extends Component{
             <Fragment>
                 <QuestionGrid 
                 questions={this.props.questions} 
-                withAnswer={this.props.answer}
+                withAnswer={this.props.answers}
                 />
                 {loadMoreButton}
             </Fragment>

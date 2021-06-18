@@ -8,7 +8,7 @@ import * as actions from '../../store/actions/index';
 import UserBox from '../../components/User/User Box/user-box';
 import HorizontalButtonGroup from '../../components/Inputs/Horizontal Button Group/horizontal-button-group';
 import UserFollowers from '../../components/User/User Profile/Followers/followers';
-import {Switch , Route , Redirect} from 'react-router-dom';
+import {Switch , Route } from 'react-router-dom';
 import UserFollowing from '../../components/User/User Profile/Following/following';
 import UserQuestions from '../../components/User/User Profile/Questions/questions';
 
@@ -17,9 +17,16 @@ class UserProfile extends Component{
         user : null
     }
 
-    componentDidUpdate = () => {
-        if( (!this.state.user && !this.state.error && this.props.user) || (this.props.user && this.state.user && this.state.user.follow !== this.props.user.follow)  ){
+    componentDidUpdate = (prevProps) => {
+        if( 
+        (!this.state.user && !this.state.error && this.props.user) 
+        || (this.props.user && this.state.user && this.state.user.follow !== this.props.user.follow) 
+        || (  this.props.user !== prevProps.user) ){
             this.setState({ user : this.props.user })
+        }
+        if( prevProps.match.params.id !== this.props.match.params.id ){
+            const userId = this.props.match.params.id;
+            this.props.onLoadUser(this.props.token , userId);
         }
     }
 

@@ -12,6 +12,27 @@ import { Link } from 'react-router-dom';
 const UserBox = (props) => {
     const {user} = props;
     const picture = baseURL + user.picture;
+
+    let followButton = null;
+    if( props.following ){
+        followButton = <Loader />
+    }else if( props.user._id !== props.puser._id ){
+        followButton = (
+            <Button variant={user.follow ? 'contained' : 'outlined'} color="primary" onClick={props.onFollowUser} >
+                <div style={{ fontSize : '0.8rem' , display : 'flex' , justifyContent : 'center' , alignItems : 'space-between'}} >
+                    {user.follow ? <Check /> : <Add />}
+                    {user.follow ? 'Following' : 'Follow'}
+                </div>
+            </Button>
+        )
+    }else{
+        followButton = <Link to='/user/edit-topics' >
+            <Button variant='outlined' color='primary'>
+                <Create />Edit Topics
+            </Button>
+        </Link>
+    }
+
     const content = (
         <div className={classes.user} >
             <div className={classes.label} >
@@ -19,15 +40,7 @@ const UserBox = (props) => {
                 <div className={classes.info} >
                     <span className={classes.username} >{user.username}</span>
                     <span className={classes.date} >Joined <b>{formatDateExact(user.createdAt)}</b></span>
-                    {
-                        !props.following ? <Button variant={user.follow ? 'contained' : 'outlined'} color="primary" onClick={props.onFollowUser} >
-                            <div style={{ fontSize : '0.8rem' , display : 'flex' , justifyContent : 'center' , alignItems : 'space-between'}} >
-                                {user.follow ? <Check /> : <Add />}
-                                {user.follow ? 'Following' : 'Follow'}
-                            </div>
-                        </Button>
-                        : <Loader />
-                    }
+                    {followButton}
                 </div>
             </div>
             

@@ -10,3 +10,17 @@
     flex-wrap: wrap;
     box-sizing: border-box;
 }
+.labels{
+    margin : 1rem 0 0 1rem;
+    display: flex;
+}
+.labels div{
+    padding : 0.5rem 0.8rem;
+    background: rgb(142, 178, 199);
+    color: white;
+    font-size: 0.8rem;
+    border-radius: 20px;
+    border : 1px solid rgb(87, 133, 160);
+    margin-right: 1rem;
+    cursor: pointer;
+}

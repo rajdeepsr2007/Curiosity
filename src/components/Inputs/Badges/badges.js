@@ -40,10 +40,18 @@ class Badges extends Component{
 
         if(this.props.showBadges){
             return <Fragment>
+                <div className={classes.labels} >
+                    <div>
+                        {this.state.badges[0]}
+                    </div>
+                    <div>
+                        {this.state.badges[1]}
+                    </div>
+                </div>
                 {
                 this.state.badges.length ? <div className={classes.badges} style={{ border : '0px solid black' }} >
                                                 {
-                                                    this.state.badges.map(badge => {
+                                                    this.state.badges.slice(2).map(badge => {
                                                         return <Badge 
                                                                 key={badge} 
                                                                 badge={badge} 
