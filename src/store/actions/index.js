@@ -15,7 +15,8 @@ export {
 } from './spaces/'
 
 export {
-    loadQuestions
+    loadQuestions,
+    deleteQuestion
 } from './questions/'
 
 export {

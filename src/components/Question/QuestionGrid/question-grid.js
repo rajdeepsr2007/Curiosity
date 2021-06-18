@@ -3,6 +3,8 @@ import { Fragment } from 'react';
 import QuestionCard from './QuestionCard/question-card';
 import {Create} from '@material-ui/icons';
 import Loader from '../../UI/Loader/loader';
+import * as actions from '../../../store/actions/index';
+import {connect} from 'react-redux';
 import classes from './question-grid.module.css';
 
 const QuestionGrid = (props) => {
@@ -27,6 +29,9 @@ const QuestionGrid = (props) => {
                     showAnswerCard={!props.showAnswerCard}
                     showAllAnswer={!props.showAllAnswer}
                     style={props.style}
+                    user={props.user}
+                    token={props.token}
+                    onDeleteQuestion={props.onDeleteQuestion}
                     />
         } )
     }
@@ -38,4 +43,17 @@ const QuestionGrid = (props) => {
     )
 }
 
-export default QuestionGrid;
+const mapStateToProps = state => {
+    return{
+        user : state.auth.user,
+        token : state.auth.token,
+        loading : state.questions.loading
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return{
+        onDeleteQuestion : (token,questionId) => dispatch(actions.deleteQuestion(token,questionId))
+    }
+}
+
+export default connect(mapStateToProps , mapDispatchToProps)(QuestionGrid);

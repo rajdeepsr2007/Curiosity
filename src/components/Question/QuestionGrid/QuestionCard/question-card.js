@@ -1,4 +1,4 @@
-import React , {Component} from 'react';
+import React , {Component, Fragment} from 'react';
 import Badges from '../../../Inputs/Badges/badges';
 import ReadOnlyEditor from '../../../Inputs/Read Only Editor/read-only-editor';
 import baseURL from '../../../../baseURL';
@@ -10,7 +10,8 @@ import {formatDate} from '../../../util/util';
 import {connect} from 'react-redux';
 import * as actions from '../../../../store/actions/index';
 import AnswerGrid from '../../../Answer/AnswerGrid/answer-grid';
-
+import DeleteButton from '../../../Inputs/Delete Button/delete-button';
+import Loader from '../../../UI/Loader/loader';
 
 class QuestionCard extends Component{
 
@@ -53,8 +54,21 @@ class QuestionCard extends Component{
             }
         }
 
-        return (
-            <div className={classes.question} style={this.props.style} >
+        let deleteQuestionButton=null;
+        if( this.props.user ){
+            deleteQuestionButton = this.props.user._id === question.user._id ?
+                                     <DeleteButton 
+                                     onClick={() => this.props.onDeleteQuestion(
+                                         this.props.token ,
+                                         question._id
+                                     )} />
+                                     : null
+        }
+
+
+        
+        const questionCard = (
+                <div className={classes.question} style={this.props.style} >
                 <div className={classes.header} >
                     <div className={classes.user} >
                         <Link to={`/user/${question.user._id}/followers`} >
@@ -91,9 +105,16 @@ class QuestionCard extends Component{
                                                     </Button>
                                                 </Link> : null
                     }
+                    {deleteQuestionButton}
                 </div>
                 {answerGrid}
             </div>
+        )
+
+        return (
+            <Fragment>
+                {questionCard}
+            </Fragment>
         )
     }  
 }

@@ -66,3 +66,43 @@ export const loadQuestions = (token , filter , refresh ) => {
     }
 }
 
+const deleteQuestionStart = (questionId) => {
+    return{
+        type : actionTypes.DELETE_QUESTION_START,
+        questionId
+    }
+}
+
+const deleteQuestionComplete= () => {
+    return{
+        type : actionTypes.DELETE_QUESTION_COMPLETE
+    }
+}
+
+const removeQuestion = (questionId) => {
+    return{
+        type : actionTypes.REMOVE_QUESTION,
+        questionId
+    }
+}
+
+export const deleteQuestion = (token,questionId) => {
+    return dispatch => {
+        dispatch(deleteQuestionStart(questionId))
+        axiosInstance.delete('/api/questions/delete-question/'+questionId,{
+            headers : {
+                "Authorization" : "Bearer " + token
+            }
+        })
+        .then( response => {
+            if( response ){
+                dispatch(removeQuestion(questionId))
+            }
+            dispatch(deleteQuestionComplete());
+        } )
+        .catch(error => {
+            dispatch(deleteQuestionComplete());
+        })
+    }
+}
+

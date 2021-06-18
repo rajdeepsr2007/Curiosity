@@ -20,6 +20,28 @@ const reducer = (state=initialState , action) => {
         case actionTypes.LOAD_QUESTIONS_FAILED : 
             return { loading : false , error : action.error }
 
+        case actionTypes.DELETE_QUESTION_START :
+            return {
+                ...state,
+                loading : {
+                    type : 'deleting',
+                    questionId : action.questionId
+                }
+            }
+
+        case actionTypes.DELETE_QUESTION_COMPLETE :
+            return{
+                ...state,
+                loading : false
+            }
+
+        case actionTypes.REMOVE_QUESTION :
+            const updatedQuestions = state.questions.filter(question => question._id !== action.questionId );
+            return{
+                ...state,
+                questions : updatedQuestions
+            }
+
         default : 
             return state
     }

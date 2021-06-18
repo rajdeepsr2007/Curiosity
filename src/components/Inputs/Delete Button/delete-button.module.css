@@ -1,0 +1,7 @@
+.button{
+    position: absolute;
+    top : 0.8rem;
+    right: 0.8rem;
+    cursor : pointer;
+    color : rgb(241, 99, 99);
+}
