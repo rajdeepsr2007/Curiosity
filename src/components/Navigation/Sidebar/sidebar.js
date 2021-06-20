@@ -1,7 +1,7 @@
 import React , { Fragment } from 'react';
 import Backdrop from '../../UI/Modal/Backdrop/backdrop';
 import {NavLink} from 'react-router-dom';
-import {HomeOutlined,QuestionAnswerOutlined,CreateOutlined,Add,ExploreOutlined,List} from '@material-ui/icons';
+import {HomeOutlined,QuestionAnswerOutlined,CreateOutlined,Add,ExploreOutlined,List, Poll} from '@material-ui/icons';
 import classes from './sidebar.module.css';
 import Logo from '../../UI/Logo/logo';
 
@@ -55,6 +55,13 @@ const Sidebar = (props) => {
                             <NavLink to="/spaces/discover" exact activeClassName={classes.active}>
                                 <div className={classes.link} >
                                     <ExploreOutlined /> Discover Spaces
+                                </div>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/polls" activeClassName={classes.active}>
+                                <div className={classes.link} >
+                                    <Poll /> Polls
                                 </div>
                             </NavLink>
                         </li>

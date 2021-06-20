@@ -20,6 +20,7 @@ import Following from './containers/Following/following';
 import Answer from './containers/Answer/answer';
 import User from './containers/User Profile/user-profile';
 import Description from './containers/Edit/Description/description';
+import Polls from './containers/Polls/polls';
 import Logout from './containers/Auth/Logout/logout';
 
 class App extends Component {
@@ -35,6 +36,7 @@ class App extends Component {
     if( this.props.auth ){
       routes = (
         <Switch>
+          <Route path="/polls" component={Polls} />
           <Route path="/auth/logout" component={Logout} />
           <Route path="/following" component={Following} />
           <Route path="/answer/:id" component={AnswerQuestion} />

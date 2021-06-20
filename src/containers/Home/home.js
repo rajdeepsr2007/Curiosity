@@ -12,6 +12,7 @@ import Alert from '../../components/UI/Feedback/Alert/alert';
 import QuestionFilter from '../../components/Home/QuestionFilter/question-filter';
 import classes from './home.module.css';
 import { PureComponent } from 'react';
+import { Redirect } from 'react-router';
 
 class Home extends PureComponent{
 
@@ -127,6 +128,7 @@ class Home extends PureComponent{
 
        return (
            <Fragment>
+               {/* <Redirect to="/noti" /> */}
                <PageTitle><HomeOutlined /> Home</PageTitle>
                <div className={classes.options} >
                     {showFilter}

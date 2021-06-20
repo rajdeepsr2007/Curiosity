@@ -28,7 +28,7 @@ class TextEditor extends Component{
         const config = this.props.config ? 
                        this.props.config :
                        {
-                        options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'emoji', 'remove', 'history'],
+                        options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'colorPicker', 'link', 'emoji', 'remove', 'history'],
                         inline: { inDropdown: true },
                         list: { inDropdown: true },
                         textAlign: { inDropdown: true },

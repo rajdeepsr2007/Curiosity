@@ -1,0 +1,26 @@
+.option{
+    position: relative;
+    width: 96%;
+    height: 2rem;
+    padding: 0.5rem;
+    margin : auto;
+    border: 2px solid rgb(207, 203, 203);
+    border-radius: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0.5rem 0;
+}
+.option .label{
+    border-radius: 50%;
+    padding: 0.5rem 0.8rem;
+    background: rgb(179, 177, 177);
+    color:white;
+    margin-right: 3rem;
+}
+.option .remove{
+    position: absolute;
+    right: 0.5rem;
+    color: rgb(241, 143, 143);
+    cursor: pointer;
+}

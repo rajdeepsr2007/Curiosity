@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import Logo from '../UI/Logo/logo';
-import {HomeOutlined,Menu,Add,QuestionAnswerOutlined, CreateOutlined,List,ExploreOutlined, AccountCircleOutlined,Create, ExitToApp} from '@material-ui/icons/';
+import {HomeOutlined,Menu,Add,QuestionAnswerOutlined, CreateOutlined,List,ExploreOutlined, AccountCircleOutlined,Create, ExitToApp, Poll} from '@material-ui/icons/';
 import classes from './navigation.module.css';
 import Sidebar from './Sidebar/sidebar';
 import {NavLink} from 'react-router-dom';
@@ -65,6 +65,13 @@ const Navigation = (props) => {
                             <NavLink to="/spaces/discover" exact activeClassName={classes.active}>
                                 <div className={classes.link} >
                                     <ExploreOutlined /> Discover Spaces
+                                </div>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/polls" activeClassName={classes.active}>
+                                <div className={classes.link} >
+                                    <Poll /> Polls
                                 </div>
                             </NavLink>
                         </li>
