@@ -64,6 +64,7 @@ class UserGrid extends Component{
                 user={user}
                 following={this.props.loading && this.props.loading.userId && this.props.loading.userId === user._id}
                 onFollowUser={this.onFollowUserHandler}
+                puser={this.props.user}
                 />
             )
         } )
@@ -93,7 +94,8 @@ const mapStateToProps = state => {
         error : state.users.error,
         token : state.auth.token ,
         results : state.users.results ,
-        users : state.users.users
+        users : state.users.users,
+        user : state.auth.user
     }
 }
 

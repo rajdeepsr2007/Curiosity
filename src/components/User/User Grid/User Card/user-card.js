@@ -9,14 +9,23 @@ import {Link} from 'react-router-dom';
 
 const UserCard = (props) => {
 
-    const {user} = props;
+    const {user , puser } = props;
     const picture = baseURL + user.picture;
     const buttonText = user.follow ? ' Following' : ' Follow';
-    const followButton = !props.following ?  (
+    let followButton = !props.following ?  (
                                                 <Button variant={user.follow?'contained' : 'outlined'} color='primary' onClick={() => props.onFollowUser(user._id)} >
                                                     {user.follow ? <Check /> : <Add />}{buttonText}
                                                 </Button>
                                             ) : <Loader />
+    if( puser._id === user._id ){
+        followButton = 
+            <Link to={`/user/${user._id}`} >
+                <Button variant='outlined' color='primary' >
+                    View Profile
+                </Button>      
+            </Link>
+    }
+    
     const content = (
         <Fragment>
             <Link to={`/user/${user._id}/followers`} >

@@ -14,7 +14,7 @@ const PollCard = (props) => {
     const pollCard = (
         <div className={classes.card} >
             <div className={classes.user} >
-                <Link to={`/user/${user._id}`}>
+                <Link to={`/user/${user._id}/followers`}>
                     <img src={baseURL + user.picture} alt={user.username} />
                     <span>{user.username}</span>
                 </Link>
