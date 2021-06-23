@@ -2,7 +2,8 @@ import React , {Component, Fragment} from 'react';
 import { TextField , Button } from '@material-ui/core';
 import axiosInstance from '../../../axiosInstance';
 import Alert from '../../../components/UI/Feedback/Alert/alert';
-import PollCard from '../../../components/Polls/Poll Card/poll-card';
+import LivePoll from '../Live Poll/live-poll';
+import { connect } from 'react-redux';
 
 class PollParticipate extends Component{
     state={
@@ -16,12 +17,24 @@ class PollParticipate extends Component{
             return
         }else{
             this.setState({ loading : true , error : null })
-            axiosInstance.get("/api/polls/get-poll/" + this.state.pollId)
+            axiosInstance.get("/api/polls/get-poll/" + this.state.pollId,{
+                headers : {
+                    "Authorization" : "Bearer " + this.props.token
+                }
+            })
             .then(response => {
                 this.setState({ loading : false })
                 if( response ){
                     if( response.data.success ){
-                        this.setState({ poll : response.data.poll })
+                        const poll = response.data.poll;
+                        poll.votes = parseInt(poll.votes);
+                        poll.options = poll.options.map(option => {
+                            return{
+                                ...option,
+                                votes : parseInt(option.votes)
+                            }
+                        })
+                        this.setState({ poll : {...response.data.poll , selected : response.data.selectedOption }})
                     }else{
                         this.setState({ error : response.data.message })
                     }
@@ -49,11 +62,11 @@ class PollParticipate extends Component{
             </div>
         )
 
-        const pollCard = this.state.poll ?  (
-            <PollCard
-            poll={this.state.poll}
-            />
-        ) : null
+        const livePoll = this.state.poll ?
+                         <LivePoll
+                         poll={this.state.poll}
+                         user={this.props.user}
+                         />:null
 
         return(
             <Fragment>
@@ -66,11 +79,18 @@ class PollParticipate extends Component{
                 /> 
                 { this.state.error ? <Alert alertType="error" text={this.state.error} /> : null }
                 {submitButton}
-                {pollCard}        
+                {livePoll}       
             </Fragment>
             
         )
     }
 }
 
-export default PollParticipate;
+const mapStateToProps = state => {
+    return{
+        token : state.auth.token ,
+        user : state.auth.user
+    }
+}
+
+export default  connect(mapStateToProps)(PollParticipate);

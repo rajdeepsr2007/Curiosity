@@ -1,8 +1,7 @@
 .option{
     position: relative;
     width: 96%;
-    height: 2rem;
-    padding: 0.5rem;
+    height: 3rem;
     margin : auto;
     border: 2px solid rgb(207, 203, 203);
     border-radius: 20px;
@@ -10,8 +9,10 @@
     justify-content: flex-start;
     align-items: center;
     margin: 0.5rem 0;
+    cursor: pointer;
+    overflow: hidden;
 }
-.option .label{
+.option .info .label{
     border-radius: 50%;
     padding: 0.5rem 0.8rem;
     background: rgb(179, 177, 177);
@@ -23,4 +24,42 @@
     right: 0.5rem;
     color: rgb(241, 143, 143);
     cursor: pointer;
+}
+.option:hover{
+    transition: 0.2s;
+    border: 2px solid rgb(106, 166, 201);
+    color : rgb(106, 166, 201);
+}
+.option:hover .info .label{
+    background: rgb(106, 166, 201);
+}
+
+.selected{
+    transition: 0.2s;
+    border: 2px solid rgb(106, 166, 201);
+    color : rgb(106, 166, 201);
+}
+.selected .info .label{
+    background: rgb(106, 166, 201);
+}
+
+.option .percentage{
+    height: inherit;
+    border-radius: 20px 0 0 20px;
+    background: rgb(247, 244, 244);
+}
+.selected .percentage{
+    background: rgb(230, 236, 240);
+}
+
+.info{
+    position: absolute;
+    left : 1rem;
+    top : 1rem;
+}
+.percentagedisplay{
+    position : absolute;
+    right : 1rem;
+    top : 1rem;
+    color: rgb(130, 180, 196);
 }

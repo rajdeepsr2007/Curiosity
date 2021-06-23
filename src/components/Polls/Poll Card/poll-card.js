@@ -5,9 +5,11 @@ import { Link } from 'react-router-dom';
 import ReadOnlyEditor from '../../Inputs/Read Only Editor/read-only-editor';
 import classes from './poll-card.module.css';
 import PollOptions from '../Poll Options/poll-options';
+import {Button} from '@material-ui/core'
+import { PanTool } from '@material-ui/icons';
 
 const PollCard = (props) => {
-    const {poll , onRemoveOption } = props;
+    const {poll , onRemoveOption , onVote } = props;
     const user = poll.user;
     const pollCard = (
         <div className={classes.card} >
@@ -30,11 +32,17 @@ const PollCard = (props) => {
                 : null
             }
             <PollOptions
-            options={
-                poll.options
-            }
             onRemoveOption={onRemoveOption}
+            onVote={onVote}
+            poll={poll}
             />
+            {
+               onVote ? <div className={classes.info} >
+                    <Button disabled >
+                        {poll.votes} <PanTool style={{ margin : '0 0 0 0.5rem' }}/>
+                    </Button>
+                </div> : null
+            }   
         </div>
     )
     return(
