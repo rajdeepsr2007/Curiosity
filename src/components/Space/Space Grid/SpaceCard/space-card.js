@@ -21,6 +21,12 @@ const SpaceCard = (props) => {
         }
     }
 
+    const infoStyle = {
+        opacity : '90%'
+    }
+    const backgroundStyle = {
+        opacity : '80%'
+    }
 
     let followButton = space.follow ? <Button
                                         variant="contained"
@@ -44,10 +50,10 @@ const SpaceCard = (props) => {
 
     return (
         <div className={classes.card} style={props.style}  >
-                <div className={classes.background}>
-                    <img src={background} alt="background" />
+                <div className={classes.background}  style={backgroundStyle}>
+                    <img src={background} alt="background"/>
                 </div>
-                <div className={classes.info} >
+                <div className={classes.info} style={infoStyle}  >
 
                     <Link to={`/spaces/${space._id}/questions`} style={{textDecoration : 'none'}} >
                         <span 

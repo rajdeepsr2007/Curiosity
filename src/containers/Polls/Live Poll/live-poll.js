@@ -1,5 +1,5 @@
 import React , {Component} from 'react';
-import socketIOClient from 'socket.io-client';
+import socketIOClient from 'socket.io-client/dist/socket.io';
 import PollCard from '../../../components/Polls/Poll Card/poll-card';
 import Loader from '../../../components/UI/Loader/loader';
 
@@ -11,7 +11,7 @@ class LivePoll extends Component{
         super();
         this.state={
             connecting : true,
-            endpoint : 'http://localhost:5000',
+            endpoint : 'http://3.141.21.117:9000',
         }
         socket = socketIOClient(
             this.state.endpoint

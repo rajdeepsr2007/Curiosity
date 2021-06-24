@@ -3,7 +3,7 @@ import * as actionTypes from '../../actions/actionTypes';
 const initialState = {
     loading : false ,
     error : null ,
-    spaces : null,
+    spaces : [],
     filter : {},
     results : 0
 }

@@ -24,14 +24,13 @@ class DiscoverSpaces extends Component{
 
     render(){
 
-        let loadMoreButton = (
+        let loadMoreButton = this.props.spaces.length < this.props.results ? (
             <div style={{ margin : '2rem 0' }} >
                 <Button variant="contained" color="primary" onClick={this.loadSpacesHandler}>
                     Load More
                 </Button>
-            </div>
-            
-        )
+            </div>   
+        ) : null
 
         if( !this.props.spaces ){
             loadMoreButton = null;
@@ -51,7 +50,8 @@ class DiscoverSpaces extends Component{
 const mapStateToProps = state => {
     return {
         spaces : state.spaces.spaces,
-        token : state.auth.token
+        token : state.auth.token,
+        results : state.spaces.results
     }
 }
 

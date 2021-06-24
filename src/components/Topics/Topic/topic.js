@@ -11,8 +11,12 @@ const Topic = (props) => {
         topicClasses.push(classes.selected)
     }
 
+    const style = topic.selected ?  {
+                        opacity : '60%'
+                  } : null
+
     return (
-        <div className={topicClasses.join(' ')} onClick={props.onClick} >
+        <div className={topicClasses.join(' ')} onClick={props.onClick} style={style} >
                 <img src={`${baseURL}${topic.image}`} alt={topic.title} />
                 <div className={classes.title} >
                     {topic.title}

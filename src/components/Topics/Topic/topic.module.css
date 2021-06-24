@@ -61,7 +61,7 @@
     }
 }
 
-.selected{
+.topic.selected{
     transform: scale(0.9);
     border-radius : 15px;
     border : 1px solid rgb(0, 128, 75);

@@ -35,9 +35,9 @@ const UserCard = (props) => {
                 </div>
             </Link>
             <div className={classes.info} >
-                <span>{ user.followers.length } Followers</span>
-                <span>{ user.questions.length } Questions</span>
-                <span>{ user.answers.length } Answers</span>    
+                <Link to={`/user/${user._id}/followers`} ><span>{ user.followers.length } Followers</span></Link>
+                <Link to={`/user/${user._id}/questions`} ><span>{ user.questions.length } Questions</span></Link>
+                <Link to={`/user/${user._id}/answers`} ><span>{ user.answers.length } Answers</span></Link>    
             </div>
             {followButton}
         </Fragment>

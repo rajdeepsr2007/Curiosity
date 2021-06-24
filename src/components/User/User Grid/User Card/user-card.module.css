@@ -26,9 +26,11 @@
 .user .info{
     width : 50%;
 }
-.user .info span{
-    color : grey;
+.user .info a span{
+    color : rgb(130, 172, 197);
     font-size : 0.8rem;
+    text-decoration: none;
+    cursor: pointer;
 }
 @media( max-width : 500px ){
     .user .info{
