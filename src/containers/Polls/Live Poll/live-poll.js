@@ -11,7 +11,10 @@ class LivePoll extends Component{
         super();
         this.state={
             connecting : true,
-            endpoint : 'http://3.141.21.117:9000',
+            endpoint : process.env.CURIOSITY_IP ?
+                       "http://" + process.env.CURIOSITY_IP + ":" + process.env.CURIOSITY_POLL_PORT 
+                       : "http://localhost:9000"
+                       ,
         }
         socket = socketIOClient(
             this.state.endpoint
