@@ -1,4 +1,4 @@
-## Try Out The Project At [Curiosity](http://3.79.210:3000/)
+## Try Out The Project At [Curiosity](http://3.19.79.210:3000/)
 
 ## About The Project
 Curiosity is a place to ask and answer questions across various topics<br>
